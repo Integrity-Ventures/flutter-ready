@@ -33,3 +33,26 @@ jobs:
           fi
 
           echo "Confirmed: the action failed with a BLOCKER line for fixture_blocked_plugin, as expected."
+
+  passes-on-no-blocker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run flutter_ready check on the fixture with no blocker
+        id: check
+        uses: ./
+        with:
+          lockfile: fixtures/sample_app/pubspec_green.lock
+          data: fixtures/sample_app/data/latest.json
+
+      - name: Assert the action succeeded
+        run: |
+          report="${{ steps.check.outputs.report }}"
+          if [[ "$report" == *"BLOCKER"* ]]; then
+            echo "Expected no BLOCKER line for fixture_green_plugin, but got:"
+            echo "$report"
+            exit 1
+          fi
+
+          echo "Confirmed: the action succeeded with no BLOCKER line, as expected."

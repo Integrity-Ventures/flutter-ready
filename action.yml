@@ -23,6 +23,7 @@ runs:
     - uses: dart-lang/setup-dart@v1
       with:
         sdk: stable
+        problem-matcher: false
 
     - name: Install flutter_ready
       shell: bash
