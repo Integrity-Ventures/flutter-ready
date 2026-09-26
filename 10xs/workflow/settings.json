@@ -1,0 +1,12 @@
+{
+  "seats": {
+    "actingPm": "cheapest",
+    "cut": "capable",
+    "coding": {
+      "claude": "coding",
+      "codex": "coding"
+    },
+    "validators": "cheapest",
+    "router": "none"
+  }
+}

@@ -1,0 +1,702 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "Phase1Result": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "const": "2.0.0"
+        },
+        "blueprintId": {
+          "type": "string"
+        },
+        "epics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 200
+              },
+              "description": {
+                "type": "string",
+                "minLength": 10
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "critical",
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "dependencies": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "status": {
+                "default": "pending",
+                "type": "string",
+                "enum": [
+                  "pending",
+                  "in_progress",
+                  "completed",
+                  "blocked"
+                ]
+              },
+              "metadata": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {}
+              },
+              "type": {
+                "type": "string",
+                "const": "epic"
+              },
+              "estimatedHours": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "domain": {
+                "type": "string",
+                "minLength": 1
+              },
+              "stories": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 3,
+                      "maxLength": 200
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 10
+                    },
+                    "priority": {
+                      "type": "string",
+                      "enum": [
+                        "critical",
+                        "high",
+                        "medium",
+                        "low"
+                      ]
+                    },
+                    "dependencies": {
+                      "default": [],
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "status": {
+                      "default": "pending",
+                      "type": "string",
+                      "enum": [
+                        "pending",
+                        "in_progress",
+                        "completed",
+                        "blocked"
+                      ]
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      },
+                      "additionalProperties": {}
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "story"
+                    },
+                    "estimatedHours": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "parentEpicId": {
+                      "type": "string"
+                    },
+                    "userValue": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "microtasks": {
+                      "default": [],
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "title": {
+                            "type": "string",
+                            "minLength": 3,
+                            "maxLength": 200
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 10
+                          },
+                          "priority": {
+                            "type": "string",
+                            "enum": [
+                              "critical",
+                              "high",
+                              "medium",
+                              "low"
+                            ]
+                          },
+                          "dependencies": {
+                            "default": [],
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "status": {
+                            "default": "pending",
+                            "type": "string",
+                            "enum": [
+                              "pending",
+                              "in_progress",
+                              "completed",
+                              "blocked"
+                            ]
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "propertyNames": {
+                              "type": "string"
+                            },
+                            "additionalProperties": {}
+                          },
+                          "type": {
+                            "type": "string",
+                            "const": "microtask"
+                          },
+                          "estimatedHours": {
+                            "type": "number",
+                            "exclusiveMinimum": 0
+                          },
+                          "parentStoryId": {
+                            "type": "string"
+                          },
+                          "targetFiles": {
+                            "default": [],
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "acceptanceCriteria": {
+                            "minItems": 1,
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "testingStrategy": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "implementationNotes": {
+                            "type": "string"
+                          },
+                          "skills": {
+                            "default": [],
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "complexity": {
+                            "default": "moderate",
+                            "type": "string",
+                            "enum": [
+                              "trivial",
+                              "simple",
+                              "moderate",
+                              "complex"
+                            ]
+                          },
+                          "governanceTags": {
+                            "default": [],
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "riskScore": {
+                            "type": "number",
+                            "minimum": 1,
+                            "maximum": 5
+                          },
+                          "brownfield": {
+                            "type": "object",
+                            "properties": {
+                              "disposition": {
+                                "type": "string",
+                                "enum": [
+                                  "discover",
+                                  "extend",
+                                  "integrate",
+                                  "refactor",
+                                  "replace",
+                                  "remove",
+                                  "create"
+                                ]
+                              },
+                              "asBuilt": {
+                                "default": [],
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "mustNotBreak": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "disposition",
+                              "asBuilt"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "currentExecutionContractId": {
+                            "type": "string"
+                          },
+                          "workflowStatus": {
+                            "default": "backlog",
+                            "type": "string",
+                            "enum": [
+                              "backlog",
+                              "in_progress",
+                              "done"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "title",
+                          "description",
+                          "priority",
+                          "dependencies",
+                          "status",
+                          "type",
+                          "estimatedHours",
+                          "targetFiles",
+                          "acceptanceCriteria",
+                          "testingStrategy",
+                          "skills",
+                          "complexity",
+                          "governanceTags",
+                          "workflowStatus"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "brownfield": {
+                      "type": "object",
+                      "properties": {
+                        "disposition": {
+                          "type": "string",
+                          "enum": [
+                            "discover",
+                            "extend",
+                            "integrate",
+                            "refactor",
+                            "replace",
+                            "remove",
+                            "create"
+                          ]
+                        },
+                        "asBuilt": {
+                          "default": [],
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "mustNotBreak": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "disposition",
+                        "asBuilt"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "description",
+                    "priority",
+                    "dependencies",
+                    "status",
+                    "type",
+                    "userValue",
+                    "microtasks"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "description",
+              "priority",
+              "dependencies",
+              "status",
+              "type",
+              "domain",
+              "stories"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "kernelVersion": {
+              "type": "string"
+            },
+            "artifactVersion": {
+              "type": "string"
+            },
+            "generatorVersion": {
+              "type": "string"
+            },
+            "generatedAt": {
+              "type": "string"
+            },
+            "totalEpics": {
+              "type": "number"
+            },
+            "totalStories": {
+              "type": "number"
+            },
+            "totalEstimatedHours": {
+              "type": "number"
+            },
+            "domainSummary": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "type": "number"
+              }
+            },
+            "asBuiltRef": {
+              "type": "object",
+              "properties": {
+                "artifactId": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "artifactId",
+                "version"
+              ],
+              "additionalProperties": false
+            },
+            "directionRef": {
+              "type": "object",
+              "properties": {
+                "artifactId": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "artifactId",
+                "version"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "kernelVersion",
+            "artifactVersion",
+            "generatorVersion",
+            "generatedAt",
+            "totalEpics",
+            "totalStories",
+            "domainSummary"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "epics",
+        "metadata"
+      ],
+      "additionalProperties": false
+    },
+    "Phase2Result": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "const": "2.0.0"
+        },
+        "storyId": {
+          "type": "string"
+        },
+        "microtasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 200
+              },
+              "description": {
+                "type": "string",
+                "minLength": 10
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "critical",
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "dependencies": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "status": {
+                "default": "pending",
+                "type": "string",
+                "enum": [
+                  "pending",
+                  "in_progress",
+                  "completed",
+                  "blocked"
+                ]
+              },
+              "metadata": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {}
+              },
+              "type": {
+                "type": "string",
+                "const": "microtask"
+              },
+              "estimatedHours": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "parentStoryId": {
+                "type": "string"
+              },
+              "targetFiles": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "acceptanceCriteria": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "testingStrategy": {
+                "type": "string",
+                "minLength": 1
+              },
+              "implementationNotes": {
+                "type": "string"
+              },
+              "skills": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "complexity": {
+                "default": "moderate",
+                "type": "string",
+                "enum": [
+                  "trivial",
+                  "simple",
+                  "moderate",
+                  "complex"
+                ]
+              },
+              "governanceTags": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "riskScore": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "brownfield": {
+                "type": "object",
+                "properties": {
+                  "disposition": {
+                    "type": "string",
+                    "enum": [
+                      "discover",
+                      "extend",
+                      "integrate",
+                      "refactor",
+                      "replace",
+                      "remove",
+                      "create"
+                    ]
+                  },
+                  "asBuilt": {
+                    "default": [],
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "mustNotBreak": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "disposition",
+                  "asBuilt"
+                ],
+                "additionalProperties": false
+              },
+              "currentExecutionContractId": {
+                "type": "string"
+              },
+              "workflowStatus": {
+                "default": "backlog",
+                "type": "string",
+                "enum": [
+                  "backlog",
+                  "in_progress",
+                  "done"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "description",
+              "priority",
+              "dependencies",
+              "status",
+              "type",
+              "estimatedHours",
+              "targetFiles",
+              "acceptanceCriteria",
+              "testingStrategy",
+              "skills",
+              "complexity",
+              "governanceTags",
+              "workflowStatus"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "kernelVersion": {
+              "type": "string"
+            },
+            "artifactVersion": {
+              "type": "string"
+            },
+            "generatorVersion": {
+              "type": "string"
+            },
+            "generatedAt": {
+              "type": "string"
+            },
+            "totalMicrotasks": {
+              "type": "number"
+            },
+            "totalEstimatedHours": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "kernelVersion",
+            "artifactVersion",
+            "generatorVersion",
+            "generatedAt",
+            "totalMicrotasks",
+            "totalEstimatedHours"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "storyId",
+        "microtasks",
+        "metadata"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

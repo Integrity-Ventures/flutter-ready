@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "executionContractId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "microtaskId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "blueprintVersion": {
+      "type": "string",
+      "const": "3.5"
+    },
+    "governanceHash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kernelVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contractHash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "default": 1,
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "maximum": 9007199254740991
+    },
+    "supersedesExecutionContractId": {
+      "default": null,
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "definition": {
+      "type": "object",
+      "properties": {
+        "scopeSummary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "allowedBoundaries": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requiredTests": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "namingConstraints": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "acceptanceChecklist": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enforcementSummary": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "scopeSummary",
+        "allowedBoundaries",
+        "requiredTests",
+        "namingConstraints",
+        "acceptanceChecklist",
+        "enforcementSummary"
+      ],
+      "additionalProperties": false
+    },
+    "reportingTemplate": {
+      "type": "object",
+      "properties": {
+        "filesModified": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "linesAdded": {
+          "default": 0,
+          "type": "number"
+        },
+        "linesRemoved": {
+          "default": 0,
+          "type": "number"
+        },
+        "timeSpentHours": {
+          "default": 0,
+          "type": "number"
+        },
+        "testsAdded": {
+          "default": 0,
+          "type": "number"
+        },
+        "riskNotes": {
+          "default": "",
+          "type": "string"
+        },
+        "complianceDeclaration": {
+          "default": "",
+          "type": "string"
+        }
+      },
+      "required": [
+        "filesModified",
+        "linesAdded",
+        "linesRemoved",
+        "timeSpentHours",
+        "testsAdded",
+        "riskNotes",
+        "complianceDeclaration"
+      ],
+      "additionalProperties": false
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "default": "not_submitted",
+          "type": "string",
+          "enum": [
+            "not_submitted",
+            "pass",
+            "warn",
+            "fail"
+          ]
+        },
+        "violations": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "actual": {
+                "type": "number"
+              },
+              "limit": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "field",
+              "message",
+              "actual",
+              "limit"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "warnings": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "field",
+              "message"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "validatedAt": {
+          "default": null,
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "result",
+        "violations",
+        "warnings",
+        "validatedAt"
+      ],
+      "additionalProperties": false
+    },
+    "createdAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "executionContractId",
+    "microtaskId",
+    "blueprintVersion",
+    "governanceHash",
+    "kernelVersion",
+    "contractHash",
+    "revision",
+    "supersedesExecutionContractId",
+    "definition",
+    "reportingTemplate",
+    "validation",
+    "createdAt"
+  ],
+  "additionalProperties": false
+}

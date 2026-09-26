@@ -1,0 +1,33 @@
+{
+  "exportVersion": "1.0.0",
+  "exportedAt": "2026-09-26T17:48:05.365Z",
+  "projectName": "Flutter Ready",
+  "fileCount": 22,
+  "integrityHash": "c5f96f9c0d7a7d5f",
+  "artifacts": {
+    "prd": {
+      "included": true,
+      "path": "10xs/PRD.md"
+    },
+    "projectModel": {
+      "included": true,
+      "path": "10xs/architecture/generated/PROJECT_MODEL.json"
+    },
+    "blueprint": {
+      "included": true,
+      "path": "10xs/architecture/generated/BLUEPRINT.json"
+    },
+    "decomposition": {
+      "included": true,
+      "path": "10xs/architecture/generated/DECOMPOSITION.json"
+    }
+  },
+  "requiredArtifacts": [
+    "prd",
+    "blueprint",
+    "projectModel"
+  ],
+  "optionalArtifacts": [
+    "decomposition"
+  ]
+}

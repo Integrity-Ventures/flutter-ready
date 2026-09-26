@@ -1,0 +1,221 @@
+{
+  "epics": [
+    {
+      "id": "e1",
+      "title": "Shared readiness-check library (Dart)",
+      "summary": "One library, used by both the nightly job and the CLI, so the board and the CLI can never disagree (SPEC §2, §3.1).",
+      "stories": [
+        {
+          "id": "e1-s1",
+          "title": "Plugin discovery and filtering",
+          "microtasks": [
+            {
+              "id": "e1-s1-mt1",
+              "title": "Fetch and filter the top-N plugin list",
+              "summary": "Call GET /api/package-name-completion-data, keep packages tagged sdk:flutter plus platform:ios or platform:android (SPEC §3.1.1). N is unresolved (open decision 1); implement with N as a parameter, default 100."
+            }
+          ]
+        },
+        {
+          "id": "e1-s2",
+          "title": "Swift Package Manager readiness check",
+          "microtasks": [
+            {
+              "id": "e1-s2-mt1",
+              "title": "Read the is:swiftpm-plugin score tag",
+              "summary": "GET /api/packages/<name>/score per plugin, record the tag (SPEC §3.1.2)."
+            },
+            {
+              "id": "e1-s2-mt2",
+              "title": "Confirm via package archive and flag disagreement",
+              "summary": "Look for ios/, macos/ or darwin/<plugin>/Package.swift in the archive; record both signals and flag any plugin where the tag and archive disagree (SPEC §3.1.2, flutter/flutter#187330)."
+            }
+          ]
+        },
+        {
+          "id": "e1-s3",
+          "title": "16 KB native alignment check",
+          "microtasks": [
+            {
+              "id": "e1-s3-mt1",
+              "title": "ELF LOAD-segment alignment check",
+              "summary": "For every .so in the package archive, read ELF program headers and confirm each LOAD segment's alignment is >= 0x4000 (SPEC §3.1.2)."
+            }
+          ]
+        },
+        {
+          "id": "e1-s4",
+          "title": "Android build settings extraction",
+          "microtasks": [
+            {
+              "id": "e1-s4-mt1",
+              "title": "Parse compileSdk, AGP and NDK from the plugin's Gradle files",
+              "summary": "Read android/build.gradle or build.gradle.kts (SPEC §3.1.2). Record as plain facts only, no red/amber/green — grading rule is unresolved (open decision 3)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e2",
+      "title": "Nightly data job",
+      "summary": "Scheduled job that runs the library over the plugin list and commits dated snapshots (SPEC §3.1.3).",
+      "stories": [
+        {
+          "id": "e2-s1",
+          "title": "Snapshot assembly",
+          "microtasks": [
+            {
+              "id": "e2-s1-mt1",
+              "title": "Assemble one dated JSON snapshot per run",
+              "summary": "Per plugin: SwiftPM signals, alignment result, Android facts, version, publish date, downloadCount30Days, likeCount (SPEC §3.1.2-3)."
+            }
+          ]
+        },
+        {
+          "id": "e2-s2",
+          "title": "Scheduling and commit",
+          "microtasks": [
+            {
+              "id": "e2-s2-mt1",
+              "title": "Scheduled GitHub Actions workflow that commits the snapshot",
+              "summary": "Nightly cron; commit the snapshot JSON to this repo so Amplify rebuilds on that commit (SPEC §3.1.3, §2)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e3",
+      "title": "Public board (Jaspr static site)",
+      "summary": "One row per plugin, red/amber/green per deadline, deployed to ready.hireflutter.dev (SPEC §2, §3.2).",
+      "stories": [
+        {
+          "id": "e3-s1",
+          "title": "Board rendering",
+          "microtasks": [
+            {
+              "id": "e3-s1-mt1",
+              "title": "Per-plugin row with per-deadline status",
+              "summary": "Static Jaspr site, one page per plugin so it's individually searchable (SPEC §2, §3.2)."
+            },
+            {
+              "id": "e3-s1-mt2",
+              "title": "Evidence and trend display",
+              "summary": "Each row shows the evidence behind its colour (file found, or misaligned library + alignment) and trend over time from snapshots, e.g. share of top plugins shipping SwiftPM (SPEC §3.2)."
+            }
+          ]
+        },
+        {
+          "id": "e3-s2",
+          "title": "Red-row call to action",
+          "microtasks": [
+            {
+              "id": "e3-s2-mt1",
+              "title": "HireFlutter CTA on red rows",
+              "summary": "\"Blocked by this plugin? A HireFlutter developer can migrate or fork it.\" (SPEC §2)."
+            }
+          ]
+        },
+        {
+          "id": "e3-s3",
+          "title": "Deployment",
+          "microtasks": [
+            {
+              "id": "e3-s3-mt1",
+              "title": "AWS Amplify static hosting, rebuild on snapshot commit",
+              "summary": "SPEC §2. DNS for ready.hireflutter.dev is unresolved (open decision 5)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e4",
+      "title": "CLI (flutter_ready)",
+      "summary": "dart pub global activate flutter_ready; checks an app's own pubspec.lock (SPEC §3.3).",
+      "stories": [
+        {
+          "id": "e4-s1",
+          "title": "check command",
+          "microtasks": [
+            {
+              "id": "e4-s1-mt1",
+              "title": "Read pubspec.lock and report blockers with evidence",
+              "summary": "flutter_ready check: resolve each plugin version against the published data, print per-deadline blockers with evidence; exit non-zero on any blocker; report unlisted or newer-than-last-run plugins as \"not checked\", never green (SPEC §3.3)."
+            }
+          ]
+        },
+        {
+          "id": "e4-s2",
+          "title": "Replacement suggestions",
+          "microtasks": [
+            {
+              "id": "e4-s2-mt1",
+              "title": "Suggest a replacement package per known blocker",
+              "summary": "SPEC §3.3. Source of suggestions is unresolved (open decision 4) — hand-curated list, never generated."
+            }
+          ]
+        },
+        {
+          "id": "e4-s3",
+          "title": "Publish",
+          "microtasks": [
+            {
+              "id": "e4-s3-mt1",
+              "title": "Publish flutter_ready on pub.dev under the hireflutter.dev publisher",
+              "summary": "SPEC §2. Name flutter_ready confirmed free 2026-09-26 pending a GitHub check (open decision 2). Publisher move can't be undone, so the publisher must exist first."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5",
+      "title": "GitHub Action",
+      "summary": "Thin wrapper around the CLI (SPEC §3.4).",
+      "stories": [
+        {
+          "id": "e5-s1",
+          "title": "Action wrapper",
+          "microtasks": [
+            {
+              "id": "e5-s1-mt1",
+              "title": "Run flutter_ready check as a GitHub Action, fail on blockers",
+              "summary": "SPEC §3.4, §6: verify against a sample app repo with a known blocker."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e6",
+      "title": "Tests",
+      "summary": "SPEC §5.",
+      "stories": [
+        {
+          "id": "e6-s1",
+          "title": "Fixtures",
+          "microtasks": [
+            {
+              "id": "e6-s1-mt1",
+              "title": "Fixture plugins and recorded pub.dev API responses",
+              "summary": "One fixture per readiness state (SwiftPM present, absent, tag/archive disagreeing) plus aligned and misaligned sample .so files; tests never call the network (SPEC §5)."
+            }
+          ]
+        },
+        {
+          "id": "e6-s2",
+          "title": "Golden CLI tests",
+          "microtasks": [
+            {
+              "id": "e6-s2-mt1",
+              "title": "Golden tests of CLI report output",
+              "summary": "Run in CI, keep test_output for the build record (SPEC §5)."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,374 @@
+[
+  {
+    "id": "e1-s1",
+    "title": "Plugin discovery and filtering",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e1",
+    "epicTitle": "Shared readiness-check library (Dart)",
+    "storyRef": "e1-s1",
+    "storyTitle": "Plugin discovery and filtering",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e1-s1-mt1",
+          "title": "Fetch and filter the top-N plugin list",
+          "status": "pending",
+          "summary": "Call GET /api/package-name-completion-data, keep packages tagged sdk:flutter plus platform:ios or platform:android (SPEC §3.1.1). N is unresolved (open decision 1); implement with N as a parameter, default 100."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e1-s2",
+    "title": "Swift Package Manager readiness check",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e1",
+    "epicTitle": "Shared readiness-check library (Dart)",
+    "storyRef": "e1-s2",
+    "storyTitle": "Swift Package Manager readiness check",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e1-s2-mt1",
+          "title": "Read the is:swiftpm-plugin score tag",
+          "status": "pending",
+          "summary": "GET /api/packages/<name>/score per plugin, record the tag (SPEC §3.1.2)."
+        },
+        {
+          "id": "e1-s2-mt2",
+          "title": "Confirm via package archive and flag disagreement",
+          "status": "pending",
+          "summary": "Look for ios/, macos/ or darwin/<plugin>/Package.swift in the archive; record both signals and flag any plugin where the tag and archive disagree (SPEC §3.1.2, flutter/flutter#187330)."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e1-s3",
+    "title": "16 KB native alignment check",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e1",
+    "epicTitle": "Shared readiness-check library (Dart)",
+    "storyRef": "e1-s3",
+    "storyTitle": "16 KB native alignment check",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e1-s3-mt1",
+          "title": "ELF LOAD-segment alignment check",
+          "status": "pending",
+          "summary": "For every .so in the package archive, read ELF program headers and confirm each LOAD segment's alignment is >= 0x4000 (SPEC §3.1.2)."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e1-s4",
+    "title": "Android build settings extraction",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e1",
+    "epicTitle": "Shared readiness-check library (Dart)",
+    "storyRef": "e1-s4",
+    "storyTitle": "Android build settings extraction",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e1-s4-mt1",
+          "title": "Parse compileSdk, AGP and NDK from the plugin's Gradle files",
+          "status": "pending",
+          "summary": "Read android/build.gradle or build.gradle.kts (SPEC §3.1.2). Record as plain facts only, no red/amber/green — grading rule is unresolved (open decision 3)."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e2-s1",
+    "title": "Snapshot assembly",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e2",
+    "epicTitle": "Nightly data job",
+    "storyRef": "e2-s1",
+    "storyTitle": "Snapshot assembly",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e2-s1-mt1",
+          "title": "Assemble one dated JSON snapshot per run",
+          "status": "pending",
+          "summary": "Per plugin: SwiftPM signals, alignment result, Android facts, version, publish date, downloadCount30Days, likeCount (SPEC §3.1.2-3)."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e2-s2",
+    "title": "Scheduling and commit",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e2",
+    "epicTitle": "Nightly data job",
+    "storyRef": "e2-s2",
+    "storyTitle": "Scheduling and commit",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e2-s2-mt1",
+          "title": "Scheduled GitHub Actions workflow that commits the snapshot",
+          "status": "pending",
+          "summary": "Nightly cron; commit the snapshot JSON to this repo so Amplify rebuilds on that commit (SPEC §3.1.3, §2)."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e3-s1",
+    "title": "Board rendering",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e3",
+    "epicTitle": "Public board (Jaspr static site)",
+    "storyRef": "e3-s1",
+    "storyTitle": "Board rendering",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e3-s1-mt1",
+          "title": "Per-plugin row with per-deadline status",
+          "status": "pending",
+          "summary": "Static Jaspr site, one page per plugin so it's individually searchable (SPEC §2, §3.2)."
+        },
+        {
+          "id": "e3-s1-mt2",
+          "title": "Evidence and trend display",
+          "status": "pending",
+          "summary": "Each row shows the evidence behind its colour (file found, or misaligned library + alignment) and trend over time from snapshots, e.g. share of top plugins shipping SwiftPM (SPEC §3.2)."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e3-s2",
+    "title": "Red-row call to action",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e3",
+    "epicTitle": "Public board (Jaspr static site)",
+    "storyRef": "e3-s2",
+    "storyTitle": "Red-row call to action",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e3-s2-mt1",
+          "title": "HireFlutter CTA on red rows",
+          "status": "pending",
+          "summary": "\"Blocked by this plugin? A HireFlutter developer can migrate or fork it.\" (SPEC §2)."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e3-s3",
+    "title": "Deployment",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e3",
+    "epicTitle": "Public board (Jaspr static site)",
+    "storyRef": "e3-s3",
+    "storyTitle": "Deployment",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e3-s3-mt1",
+          "title": "AWS Amplify static hosting, rebuild on snapshot commit",
+          "status": "pending",
+          "summary": "SPEC §2. DNS for ready.hireflutter.dev is unresolved (open decision 5)."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e4-s1",
+    "title": "check command",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e4",
+    "epicTitle": "CLI (flutter_ready)",
+    "storyRef": "e4-s1",
+    "storyTitle": "check command",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e4-s1-mt1",
+          "title": "Read pubspec.lock and report blockers with evidence",
+          "status": "pending",
+          "summary": "flutter_ready check: resolve each plugin version against the published data, print per-deadline blockers with evidence; exit non-zero on any blocker; report unlisted or newer-than-last-run plugins as \"not checked\", never green (SPEC §3.3)."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e4-s2",
+    "title": "Replacement suggestions",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e4",
+    "epicTitle": "CLI (flutter_ready)",
+    "storyRef": "e4-s2",
+    "storyTitle": "Replacement suggestions",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e4-s2-mt1",
+          "title": "Suggest a replacement package per known blocker",
+          "status": "pending",
+          "summary": "SPEC §3.3. Source of suggestions is unresolved (open decision 4) — hand-curated list, never generated."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e4-s3",
+    "title": "Publish",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e4",
+    "epicTitle": "CLI (flutter_ready)",
+    "storyRef": "e4-s3",
+    "storyTitle": "Publish",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e4-s3-mt1",
+          "title": "Publish flutter_ready on pub.dev under the hireflutter.dev publisher",
+          "status": "pending",
+          "summary": "SPEC §2. Name flutter_ready confirmed free 2026-09-26 pending a GitHub check (open decision 2). Publisher move can't be undone, so the publisher must exist first."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e5-s1",
+    "title": "Action wrapper",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e5",
+    "epicTitle": "GitHub Action",
+    "storyRef": "e5-s1",
+    "storyTitle": "Action wrapper",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e5-s1-mt1",
+          "title": "Run flutter_ready check as a GitHub Action, fail on blockers",
+          "status": "pending",
+          "summary": "SPEC §3.4, §6: verify against a sample app repo with a known blocker."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e6-s1",
+    "title": "Fixtures",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e6",
+    "epicTitle": "Tests",
+    "storyRef": "e6-s1",
+    "storyTitle": "Fixtures",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e6-s1-mt1",
+          "title": "Fixture plugins and recorded pub.dev API responses",
+          "status": "pending",
+          "summary": "One fixture per readiness state (SwiftPM present, absent, tag/archive disagreeing) plus aligned and misaligned sample .so files; tests never call the network (SPEC §5)."
+        }
+      ],
+      "targetFiles": []
+    }
+  },
+  {
+    "id": "e6-s2",
+    "title": "Golden CLI tests",
+    "description": "",
+    "status": "backlog",
+    "estimateHours": null,
+    "dependencies": [],
+    "epicRef": "e6",
+    "epicTitle": "Tests",
+    "storyRef": "e6-s2",
+    "storyTitle": "Golden CLI tests",
+    "origin": "plan",
+    "metadata": {
+      "checklist": [
+        {
+          "id": "e6-s2-mt1",
+          "title": "Golden tests of CLI report output",
+          "status": "pending",
+          "summary": "Run in CI, keep test_output for the build record (SPEC §5)."
+        }
+      ],
+      "targetFiles": []
+    }
+  }
+]

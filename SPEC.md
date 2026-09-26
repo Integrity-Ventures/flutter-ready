@@ -33,6 +33,18 @@ The deadlines v1 covers:
   OSI-approved licence.
 - **Board:** hosted at `ready.hireflutter.dev`, in HireFlutter's brand, deployed
   from this repo. It doesn't wait for the hireflutter.dev revamp.
+- **Hosting:** AWS Amplify static hosting (owner, 2026-09-26), like the
+  owner's other sites. There is no backend: no server, database or login.
+- **Stack:** Dart throughout (owner, 2026-09-26).
+  - The CLI, the GitHub Action and the nightly job are Dart. The job and the
+    CLI share one readiness-check library, so the board and the CLI can't
+    disagree.
+  - The board is a static site built with [Jaspr](https://jaspr.site/), a Dart
+    web framework that renders real HTML and CSS. It is not Flutter Web, which
+    draws on a canvas and is weak for search and first load. Each plugin gets
+    its own page, so a search like "is <plugin> SwiftPM ready" can find it.
+    Flutter's own sites (dart.dev, flutter.dev, docs.flutter.dev) moved to
+    Jaspr in April 2026.
 - **Package:** published on pub.dev under the `hireflutter.dev` publisher.
   Moving a package to a publisher can't be undone, so the publisher must exist
   before the first publish.
@@ -66,12 +78,14 @@ The deadlines v1 covers:
      when present. See open decision 3 on how these are graded.
    - Also recorded: the version, publish date, `downloadCount30Days` and
      `likeCount` from the score endpoint.
-3. **Store it** as dated JSON snapshots in the repo or its hosting, so the
-   board can show trend over time.
+3. **Store it** as dated JSON snapshots committed to this repo, so the board
+   can show trend over time. The job runs as a scheduled GitHub Actions
+   workflow and commits each snapshot, and Amplify rebuilds the board on that
+   commit.
 
 ### 3.2 Public board
 
-- A static site: one row per plugin, red, amber or green for each deadline.
+- A static Jaspr site (§2): one row per plugin, red, amber or green for each deadline.
 - Trend over time from the snapshots, for example the share of top plugins
   that ship SwiftPM.
 - Each row links to the plugin's pub.dev page and shows the evidence behind its
@@ -139,7 +153,7 @@ on blockers.
 4. **Replacement suggestions:** where they come from. The slate names them but
    gives no source. They could be curated by hand; they should never be
    generated.
-5. **Where the snapshots and board are hosted** behind `ready.hireflutter.dev`,
-   and who sets up its DNS.
+5. **The `ready.hireflutter.dev` DNS record:** who adds it, pointing at the
+   Amplify app. Hosting itself is decided: Amplify (§2).
 6. **How deadlines are listed:** as data, so next season's Play and Apple
    deadlines can be added without code changes (slate §3 idea 1, risks).

@@ -16,3 +16,9 @@ pubspec.lock
 .idea/
 .vscode/
 .DS_Store
+
+# 10xs sync — never commit your sync token/state (auto-added by 10xs-sync)
+.10xs.state.json
+
+# 10xs runtime scratch — never commit session logs/output (auto-added by 10xs)
+.10xs/

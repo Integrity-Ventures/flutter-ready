@@ -1,0 +1,37 @@
+profileType: kernel-static
+versions:
+  kernelVersion: 0.1.0
+  artifactVersion: 2.0.0
+  generatorVersion: 1.0.0
+governanceHash: b271b22dfc75c2f2
+rules:
+  microtask:
+    minHours: 2
+    maxHours: 4
+    maxFiles: 5
+    maxDependencies: 3
+    requiresTestingStrategy: true
+    requiresImplementationNotes: true
+    enforcementMode: warn
+  story:
+    minHours: 6
+    maxHours: 32
+    maxDependencies: 5
+    maxMicrotasks: 8
+    requiresTestingStrategy: false
+    requiresImplementationNotes: false
+  epic:
+    minHours: 12
+    maxHours: 160
+    maxDependencies: 3
+    maxStories: 5
+    requiresTestingStrategy: false
+    requiresImplementationNotes: false
+  decomposition:
+    hierarchy:
+      - epic
+      - story
+      - microtask
+    maxDepth: 3
+    maxChildrenPerParent: 8
+    requiresDependencyMapping: true
