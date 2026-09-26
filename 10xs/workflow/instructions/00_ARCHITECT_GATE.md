@@ -1,7 +1,18 @@
 # Architect gate: read before any card (architect, 2026-09-27)
 
 Workers on this board **never merge into `develop` or `main`** and never
-delete branches. When a card is finished:
+delete branches.
+
+- **Work only in your own clone:** the directory you were launched in
+  (`~/flutter-ready/.10xs/plan/<card>`). Never `cd` into `~/flutter-ready`
+  itself or edit files there. That tree belongs to the runtime.
+- **Run everything in the FOREGROUND and wait for it,** including long live
+  runs such as the snapshot job. A print-mode seat that backgrounds a
+  command and "waits for the notification" exits at the end of its turn, and
+  the work dies uncommitted. That happened to e2-s1 on 2026-09-27.
+- **Commit early:** commit to your lane branch after each passing step.
+
+When a card is finished:
 
 1. Push your lane branch (`feature/<card>-<slug>`) to your clone's
    `origin`, which is the local `~/flutter-ready` on the fleetbox. Do **not**

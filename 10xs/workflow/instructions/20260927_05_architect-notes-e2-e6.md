@@ -43,6 +43,12 @@ open is marked **architect decision** and can be changed by the owner.
 
 ## e2-s1: Snapshot assembly
 
+- **CONTINUE, don't restart (2026-09-27):** the first seat's work is saved as
+  WIP commit 4cbc483 on branch `feature/e2-s1-snapshot-assembly` (in your
+  clone: `origin/feature/e2-s1-snapshot-assembly`). Check that branch out
+  and finish it: gates green, then run the live `--top 100` snapshot IN
+  THE FOREGROUND and commit its output, then write the report and hand over.
+
 - **Federated plugins (review finding on e1-s2).** For app-facing packages
   like `url_launcher`, `Package.swift`, `.so` files and Gradle files live in
   the endorsed platform packages. Read
