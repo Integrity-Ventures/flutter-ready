@@ -59,8 +59,12 @@ The deadlines v1 covers:
    `GET https://pub.dev/api/package-name-completion-data`, which returns
    package names "ordered by overall ranking" (documented at pub.dev/help/api).
    The list mixes Dart packages and plugins, so keep only packages whose score
-   tags include `sdk:flutter` and at least one `platform:ios` or
-   `platform:android` tag.
+   tags include `sdk:flutter`, `is:plugin`, and at least one `platform:ios` or
+   `platform:android` tag (added 2026-09-27, acting PM for the owner:
+   pure-Dart packages such as provider and flutter_map carry the platform
+   tags too; url_launcher and shared_preferences carry is:plugin). N is
+   counted after this filter: take plugins from the ranked list, in order,
+   until N are found.
 2. **Record per plugin, for its latest version:**
    - **SwiftPM:** pub.dev's `GET /api/packages/<name>/score` already carries an
      `is:swiftpm-plugin` tag (checked 2026-09-26 on `url_launcher`,
