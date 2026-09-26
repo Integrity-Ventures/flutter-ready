@@ -13,6 +13,10 @@ inputs:
       flutter_ready's own default (the live main-branch data on GitHub).
     required: false
     default: ''
+outputs:
+  report:
+    description: The full text of the `flutter_ready check` report.
+    value: ${{ steps.run-check.outputs.report }}
 runs:
   using: composite
   steps:
@@ -25,10 +29,21 @@ runs:
       run: dart pub global activate --source path "${{ github.action_path }}/packages/flutter_ready"
 
     - name: Run flutter_ready check
+      id: run-check
       shell: bash
       run: |
         args=(check --lockfile "${{ inputs.lockfile }}")
         if [ -n "${{ inputs.data }}" ]; then
           args+=(--data "${{ inputs.data }}")
         fi
-        dart pub global run flutter_ready "${args[@]}"
+        set +e
+        report="$(dart pub global run flutter_ready "${args[@]}")"
+        exit_code=$?
+        set -e
+        echo "$report"
+        {
+          echo "report<<FLUTTER_READY_REPORT_EOF"
+          echo "$report"
+          echo "FLUTTER_READY_REPORT_EOF"
+        } >> "$GITHUB_OUTPUT"
+        exit $exit_code

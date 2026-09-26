@@ -1,0 +1,5 @@
+Flutter Ready check — 1 hosted package(s) in pubspec.lock.
+
+No blockers found.
+Not checked:
+  fixture_unknown_plugin 1.0.0: not in Flutter Ready's data.

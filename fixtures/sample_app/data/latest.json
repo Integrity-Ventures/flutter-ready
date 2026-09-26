@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-27T00:00:00Z",
+  "topN": 2,
+  "plugins": [
+    {
+      "name": "fixture_blocked_plugin",
+      "version": "1.0.0",
+      "published": "2026-01-01T00:00:00Z",
+      "downloadCount30Days": 1000,
+      "likeCount": 10,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "fixture_blocked_plugin"
+      },
+      "alignment": {
+        "checkedPackage": "fixture_blocked_plugin",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "fixture_blocked_plugin",
+        "compileSdk": null,
+        "agp": null,
+        "ndk": null
+      },
+      "errors": []
+    },
+    {
+      "name": "fixture_green_plugin",
+      "version": "1.0.0",
+      "published": "2026-01-01T00:00:00Z",
+      "downloadCount30Days": 500,
+      "likeCount": 5,
+      "swiftpm": {
+        "tag": true,
+        "archive": true,
+        "agrees": true,
+        "checkedPackage": "fixture_green_plugin"
+      },
+      "alignment": {
+        "checkedPackage": "fixture_green_plugin",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "fixture_green_plugin",
+        "compileSdk": null,
+        "agp": null,
+        "ndk": null
+      },
+      "errors": []
+    }
+  ]
+}

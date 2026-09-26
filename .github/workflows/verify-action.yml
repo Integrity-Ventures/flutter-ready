@@ -16,12 +16,20 @@ jobs:
         uses: ./
         with:
           lockfile: fixtures/sample_app/pubspec.lock
-          data: data/latest.json
+          data: fixtures/sample_app/data/latest.json
 
-      - name: Assert the action failed
+      - name: Assert the action failed on the known blocker
         run: |
           if [ "${{ steps.check.outcome }}" != "failure" ]; then
-            echo "Expected the action to fail on fixtures/sample_app/pubspec.lock's known path_provider blocker, but it reported '${{ steps.check.outcome }}'."
+            echo "Expected the action to fail on fixtures/sample_app/pubspec.lock's known fixture_blocked_plugin blocker, but it reported '${{ steps.check.outcome }}'."
             exit 1
           fi
-          echo "Confirmed: the action failed on the fixture's known blocker, as expected."
+
+          report="${{ steps.check.outputs.report }}"
+          if [[ "$report" != *"BLOCKER: fixture_blocked_plugin"* ]]; then
+            echo "Expected the report to contain a BLOCKER line for fixture_blocked_plugin, but got:"
+            echo "$report"
+            exit 1
+          fi
+
+          echo "Confirmed: the action failed with a BLOCKER line for fixture_blocked_plugin, as expected."

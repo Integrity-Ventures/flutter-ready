@@ -1,0 +1,9 @@
+{
+  "fixture_blocked_plugin": [
+    {
+      "replacement": "fixture_green_plugin",
+      "note": "fixture-only suggestion, for golden tests",
+      "source": "fixture data, not a real suggestion"
+    }
+  ]
+}

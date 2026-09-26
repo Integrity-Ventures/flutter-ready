@@ -1,0 +1,4 @@
+Flutter Ready check — 1 hosted package(s) in pubspec.lock.
+
+CocoaPods registry goes read-only (2026-12-02):
+  BLOCKER: fixture_blocked_plugin 1.0.0: No Package.swift in the fixture_blocked_plugin archive.
