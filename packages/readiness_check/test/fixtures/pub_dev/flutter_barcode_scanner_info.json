@@ -1,0 +1,43 @@
+{
+  "name": "flutter_barcode_scanner",
+  "latest": {
+    "version": "2.0.0",
+    "pubspec": {
+      "name": "flutter_barcode_scanner",
+      "description": "A plugin for barcode scanning support on Android and iOS. Supports barcodes, QR codes, etc.",
+      "version": "2.0.0",
+      "author": "Amol Gangadhare <amol.gangadhare@gmail.com>",
+      "homepage": "https://github.com/AmolGangadhare/flutter_barcode_scanner",
+      "environment": {
+        "sdk": ">=2.12.0 <3.0.0",
+        "flutter": ">=1.12.0"
+      },
+      "dependencies": {
+        "flutter": {
+          "sdk": "flutter"
+        },
+        "flutter_plugin_android_lifecycle": "^2.0.1"
+      },
+      "dev_dependencies": {
+        "pedantic": "^1.11.0",
+        "test": "^1.16.8"
+      },
+      "flutter": {
+        "plugin": {
+          "platforms": {
+            "android": {
+              "package": "com.amolg.flutterbarcodescanner",
+              "pluginClass": "FlutterBarcodeScannerPlugin"
+            },
+            "ios": {
+              "pluginClass": "SwiftFlutterBarcodeScannerPlugin"
+            }
+          }
+        }
+      }
+    },
+    "archive_url": "https://pub.dev/api/archives/flutter_barcode_scanner-2.0.0.tar.gz",
+    "archive_sha256": "a4ba37daf9933f451a5e812c753ddd045d6354e4a3280342d895b07fecaab3fa",
+    "published": "2021-04-19T21:50:52.131792Z"
+  }
+}

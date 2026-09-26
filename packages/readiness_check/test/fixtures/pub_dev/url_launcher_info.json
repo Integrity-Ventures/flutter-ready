@@ -1,0 +1,70 @@
+{
+  "name": "url_launcher",
+  "latest": {
+    "version": "6.3.2",
+    "pubspec": {
+      "name": "url_launcher",
+      "description": "Flutter plugin for launching a URL. Supports web, phone, SMS, and email schemes.",
+      "repository": "https://github.com/flutter/packages/tree/main/packages/url_launcher/url_launcher",
+      "issue_tracker": "https://github.com/flutter/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+url_launcher%22",
+      "version": "6.3.2",
+      "environment": {
+        "sdk": "^3.6.0",
+        "flutter": ">=3.27.0"
+      },
+      "flutter": {
+        "plugin": {
+          "platforms": {
+            "android": {
+              "default_package": "url_launcher_android"
+            },
+            "ios": {
+              "default_package": "url_launcher_ios"
+            },
+            "linux": {
+              "default_package": "url_launcher_linux"
+            },
+            "macos": {
+              "default_package": "url_launcher_macos"
+            },
+            "web": {
+              "default_package": "url_launcher_web"
+            },
+            "windows": {
+              "default_package": "url_launcher_windows"
+            }
+          }
+        }
+      },
+      "dependencies": {
+        "flutter": {
+          "sdk": "flutter"
+        },
+        "url_launcher_android": "^6.3.0",
+        "url_launcher_ios": "^6.2.4",
+        "url_launcher_linux": "^3.1.0",
+        "url_launcher_macos": "^3.1.0",
+        "url_launcher_platform_interface": "^2.3.0",
+        "url_launcher_web": "^2.2.0",
+        "url_launcher_windows": "^3.1.0"
+      },
+      "dev_dependencies": {
+        "flutter_test": {
+          "sdk": "flutter"
+        },
+        "mockito": "^5.4.4",
+        "plugin_platform_interface": "^2.1.7",
+        "test": "^1.16.3"
+      },
+      "topics": [
+        "links",
+        "os-integration",
+        "url-launcher",
+        "urls"
+      ]
+    },
+    "archive_url": "https://pub.dev/api/archives/url_launcher-6.3.2.tar.gz",
+    "archive_sha256": "f6a7e5c4835bb4e3026a04793a4199ca2d14c739ec378fdfe23fc8075d0439f8",
+    "published": "2025-07-10T19:46:46.051934Z"
+  }
+}

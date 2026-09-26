@@ -1,0 +1,20 @@
+name: fixture_alignment_plugin
+description: >
+  Synthetic fixture: an Android archive shipping one 16 KB-aligned and one
+  sub-16 KB .so, for checkPackageAlignment.
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: dev.fixtures.alignmentplugin
+        pluginClass: FixtureAlignmentPlugin

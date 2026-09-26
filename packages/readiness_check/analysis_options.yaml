@@ -1,1 +1,8 @@
 include: package:lints/recommended.yaml
+
+analyzer:
+  exclude:
+    # Fixture source files (e.g. a captured pubspec.yaml), not real Dart
+    # package manifests — the analyzer otherwise lints them as one.
+    - test/fixtures/sources/**
+

@@ -1,0 +1,31 @@
+{
+    "grantedPoints": 160,
+    "maxPoints": 160,
+    "likeCount": 8176,
+    "downloadCount30Days": 6804090,
+    "tags": [
+        "is:flutter-favorite",
+        "publisher:flutter.dev",
+        "has:topic",
+        "sdk:flutter",
+        "platform:android",
+        "platform:ios",
+        "platform:windows",
+        "platform:linux",
+        "platform:macos",
+        "platform:web",
+        "is:plugin",
+        "is:null-safe",
+        "is:wasm-ready",
+        "is:swiftpm-plugin",
+        "is:built-in-kotlin",
+        "is:dart3-compatible",
+        "license:bsd-3-clause",
+        "license:fsf-libre",
+        "license:osi-approved",
+        "topic:links",
+        "topic:os-integration",
+        "topic:url-launcher",
+        "topic:urls"
+    ]
+}

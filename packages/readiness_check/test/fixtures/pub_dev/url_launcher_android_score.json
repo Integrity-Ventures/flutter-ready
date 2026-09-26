@@ -1,0 +1,26 @@
+{
+    "grantedPoints": 160,
+    "maxPoints": 160,
+    "likeCount": 22,
+    "downloadCount30Days": 8153635,
+    "tags": [
+        "publisher:flutter.dev",
+        "has:topic",
+        "has:implements-federated-plugin",
+        "implements-federated-plugin:url_launcher",
+        "sdk:flutter",
+        "platform:android",
+        "is:plugin",
+        "is:null-safe",
+        "is:wasm-ready",
+        "is:built-in-kotlin",
+        "is:dart3-compatible",
+        "license:bsd-3-clause",
+        "license:fsf-libre",
+        "license:osi-approved",
+        "topic:links",
+        "topic:os-integration",
+        "topic:url-launcher",
+        "topic:urls"
+    ]
+}

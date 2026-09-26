@@ -1,0 +1,36 @@
+{
+  "name": "fixture_swiftpm_disagree",
+  "latest": {
+    "version": "1.0.0",
+    "pubspec": {
+      "name": "fixture_swiftpm_disagree",
+      "description": "Synthetic fixture: pub.dev tags this plugin is:swiftpm-plugin but its archive ships only a legacy podspec, no Package.swift (the tag/archive disagreement class noted in flutter/flutter#187330).",
+      "version": "1.0.0",
+      "environment": {
+        "sdk": ">=3.0.0 <4.0.0",
+        "flutter": ">=3.0.0"
+      },
+      "dependencies": {
+        "flutter": {
+          "sdk": "flutter"
+        }
+      },
+      "flutter": {
+        "plugin": {
+          "platforms": {
+            "android": {
+              "package": "dev.fixtures.swiftpmdisagree",
+              "pluginClass": "FixtureSwiftPmDisagreePlugin"
+            },
+            "ios": {
+              "pluginClass": "FixtureSwiftPmDisagreePlugin"
+            }
+          }
+        }
+      }
+    },
+    "archive_url": "https://pub.dev/api/archives/fixture_swiftpm_disagree-1.0.0.tar.gz",
+    "archive_sha256": "0000000000000000000000000000000000000000000000000000000000000",
+    "published": "2026-09-26T00:00:00.000000Z"
+  }
+}

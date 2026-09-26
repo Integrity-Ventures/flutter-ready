@@ -1,0 +1,22 @@
+name: fixture_swiftpm_disagree
+description: >
+  Synthetic fixture: tagged is:swiftpm-plugin on pub.dev but the archive
+  ships only a legacy podspec, no Package.swift.
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: dev.fixtures.swiftpmdisagree
+        pluginClass: FixtureSwiftPmDisagreePlugin
+      ios:
+        pluginClass: FixtureSwiftPmDisagreePlugin

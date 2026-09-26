@@ -1,0 +1,17 @@
+{
+  "grantedPoints": 110,
+  "maxPoints": 160,
+  "likeCount": 3,
+  "downloadCount30Days": 42,
+  "tags": [
+    "sdk:flutter",
+    "platform:ios",
+    "platform:android",
+    "is:plugin",
+    "is:null-safe",
+    "is:swiftpm-plugin",
+    "license:mit",
+    "license:fsf-libre",
+    "license:osi-approved"
+  ]
+}
