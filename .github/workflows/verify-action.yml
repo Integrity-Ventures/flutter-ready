@@ -1,0 +1,27 @@
+name: Verify Action
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  fails-on-known-blocker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run flutter_ready check on the fixture with a known blocker
+        id: check
+        continue-on-error: true
+        uses: ./
+        with:
+          lockfile: fixtures/sample_app/pubspec.lock
+          data: data/latest.json
+
+      - name: Assert the action failed
+        run: |
+          if [ "${{ steps.check.outcome }}" != "failure" ]; then
+            echo "Expected the action to fail on fixtures/sample_app/pubspec.lock's known path_provider blocker, but it reported '${{ steps.check.outcome }}'."
+            exit 1
+          fi
+          echo "Confirmed: the action failed on the fixture's known blocker, as expected."

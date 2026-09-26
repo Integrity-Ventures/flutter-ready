@@ -11,6 +11,10 @@
 build/
 # This is a package, so its lock file isn't committed.
 pubspec.lock
+# Except the e5-s1 fixture app: an app's lock file is meant to be
+# committed, and this one is the known-blocker fixture the Action's
+# verify workflow checks against.
+!/fixtures/sample_app/pubspec.lock
 
 # Editors and OS
 .idea/
