@@ -1,0 +1,118 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
+import 'package:readiness_check/readiness_check.dart';
+import 'package:test/test.dart';
+
+PubDevClient _fakeClient(Map<String, Map<String, dynamic>> responsesByPath) {
+  final mock = MockClient((request) async {
+    final body = responsesByPath[request.url.path];
+    if (body == null) return http.Response('not found', 404);
+    return http.Response(jsonEncode(body), 200);
+  });
+  return PubDevClient(httpClient: mock, baseUri: Uri.parse('https://pub.dev'));
+}
+
+void main() {
+  group('fetchPackageScore', () {
+    test('reads tags, likeCount and downloadCount30Days', () async {
+      final client = _fakeClient({
+        '/api/packages/url_launcher/score': {
+          'tags': ['sdk:flutter', 'is:plugin'],
+          'likeCount': 8176,
+          'downloadCount30Days': 6804090,
+        },
+      });
+
+      final score = await client.fetchPackageScore('url_launcher');
+
+      expect(score.tags, ['sdk:flutter', 'is:plugin']);
+      expect(score.likeCount, 8176);
+      expect(score.downloadCount30Days, 6804090);
+    });
+
+    test('defaults missing counts to zero', () async {
+      final client = _fakeClient({
+        '/api/packages/new_plugin/score': {'tags': <String>[]},
+      });
+
+      final score = await client.fetchPackageScore('new_plugin');
+
+      expect(score.likeCount, 0);
+      expect(score.downloadCount30Days, 0);
+    });
+  });
+
+  group('fetchPackageInfo', () {
+    test(
+      'reads version and published date for a non-federated package',
+      () async {
+        final client = _fakeClient({
+          '/api/packages/some_plugin': {
+            'latest': {
+              'version': '1.2.3',
+              'published': '2026-08-28T04:11:13.706203Z',
+              'pubspec': {'name': 'some_plugin'},
+            },
+          },
+        });
+
+        final info = await client.fetchPackageInfo('some_plugin');
+
+        expect(info.version, '1.2.3');
+        expect(info.published, DateTime.parse('2026-08-28T04:11:13.706203Z'));
+        expect(info.defaultPackageFor('ios'), isNull);
+        expect(info.platformDefaultPackages, isEmpty);
+      },
+    );
+
+    test('reads federated default packages per platform', () async {
+      final client = _fakeClient({
+        '/api/packages/url_launcher': {
+          'latest': {
+            'version': '6.3.2',
+            'published': '2025-07-10T19:46:46.051934Z',
+            'pubspec': {
+              'name': 'url_launcher',
+              'flutter': {
+                'plugin': {
+                  'platforms': {
+                    'android': {'default_package': 'url_launcher_android'},
+                    'ios': {'default_package': 'url_launcher_ios'},
+                    'web': {'default_package': 'url_launcher_web'},
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
+
+      final info = await client.fetchPackageInfo('url_launcher');
+
+      expect(info.defaultPackageFor('ios'), 'url_launcher_ios');
+      expect(info.defaultPackageFor('android'), 'url_launcher_android');
+      expect(info.defaultPackageFor('macos'), isNull);
+    });
+
+    test(
+      'treats a package with no flutter.plugin section as unfederated',
+      () async {
+        final client = _fakeClient({
+          '/api/packages/http': {
+            'latest': {
+              'version': '1.2.0',
+              'published': '2026-01-01T00:00:00.000000Z',
+              'pubspec': {'name': 'http'},
+            },
+          },
+        });
+
+        final info = await client.fetchPackageInfo('http');
+
+        expect(info.platformDefaultPackages, isEmpty);
+      },
+    );
+  });
+}

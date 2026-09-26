@@ -57,6 +57,48 @@ class PubDevClient {
     return response.bodyBytes;
   }
 
+  /// The score facts recorded for a package's latest version (SPEC §3.1.3):
+  /// its tags, like count and 30-day download count.
+  Future<PackageScore> fetchPackageScore(String packageName) async {
+    final uri = _baseUri.resolve('/api/packages/$packageName/score');
+    final body = await _getJson(uri);
+    return PackageScore(
+      tags: (body['tags'] as List? ?? const []).cast<String>(),
+      likeCount: body['likeCount'] as int? ?? 0,
+      downloadCount30Days: body['downloadCount30Days'] as int? ?? 0,
+    );
+  }
+
+  /// The latest version's version string, publish date and (per plugin
+  /// platform) federated default package, from `GET /api/packages/<name>`.
+  ///
+  /// Federated plugins (SPEC review finding on e1-s2): an app-facing package
+  /// like `url_launcher` declares its actual per-platform implementation
+  /// package at `pubspec.flutter.plugin.platforms.<platform>.default_package`
+  /// — that's the package whose archive carries the platform-specific files
+  /// (`Package.swift`, `.so`, Gradle) a plugin's own archive won't have.
+  Future<PackageInfo> fetchPackageInfo(String packageName) async {
+    final uri = _baseUri.resolve('/api/packages/$packageName');
+    final body = await _getJson(uri);
+    final latest = body['latest'] as Map<String, dynamic>;
+    final pubspec = latest['pubspec'] as Map<String, dynamic>;
+    final platforms =
+        ((pubspec['flutter'] as Map<String, dynamic>?)?['plugin']
+                as Map<String, dynamic>?)?['platforms']
+            as Map<String, dynamic>?;
+    return PackageInfo(
+      version: latest['version'] as String,
+      published: DateTime.parse(latest['published'] as String),
+      platformDefaultPackages: {
+        if (platforms != null)
+          for (final entry in platforms.entries)
+            if ((entry.value as Map<String, dynamic>)['default_package']
+                case final String defaultPackage)
+              entry.key: defaultPackage,
+      },
+    );
+  }
+
   Future<Map<String, dynamic>> _getJson(Uri uri) async {
     final response = await _httpClient.get(uri);
     if (response.statusCode != 200) {
@@ -64,4 +106,41 @@ class PubDevClient {
     }
     return jsonDecode(response.body) as Map<String, dynamic>;
   }
+}
+
+/// Tags, like count and 30-day download count for a package's latest
+/// version, from `GET /api/packages/<name>/score` (SPEC §3.1.3).
+class PackageScore {
+  const PackageScore({
+    required this.tags,
+    required this.likeCount,
+    required this.downloadCount30Days,
+  });
+
+  final List<String> tags;
+  final int likeCount;
+  final int downloadCount30Days;
+}
+
+/// Version, publish date and federated-plugin default packages for a
+/// package's latest version, from `GET /api/packages/<name>`.
+class PackageInfo {
+  const PackageInfo({
+    required this.version,
+    required this.published,
+    required this.platformDefaultPackages,
+  });
+
+  final String version;
+  final DateTime published;
+
+  /// Platform name (`ios`, `macos`, `android`, ...) to the federated
+  /// implementation package declared for it, for platforms that declare one.
+  final Map<String, String> platformDefaultPackages;
+
+  /// The federated default package declared for [platform], or null when
+  /// this package declares no `default_package` for it (not federated, or
+  /// the platform isn't listed at all).
+  String? defaultPackageFor(String platform) =>
+      platformDefaultPackages[platform];
 }
