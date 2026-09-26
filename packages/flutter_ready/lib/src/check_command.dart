@@ -8,6 +8,7 @@ import 'package:readiness_check/readiness_check.dart' show Deadline, Snapshot;
 
 import 'check_report.dart';
 import 'pubspec_lock.dart';
+import 'replacements.dart';
 
 const defaultDataSource =
     'https://raw.githubusercontent.com/Integrity-Ventures/flutter-ready/main/data/latest.json';
@@ -52,10 +53,28 @@ class CheckCommand extends Command<void> {
     final deadlines = [
       for (final d in deadlinesJson['deadlines'] as List) Deadline.fromJson(d as Map<String, dynamic>),
     ];
+    final replacements = await _readReplacements(dataSource);
 
-    final report = buildCheckReport(lockedPackages: lockedPackages, snapshot: snapshot, deadlines: deadlines);
+    final report = buildCheckReport(
+      lockedPackages: lockedPackages,
+      snapshot: snapshot,
+      deadlines: deadlines,
+      replacements: replacements,
+    );
     stdout.writeln(report.text);
     exitCode = report.hasBlocker ? 1 : 0;
+  }
+}
+
+/// `data/replacements.json` (SPEC §3.3, open decision 4), hand-kept and
+/// read as a sibling of the data source, same as `deadlines.json`. Missing
+/// or unfetchable is not fatal — a data source that predates this file, or
+/// hosts it nowhere, still produces a report, just without suggestions.
+Future<Map<String, List<Replacement>>> _readReplacements(String dataSource) async {
+  try {
+    return parseReplacements(await _read(_sibling(dataSource, 'replacements.json')));
+  } catch (_) {
+    return const {};
   }
 }
 

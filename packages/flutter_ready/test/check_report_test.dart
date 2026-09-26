@@ -136,6 +136,49 @@ void main() {
     expect(report.text, contains('No blockers found.'));
   });
 
+  test('a blocker with a matching replacements entry prints the suggestion', () {
+    final snapshot = Snapshot(
+      schemaVersion: 1,
+      generatedAt: '2026-09-26T00:00:00Z',
+      topN: 1,
+      plugins: [_plugin('no_spm_plugin', '1.0.0', swiftpmTag: false, swiftpmArchive: false)],
+    );
+    final locked = [const LockedPackage(name: 'no_spm_plugin', version: '1.0.0', isHosted: true)];
+    const replacements = {
+      'no_spm_plugin': [Replacement(replacement: 'no_spm_plugin_plus', note: 'SwiftPM-ready fork')],
+    };
+
+    final report = buildCheckReport(
+      lockedPackages: locked,
+      snapshot: snapshot,
+      deadlines: _deadlines,
+      replacements: replacements,
+    );
+
+    expect(report.text, contains('Suggested replacement: no_spm_plugin_plus — SwiftPM-ready fork'));
+  });
+
+  test('a blocker with no matching replacements entry is unchanged', () {
+    final snapshot = Snapshot(
+      schemaVersion: 1,
+      generatedAt: '2026-09-26T00:00:00Z',
+      topN: 1,
+      plugins: [_plugin('no_spm_plugin', '1.0.0', swiftpmTag: false, swiftpmArchive: false)],
+    );
+    final locked = [const LockedPackage(name: 'no_spm_plugin', version: '1.0.0', isHosted: true)];
+
+    final withReplacements = buildCheckReport(
+      lockedPackages: locked,
+      snapshot: snapshot,
+      deadlines: _deadlines,
+      replacements: const {},
+    );
+    final withoutReplacements = buildCheckReport(lockedPackages: locked, snapshot: snapshot, deadlines: _deadlines);
+
+    expect(withReplacements.text, withoutReplacements.text);
+    expect(withReplacements.text, isNot(contains('Suggested replacement')));
+  });
+
   test('git and path dependencies are ignored', () {
     final snapshot = const Snapshot(schemaVersion: 1, generatedAt: '2026-09-26T00:00:00Z', topN: 0, plugins: []);
     final locked = [const LockedPackage(name: 'my_fork', version: '1.0.0', isHosted: false)];

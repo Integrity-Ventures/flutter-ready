@@ -1,6 +1,7 @@
 import 'package:readiness_check/readiness_check.dart';
 
 import 'pubspec_lock.dart';
+import 'replacements.dart';
 
 /// The printable `flutter_ready check` report and whether it found a
 /// blocker (SPEC §3.3: the CLI "exits non-zero when a blocker is found").
@@ -18,6 +19,7 @@ CheckReport buildCheckReport({
   required List<LockedPackage> lockedPackages,
   required Snapshot snapshot,
   required List<Deadline> deadlines,
+  Map<String, List<Replacement>> replacements = const {},
 }) {
   final hosted = lockedPackages.where((p) => p.isHosted).toList()
     ..sort((a, b) => a.name.compareTo(b.name));
@@ -49,7 +51,9 @@ CheckReport buildCheckReport({
       if (status != Status.red) continue;
 
       final evidence = deadline.check == 'swiftpm' ? swiftPmEvidence(entry) : alignmentEvidence(entry);
-      blockersByDeadline.putIfAbsent(deadline, () => []).add('${locked.name} ${locked.version}: $evidence');
+      blockersByDeadline
+          .putIfAbsent(deadline, () => [])
+          .add(_blockerLine(locked, evidence, replacements[locked.name]));
     }
   }
 
@@ -82,4 +86,15 @@ CheckReport buildCheckReport({
   }
 
   return CheckReport(text: buffer.toString().trimRight(), hasBlocker: blockerCount > 0);
+}
+
+/// A blocker line, with a hand-curated suggestion appended per entry in
+/// [suggestions], if any (SPEC §3.3, open decision 4: never generated).
+String _blockerLine(LockedPackage locked, String evidence, List<Replacement>? suggestions) {
+  final buffer = StringBuffer('${locked.name} ${locked.version}: $evidence');
+  for (final suggestion in suggestions ?? const []) {
+    buffer.write('\n    Suggested replacement: ${suggestion.replacement}');
+    if (suggestion.note.isNotEmpty) buffer.write(' — ${suggestion.note}');
+  }
+  return buffer.toString();
 }
