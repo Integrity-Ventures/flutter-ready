@@ -1,3 +1,8 @@
+export 'src/android_build_settings.dart'
+    show
+        AndroidBuildSettings,
+        extractAndroidBuildSettings,
+        isAndroidGradleFilePath;
 export 'src/elf_alignment_check.dart'
     show
         ElfAlignmentResult,
