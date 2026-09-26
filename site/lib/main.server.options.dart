@@ -7,6 +7,7 @@
 import 'package:jaspr/server.dart';
 import 'package:site/components/deadlines_panel.dart' as _deadlines_panel;
 import 'package:site/components/header.dart' as _header;
+import 'package:site/components/hireflutter_cta.dart' as _hireflutter_cta;
 import 'package:site/components/plugin_table.dart' as _plugin_table;
 import 'package:site/components/status_chip.dart' as _status_chip;
 import 'package:site/components/trend_panel.dart' as _trend_panel;
@@ -36,6 +37,7 @@ ServerOptions get defaultServerOptions => ServerOptions(
     ..._app.App.styles,
     ..._deadlines_panel.DeadlinesPanel.styles,
     ..._header.Header.styles,
+    ..._hireflutter_cta.HireFlutterCta.styles,
     ..._plugin_table.PluginTable.styles,
     ..._status_chip.StatusChip.styles,
     ..._trend_panel.TrendPanel.styles,

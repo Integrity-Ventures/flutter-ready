@@ -51,6 +51,10 @@ String alignmentEvidence(PluginEntry plugin) {
   return '${misaligned.length} of ${soFiles.length} .so file(s) misaligned, e.g. ${first.path} ($align).';
 }
 
+/// Whether [plugin] carries the HireFlutter call to action: any red status
+/// blocks a release, whether from SwiftPM or 16 KB alignment (SPEC §2, §3.2).
+bool isBlocked(PluginEntry plugin) => swiftPmStatus(plugin) == Status.red || alignmentStatus(plugin) == Status.red;
+
 /// Share of plugins with a known SwiftPM status (green/amber/red — excludes
 /// "not checked") that are fully SwiftPM-ready, as a whole percent. Used for
 /// the trend view (SPEC §3.2: "trend over time ... share of top plugins that

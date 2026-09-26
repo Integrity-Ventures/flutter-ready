@@ -4,6 +4,7 @@ import 'package:jaspr_router/jaspr_router.dart';
 
 import '../data/grading.dart';
 import '../data/models.dart';
+import 'hireflutter_cta.dart';
 import 'status_chip.dart';
 
 /// One row per plugin, red/amber/green for SwiftPM and 16 KB alignment, with
@@ -26,11 +27,11 @@ class PluginTable extends StatelessComponent {
           th([.text('Android (facts only)')]),
         ]),
       ]),
-      tbody([for (final plugin in plugins) _row(plugin)]),
+      tbody([for (final plugin in plugins) ..._rows(plugin)]),
     ]);
   }
 
-  Component _row(PluginEntry plugin) {
+  List<Component> _rows(PluginEntry plugin) {
     final android = plugin.android;
     final androidFacts = [
       if (android.compileSdk != null) 'compileSdk ${android.compileSdk}',
@@ -38,19 +39,25 @@ class PluginTable extends StatelessComponent {
       if (android.ndk != null) 'NDK ${android.ndk}',
     ];
 
-    return tr([
-      td([Link(to: '/p/${plugin.name}', child: .text(plugin.name))]),
-      td([.text(plugin.version)]),
-      td(classes: 'evidence-cell', [
-        StatusChip(status: swiftPmStatus(plugin)),
-        p(classes: 'evidence', [.text(swiftPmEvidence(plugin))]),
+    return [
+      tr([
+        td([Link(to: '/p/${plugin.name}', child: .text(plugin.name))]),
+        td([.text(plugin.version)]),
+        td(classes: 'evidence-cell', [
+          StatusChip(status: swiftPmStatus(plugin)),
+          p(classes: 'evidence', [.text(swiftPmEvidence(plugin))]),
+        ]),
+        td(classes: 'evidence-cell', [
+          StatusChip(status: alignmentStatus(plugin)),
+          p(classes: 'evidence', [.text(alignmentEvidence(plugin))]),
+        ]),
+        td([.text(androidFacts.isEmpty ? '—' : androidFacts.join(', '))]),
       ]),
-      td(classes: 'evidence-cell', [
-        StatusChip(status: alignmentStatus(plugin)),
-        p(classes: 'evidence', [.text(alignmentEvidence(plugin))]),
-      ]),
-      td([.text(androidFacts.isEmpty ? '—' : androidFacts.join(', '))]),
-    ]);
+      if (isBlocked(plugin))
+        tr(classes: 'cta-row', [
+          td(attributes: {'colspan': '5'}, [const HireFlutterCta()]),
+        ]),
+    ];
   }
 
   @css

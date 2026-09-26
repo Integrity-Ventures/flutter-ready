@@ -65,6 +65,25 @@ void main() {
     });
   });
 
+  group('isBlocked', () {
+    test('true when SwiftPM is red', () {
+      expect(isBlocked(_plugin(tag: false, archive: false)), isTrue);
+    });
+
+    test('true when alignment is red', () {
+      final soFiles = [const SoFile(path: 'a.so', aligned: false, minAlign: 0x1000)];
+      expect(isBlocked(_plugin(tag: true, archive: true, soFiles: soFiles)), isTrue);
+    });
+
+    test('false when neither check is red', () {
+      expect(isBlocked(_plugin(tag: true, archive: true)), isFalse);
+    });
+
+    test('false when a check is amber, not red', () {
+      expect(isBlocked(_plugin(tag: true, archive: false)), isFalse);
+    });
+  });
+
   group('swiftPmGreenSharePercent', () {
     test('null when no plugin has a known status', () {
       expect(

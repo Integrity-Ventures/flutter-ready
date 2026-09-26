@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
+import '../components/hireflutter_cta.dart';
 import '../components/status_chip.dart';
 import '../constants/status_colors.dart';
 import '../data/grading.dart';
@@ -35,6 +36,7 @@ class PluginPage extends StatelessComponent {
           ],
         ),
       ]),
+      if (isBlocked(plugin)) const HireFlutterCta(),
       if (plugin.errors.isNotEmpty)
         section(classes: 'errors', [
           h2([.text('Could not be fully checked')]),
