@@ -1,0 +1,45 @@
+name: Nightly snapshot
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Install dependencies
+        run: |
+          dart pub get -C packages/readiness_check
+          dart pub get -C packages/snapshot_job
+
+      - name: Run snapshot job
+        working-directory: packages/snapshot_job
+        run: dart run bin/snapshot.dart --top 100 --out ../../data/snapshots/
+
+      - name: Commit and push snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No snapshot changes, nothing to commit."
+            exit 0
+          fi
+          git commit -m "$(cat <<'EOF'
+          Update nightly readiness snapshot
+
+          Co-Authored-By: 10xs.ai
+          EOF
+          )"
+          git push
