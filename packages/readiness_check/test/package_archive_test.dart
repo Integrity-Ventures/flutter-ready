@@ -41,4 +41,38 @@ void main() {
       expect(listArchiveEntryPaths(bytes), isEmpty);
     });
   });
+
+  group('extractArchiveEntries', () {
+    test('returns content only for entries matching the predicate', () {
+      final bytes = _buildPackageArchiveBytes([
+        'pubspec.yaml',
+        'android/src/main/jniLibs/arm64-v8a/libsome_plugin.so',
+        'ios/some_plugin/Package.swift',
+      ]);
+
+      final entries = extractArchiveEntries(
+        bytes,
+        (path) => path.endsWith('.so'),
+      );
+
+      expect(entries.keys, [
+        'android/src/main/jniLibs/arm64-v8a/libsome_plugin.so',
+      ]);
+      expect(
+        utf8.decode(
+          entries['android/src/main/jniLibs/arm64-v8a/libsome_plugin.so']!,
+        ),
+        'contents of android/src/main/jniLibs/arm64-v8a/libsome_plugin.so',
+      );
+    });
+
+    test('returns an empty map when nothing matches', () {
+      final bytes = _buildPackageArchiveBytes(['pubspec.yaml']);
+
+      expect(
+        extractArchiveEntries(bytes, (path) => path.endsWith('.so')),
+        isEmpty,
+      );
+    });
+  });
 }
