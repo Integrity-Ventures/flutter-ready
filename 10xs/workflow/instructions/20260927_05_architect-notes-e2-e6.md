@@ -143,6 +143,19 @@ open is marked **architect decision** and can be changed by the owner.
 
 ## e6-s2: Golden CLI tests
 
+- **Also in scope (architect review of e5-s1, 2026-09-27): make
+  `.github/workflows/verify-action.yml` independent of live data.** Today it
+  runs the action with `data: data/latest.json` and relies on path_provider
+  being red. That's a known false red that the e2-s1 rework removes, and the
+  nightly job changes the data every day. Add
+  `fixtures/sample_app/data/latest.json` and `deadlines.json` (a
+  schemaVersion 1 snapshot with one synthetic red plugin, e.g.
+  `fixture_blocked_plugin`, plus one green one), point the fixture lockfile
+  and the workflow's `data:` at them, and make the workflow assert the
+  BLOCKER line for the synthetic plugin in the output (not just
+  `outcome == failure`, which a failed install also satisfies). Reuse the
+  same fixture data for the goldens.
+
 - `packages/flutter_ready/test/goldens/`: golden text for the `check`
   report, covering blockers, not checked, a clean run and a suggestion
   line. Have CI keep the test output (e2-s2's ci.yml).
