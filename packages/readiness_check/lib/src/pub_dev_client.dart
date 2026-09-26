@@ -40,6 +40,23 @@ class PubDevClient {
     return (body['tags'] as List? ?? const []).cast<String>();
   }
 
+  /// The archive URL for a package's latest published version.
+  Future<Uri> fetchLatestArchiveUrl(String packageName) async {
+    final uri = _baseUri.resolve('/api/packages/$packageName');
+    final body = await _getJson(uri);
+    final latest = body['latest'] as Map<String, dynamic>;
+    return Uri.parse(latest['archive_url'] as String);
+  }
+
+  /// The raw bytes of a package archive (a gzip-compressed tarball).
+  Future<List<int>> fetchArchiveBytes(Uri archiveUri) async {
+    final response = await _httpClient.get(archiveUri);
+    if (response.statusCode != 200) {
+      throw PubDevApiException(archiveUri, response.statusCode);
+    }
+    return response.bodyBytes;
+  }
+
   Future<Map<String, dynamic>> _getJson(Uri uri) async {
     final response = await _httpClient.get(uri);
     if (response.statusCode != 200) {
