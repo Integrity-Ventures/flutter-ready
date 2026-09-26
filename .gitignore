@@ -1,0 +1,18 @@
+# 10xs and MCP client config: these hold board credentials. Never commit them.
+.10xs.json
+.mcp.json
+
+# Secrets
+.env
+.env.*
+
+# Dart
+.dart_tool/
+build/
+# This is a package, so its lock file isn't committed.
+pubspec.lock
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
