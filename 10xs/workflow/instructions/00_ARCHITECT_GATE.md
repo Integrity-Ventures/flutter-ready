@@ -22,7 +22,13 @@ When a card is finished:
    2026-09-26 at 19:20 UTC a seat's git erased the box's GitHub credential
    through the global `store` helper.)
 2. Write your completion report under `10xs/workflow/task_reports/`.
-3. push_status the card to `review` with the branch's commit URL.
+3. push_status the card to `review`. For `artifact_url`, use
+   `https://github.com/Integrity-Ventures/flutter-ready/commits/develop`,
+   and put your local lane branch name and commit sha in `evidence`. The
+   architect then posts the final review with the real `develop` commit URL,
+   which supersedes yours. Don't file ask_owner about this (settled by
+   the architect, 2026-09-27), and never use the board's bearer-token path
+   to push to GitHub yourself.
 
 The architect re-runs `dart analyze --fatal-infos` and `dart test` on the
 fleetbox, then squash-merges into `develop`. Scripts under
