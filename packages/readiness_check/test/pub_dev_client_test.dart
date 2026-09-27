@@ -114,5 +114,43 @@ void main() {
         expect(info.platformDefaultPackages, isEmpty);
       },
     );
+
+    test(
+      'reads pluginClass/ffiPlugin and tolerates a non-string default_package '
+      '(seen live on pub.dev, e.g. a web platform entry)',
+      () async {
+        final client = _fakeClient({
+          '/api/packages/flutter_soloud': {
+            'latest': {
+              'version': '3.5.1',
+              'published': '2026-05-01T00:00:00.000000Z',
+              'pubspec': {
+                'name': 'flutter_soloud',
+                'flutter': {
+                  'plugin': {
+                    'platforms': {
+                      'ios': {
+                        'pluginClass': 'FlutterSoloudPlugin',
+                        'ffiPlugin': true,
+                      },
+                      'web': {'default_package': true},
+                    },
+                  },
+                },
+              },
+            },
+          },
+        });
+
+        final info = await client.fetchPackageInfo('flutter_soloud');
+
+        final ios = info.platformInfo('ios')!;
+        expect(ios.pluginClass, 'FlutterSoloudPlugin');
+        expect(ios.ffiPlugin, isTrue);
+        expect(ios.declaresNativeImplementation, isTrue);
+        expect(info.platformInfo('web')!.defaultPackage, isNull);
+        expect(info.defaultPackageFor('web'), isNull);
+      },
+    );
   });
 }

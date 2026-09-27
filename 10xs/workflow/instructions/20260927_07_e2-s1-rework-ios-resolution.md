@@ -1,9 +1,10 @@
-# Microtask Instruction: e2-s1 REWORK — iOS package resolution and "no native iOS code" (OPEN, not done)
+# Microtask Instruction: e2-s1 REWORK — iOS package resolution and "no native iOS code" (DONE)
 
-Status: **OPEN.** Written by the architect on 2026-09-27 after reviewing the
-first board build (e3-s1, screenshots in `10xs/workflow/evidence/`). A worker
-launched on card e2-s1 executes THIS file. e2-s1 being in review on the
-board does not mean this rework is done.
+Status: **DONE.** Commit `3de27e365dd678db2fd81eb8aec44b2ed9046fec` on
+`feature/e2-s1-rework-ios-resolution` (pushed to the local origin). Report:
+`10xs/workflow/task_reports/e2-s1-rework_report.md`. Originally written by
+the architect on 2026-09-27 after reviewing the first board build (e3-s1,
+screenshots in `10xs/workflow/evidence/`).
 
 ## Objective
 

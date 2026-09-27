@@ -20,11 +20,18 @@ export 'src/grading.dart'
         swiftPmEvidence,
         swiftPmGreenSharePercent,
         swiftPmStatus;
+export 'src/ios_resolution.dart'
+    show IosResolution, declaresNativeIos, resolveIosPackage;
 export 'src/package_archive.dart'
     show extractArchiveEntries, listArchiveEntryPaths;
 export 'src/plugin_discovery.dart' show PluginCandidate, discoverFlutterPlugins;
 export 'src/pub_dev_client.dart'
-    show PackageInfo, PackageScore, PubDevApiException, PubDevClient;
+    show
+        PackageInfo,
+        PackageScore,
+        PluginPlatformInfo,
+        PubDevApiException,
+        PubDevClient;
 export 'src/snapshot_model.dart'
     show
         AlignmentInfo,

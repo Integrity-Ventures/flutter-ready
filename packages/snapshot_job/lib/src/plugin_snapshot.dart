@@ -65,16 +65,23 @@ class SwiftPmSnapshot {
   const SwiftPmSnapshot({
     required this.checkedPackage,
     required this.readiness,
+    required this.nativeIos,
   });
 
   final String checkedPackage;
   final SwiftPmReadiness readiness;
+
+  /// Whether [checkedPackage] ships native iOS code at all (SPEC e2-s1
+  /// rework) — false means it's nothing but a Dart-only implementation, so
+  /// the CocoaPods deadline can't block it regardless of [readiness].
+  final bool nativeIos;
 
   Map<String, dynamic> toJson() => {
     'tag': readiness.tagSaysReady,
     'archive': readiness.archiveSaysReady,
     'agrees': readiness.agrees,
     'checkedPackage': checkedPackage,
+    'nativeIos': nativeIos,
   };
 }
 

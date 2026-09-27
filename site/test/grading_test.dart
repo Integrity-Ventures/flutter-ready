@@ -5,6 +5,7 @@ import 'package:test/test.dart';
 PluginEntry _plugin({
   bool? tag,
   bool? archive,
+  bool? nativeIos,
   List<SoFile> soFiles = const [],
   List<String> errors = const [],
 }) {
@@ -14,7 +15,13 @@ PluginEntry _plugin({
     published: null,
     downloadCount30Days: null,
     likeCount: null,
-    swiftpm: SwiftPmInfo(tag: tag, archive: archive, agrees: tag == archive, checkedPackage: 'example_ios'),
+    swiftpm: SwiftPmInfo(
+      tag: tag,
+      archive: archive,
+      agrees: tag == archive,
+      checkedPackage: 'example_ios',
+      nativeIos: nativeIos,
+    ),
     alignment: AlignmentInfo(checkedPackage: 'example_android', soFiles: soFiles),
     android: const AndroidInfo(checkedPackage: null, compileSdk: null, agp: null, ndk: null),
     errors: errors,
@@ -39,6 +46,23 @@ void main() {
     test('not checked when a signal is missing or the plugin has errors', () {
       expect(swiftPmStatus(_plugin(tag: null, archive: true)), Status.notChecked);
       expect(swiftPmStatus(_plugin(tag: true, archive: true, errors: const ['boom'])), Status.notChecked);
+    });
+
+    test('green when nativeIos is false, regardless of tag/archive (e2-s1 rework)', () {
+      expect(swiftPmStatus(_plugin(tag: false, archive: false, nativeIos: false)), Status.green);
+      expect(
+        swiftPmEvidence(_plugin(tag: false, archive: false, nativeIos: false)),
+        'Not affected: no native iOS code.',
+      );
+    });
+
+    test('nativeIos true does not override the tag/archive rules', () {
+      expect(swiftPmStatus(_plugin(tag: false, archive: false, nativeIos: true)), Status.red);
+    });
+
+    test('a null nativeIos (older snapshots) behaves like before this field existed', () {
+      expect(swiftPmStatus(_plugin(tag: true, archive: true)), Status.green);
+      expect(swiftPmStatus(_plugin(tag: false, archive: false)), Status.red);
     });
   });
 

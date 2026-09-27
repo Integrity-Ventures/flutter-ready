@@ -85,7 +85,7 @@ PubDevClient _fakePubDev({
 Map<String, dynamic> _info({
   required String version,
   String published = '2026-08-01T00:00:00.000Z',
-  Map<String, String> platforms = const {},
+  Map<String, Map<String, dynamic>> platforms = const {},
 }) {
   return {
     'latest': {
@@ -94,16 +94,19 @@ Map<String, dynamic> _info({
       'pubspec': {
         if (platforms.isNotEmpty)
           'flutter': {
-            'plugin': {
-              'platforms': {
-                for (final entry in platforms.entries)
-                  entry.key: {'default_package': entry.value},
-              },
-            },
+            'plugin': {'platforms': platforms},
           },
       },
       'archive_url': 'https://pub.dev/api/archives/$version.tar.gz',
     },
+  };
+}
+
+/// Shorthand for a federated platform entry: `{'ios': 'foo_ios'}`.
+Map<String, Map<String, dynamic>> _federated(Map<String, String> byPlatform) {
+  return {
+    for (final entry in byPlatform.entries)
+      entry.key: {'default_package': entry.value},
   };
 }
 
@@ -124,12 +127,17 @@ void main() {
           infos: {
             'url_launcher': _info(
               version: 'app-6.3.2',
-              platforms: {
+              platforms: _federated({
                 'ios': 'url_launcher_ios',
                 'android': 'url_launcher_android',
+              }),
+            ),
+            'url_launcher_ios': _info(
+              version: 'ios-6.2.4',
+              platforms: {
+                'ios': {'pluginClass': 'FLTURLLauncherPlugin'},
               },
             ),
-            'url_launcher_ios': _info(version: 'ios-6.2.4'),
             'url_launcher_android': _info(version: 'android-6.3.0'),
           },
           archives: {
@@ -160,6 +168,7 @@ void main() {
         expect(snapshot.swiftpm!.checkedPackage, 'url_launcher_ios');
         expect(snapshot.swiftpm!.readiness.tagSaysReady, isTrue);
         expect(snapshot.swiftpm!.readiness.archiveSaysReady, isTrue);
+        expect(snapshot.swiftpm!.nativeIos, isTrue);
         expect(snapshot.alignment!.checkedPackage, 'url_launcher_android');
         expect(snapshot.alignment!.soFiles.single.aligned, isTrue);
         expect(snapshot.android!.checkedPackage, 'url_launcher_android');
@@ -183,7 +192,14 @@ void main() {
               'tags': ['is:plugin'],
             },
           },
-          infos: {'some_plugin': _info(version: '1.0.0')},
+          infos: {
+            'some_plugin': _info(
+              version: '1.0.0',
+              platforms: {
+                'ios': {'pluginClass': 'SomePlugin'},
+              },
+            ),
+          },
           archives: {
             '1.0.0': _buildArchive({
               'ios/some_plugin/Package.swift': utf8.encode('// spm'),
@@ -201,11 +217,96 @@ void main() {
 
         final snapshot = result.single;
         expect(snapshot.swiftpm!.checkedPackage, 'some_plugin');
+        expect(snapshot.swiftpm!.nativeIos, isTrue);
         expect(snapshot.alignment!.checkedPackage, 'some_plugin');
         expect(snapshot.alignment!.soFiles.single.aligned, isFalse);
         expect(snapshot.android!.settings, isNull);
         // Same archive backs both checks — fetched only once.
         expect(fetchedPaths, hasLength(1));
+      },
+    );
+  });
+
+  group('assembleSnapshot: iOS resolution rework (e2-s1)', () {
+    test('path_provider shape: a dartPluginClass-only federated package is not '
+        'native iOS', () async {
+      final client = _fakePubDev(
+        scores: {
+          'path_provider': {
+            'tags': ['is:plugin'],
+          },
+        },
+        infos: {
+          'path_provider': _info(
+            version: 'app-2.1.2',
+            platforms: _federated({'ios': 'path_provider_foundation'}),
+          ),
+          'path_provider_foundation': _info(
+            version: 'foundation-2.6.0',
+            platforms: {
+              'ios': {'dartPluginClass': 'PathProviderFoundation'},
+            },
+          ),
+        },
+        archives: {
+          'app-2.1.2': _buildArchive({'pubspec.yaml': utf8.encode('name: x')}),
+          'foundation-2.6.0': _buildArchive({
+            'lib/path_provider_foundation.dart': utf8.encode('// dart-only'),
+          }),
+        },
+      );
+
+      final result = await assembleSnapshot(client, [
+        PluginCandidate(name: 'path_provider', tags: ['is:plugin']),
+      ]);
+
+      final snapshot = result.single;
+      expect(snapshot.swiftpm!.checkedPackage, 'path_provider_foundation');
+      expect(snapshot.swiftpm!.nativeIos, isFalse);
+    });
+
+    test(
+      'flutter_keyboard_visibility shape: an inline iOS pluginClass is never '
+      'resolved via the macOS default_package',
+      () async {
+        final client = _fakePubDev(
+          scores: {
+            'flutter_keyboard_visibility': {
+              'tags': ['is:swiftpm-plugin'],
+            },
+          },
+          infos: {
+            'flutter_keyboard_visibility': _info(
+              version: '6.0.0',
+              platforms: {
+                'ios': {'pluginClass': 'FlutterKeyboardVisibilityPlugin'},
+                'macos': {
+                  'default_package': 'flutter_keyboard_visibility_macos',
+                },
+              },
+            ),
+          },
+          archives: {
+            '6.0.0': _buildArchive({
+              'ios/flutter_keyboard_visibility/Package.swift': utf8.encode(
+                '// spm',
+              ),
+            }),
+          },
+        );
+
+        final result = await assembleSnapshot(client, [
+          PluginCandidate(
+            name: 'flutter_keyboard_visibility',
+            tags: ['is:swiftpm-plugin'],
+          ),
+        ]);
+
+        final snapshot = result.single;
+        expect(snapshot.swiftpm!.checkedPackage, 'flutter_keyboard_visibility');
+        expect(snapshot.swiftpm!.readiness.archiveSaysReady, isTrue);
+        expect(snapshot.swiftpm!.readiness.agrees, isTrue);
+        expect(snapshot.swiftpm!.nativeIos, isTrue);
       },
     );
   });

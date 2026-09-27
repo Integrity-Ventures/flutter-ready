@@ -70,7 +70,7 @@ class PubDevClient {
   }
 
   /// The latest version's version string, publish date and (per plugin
-  /// platform) federated default package, from `GET /api/packages/<name>`.
+  /// platform) declared platform entry, from `GET /api/packages/<name>`.
   ///
   /// Federated plugins (SPEC review finding on e1-s2): an app-facing package
   /// like `url_launcher` declares its actual per-platform implementation
@@ -89,12 +89,12 @@ class PubDevClient {
     return PackageInfo(
       version: latest['version'] as String,
       published: DateTime.parse(latest['published'] as String),
-      platformDefaultPackages: {
+      platforms: {
         if (platforms != null)
           for (final entry in platforms.entries)
-            if ((entry.value as Map<String, dynamic>)['default_package']
-                case final String defaultPackage)
-              entry.key: defaultPackage,
+            entry.key: PluginPlatformInfo.fromJson(
+              entry.value as Map<String, dynamic>,
+            ),
       },
     );
   }
@@ -122,25 +122,74 @@ class PackageScore {
   final int downloadCount30Days;
 }
 
-/// Version, publish date and federated-plugin default packages for a
+/// Version, publish date and per-platform plugin declarations for a
 /// package's latest version, from `GET /api/packages/<name>`.
 class PackageInfo {
   const PackageInfo({
     required this.version,
     required this.published,
-    required this.platformDefaultPackages,
+    required this.platforms,
   });
 
   final String version;
   final DateTime published;
 
-  /// Platform name (`ios`, `macos`, `android`, ...) to the federated
-  /// implementation package declared for it, for platforms that declare one.
-  final Map<String, String> platformDefaultPackages;
+  /// Platform name (`ios`, `macos`, `android`, ...) to its declared
+  /// `flutter.plugin.platforms` entry, for platforms the pubspec lists.
+  final Map<String, PluginPlatformInfo> platforms;
+
+  /// The declared entry for [platform], or null when this package's pubspec
+  /// doesn't list it at all.
+  PluginPlatformInfo? platformInfo(String platform) => platforms[platform];
 
   /// The federated default package declared for [platform], or null when
   /// this package declares no `default_package` for it (not federated, or
   /// the platform isn't listed at all).
   String? defaultPackageFor(String platform) =>
-      platformDefaultPackages[platform];
+      platforms[platform]?.defaultPackage;
+
+  /// Platform name to federated default package, for platforms that declare
+  /// one.
+  Map<String, String> get platformDefaultPackages => {
+    for (final entry in platforms.entries)
+      if (entry.value.defaultPackage case final defaultPackage?)
+        entry.key: defaultPackage,
+  };
 }
+
+/// A single platform's entry under a plugin's
+/// `pubspec.flutter.plugin.platforms` map.
+class PluginPlatformInfo {
+  const PluginPlatformInfo({
+    this.defaultPackage,
+    this.pluginClass,
+    this.ffiPlugin = false,
+  });
+
+  // Some published pubspecs declare `default_package` (or `pluginClass`) as
+  // `true` rather than a package name (seen live on pub.dev, e.g. a web
+  // platform entry) — read leniently rather than throwing on a bad cast.
+  factory PluginPlatformInfo.fromJson(Map<String, dynamic> json) =>
+      PluginPlatformInfo(
+        defaultPackage: _stringOrNull(json['default_package']),
+        pluginClass: _stringOrNull(json['pluginClass']),
+        ffiPlugin: json['ffiPlugin'] as bool? ?? false,
+      );
+
+  /// The federated implementation package declared for this platform, if any.
+  final String? defaultPackage;
+
+  /// A native plugin class declared directly on this platform (as opposed to
+  /// `dartPluginClass`, which is Dart-only).
+  final String? pluginClass;
+
+  /// Whether this platform declares a native FFI plugin directly.
+  final bool ffiPlugin;
+
+  /// True when this platform entry itself declares a native implementation
+  /// — not a federated `default_package` and not a `dartPluginClass`-only
+  /// Dart implementation (SPEC e2-s1 iOS-resolution rework).
+  bool get declaresNativeImplementation => pluginClass != null || ffiPlugin;
+}
+
+String? _stringOrNull(Object? value) => value is String ? value : null;

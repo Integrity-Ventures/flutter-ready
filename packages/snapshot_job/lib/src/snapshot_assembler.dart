@@ -37,10 +37,7 @@ Future<PluginSnapshot> _assembleOne(
   // Federated plugins (e1-s2 review finding): the app-facing package's own
   // archive carries no Package.swift/.so/Gradle file. When a platform
   // declares a default_package, the platform's real archive lives there.
-  final iosPackage =
-      info?.defaultPackageFor('ios') ??
-      info?.defaultPackageFor('macos') ??
-      candidate.name;
+  final iosResolution = resolveIosPackage(candidate.name, info);
   final androidPackage = info?.defaultPackageFor('android') ?? candidate.name;
 
   // Shared so a non-federated plugin (iosPackage == androidPackage) only
@@ -56,7 +53,24 @@ Future<PluginSnapshot> _assembleOne(
     );
   }
 
-  final swiftpm = await _assembleSwiftPm(candidate, iosPackage, archiveFor);
+  // nativeIos (SPEC e2-s1 rework) needs the resolved package's own
+  // pluginClass/ffiPlugin declaration — reuse `info` when it isn't
+  // federated, otherwise fetch it (it's the same call `info` already made,
+  // just against a different package name).
+  final resolvedInfo = iosResolution.checkedPackage == candidate.name
+      ? info
+      : await _safeCall(
+          errors,
+          '${iosResolution.checkedPackage} info',
+          () => client.fetchPackageInfo(iosResolution.checkedPackage),
+        );
+
+  final swiftpm = await _assembleSwiftPm(
+    candidate,
+    iosResolution,
+    resolvedInfo,
+    archiveFor,
+  );
   final (:alignment, :android) = await _assembleAndroid(
     androidPackage,
     archiveFor,
@@ -78,9 +92,11 @@ Future<PluginSnapshot> _assembleOne(
 
 Future<SwiftPmSnapshot?> _assembleSwiftPm(
   PluginCandidate candidate,
-  String checkedPackage,
+  IosResolution iosResolution,
+  PackageInfo? resolvedInfo,
   Future<List<int>?> Function(String packageName) archiveFor,
 ) async {
+  final checkedPackage = iosResolution.checkedPackage;
   final bytes = await archiveFor(checkedPackage);
   if (bytes == null) return null;
   final entryPaths = listArchiveEntryPaths(bytes);
@@ -90,7 +106,12 @@ Future<SwiftPmSnapshot?> _assembleSwiftPm(
     PluginCandidate(name: checkedPackage, tags: candidate.tags),
     entryPaths,
   );
-  return SwiftPmSnapshot(checkedPackage: checkedPackage, readiness: readiness);
+  final nativeIos = declaresNativeIos(iosResolution, resolvedInfo, entryPaths);
+  return SwiftPmSnapshot(
+    checkedPackage: checkedPackage,
+    readiness: readiness,
+    nativeIos: nativeIos,
+  );
 }
 
 Future<({AlignmentSnapshot? alignment, AndroidSnapshot? android})>

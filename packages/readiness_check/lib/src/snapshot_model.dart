@@ -4,26 +4,45 @@
 /// JSON shape documented in
 /// `10xs/workflow/instructions/20260927_05_architect-notes-e2-e6.md`.
 class SwiftPmInfo {
-  const SwiftPmInfo({required this.tag, required this.archive, required this.agrees, required this.checkedPackage});
+  const SwiftPmInfo({
+    required this.tag,
+    required this.archive,
+    required this.agrees,
+    required this.checkedPackage,
+    this.nativeIos,
+  });
 
   factory SwiftPmInfo.fromJson(Map<String, dynamic> json) => SwiftPmInfo(
     tag: json['tag'] as bool?,
     archive: json['archive'] as bool?,
     agrees: json['agrees'] as bool?,
     checkedPackage: json['checkedPackage'] as String?,
+    nativeIos: json['nativeIos'] as bool?,
   );
 
   final bool? tag;
   final bool? archive;
   final bool? agrees;
   final String? checkedPackage;
+
+  /// Null for snapshots taken before this field existed (additive,
+  /// `schemaVersion` stays 1) — grading treats that the same as `true`.
+  /// False means the resolved package ships no native iOS code at all.
+  final bool? nativeIos;
 }
 
 class SoFile {
-  const SoFile({required this.path, required this.aligned, required this.minAlign});
+  const SoFile({
+    required this.path,
+    required this.aligned,
+    required this.minAlign,
+  });
 
-  factory SoFile.fromJson(Map<String, dynamic> json) =>
-      SoFile(path: json['path'] as String, aligned: json['aligned'] as bool, minAlign: json['minAlign'] as int?);
+  factory SoFile.fromJson(Map<String, dynamic> json) => SoFile(
+    path: json['path'] as String,
+    aligned: json['aligned'] as bool,
+    minAlign: json['minAlign'] as int?,
+  );
 
   final String path;
   final bool aligned;
@@ -35,7 +54,10 @@ class AlignmentInfo {
 
   factory AlignmentInfo.fromJson(Map<String, dynamic> json) => AlignmentInfo(
     checkedPackage: json['checkedPackage'] as String?,
-    soFiles: [for (final f in (json['soFiles'] as List)) SoFile.fromJson(f as Map<String, dynamic>)],
+    soFiles: [
+      for (final f in (json['soFiles'] as List))
+        SoFile.fromJson(f as Map<String, dynamic>),
+    ],
   );
 
   final String? checkedPackage;
@@ -43,7 +65,12 @@ class AlignmentInfo {
 }
 
 class AndroidInfo {
-  const AndroidInfo({required this.checkedPackage, required this.compileSdk, required this.agp, required this.ndk});
+  const AndroidInfo({
+    required this.checkedPackage,
+    required this.compileSdk,
+    required this.agp,
+    required this.ndk,
+  });
 
   factory AndroidInfo.fromJson(Map<String, dynamic> json) => AndroidInfo(
     checkedPackage: json['checkedPackage'] as String?,
@@ -79,7 +106,9 @@ class PluginEntry {
     downloadCount30Days: json['downloadCount30Days'] as int?,
     likeCount: json['likeCount'] as int?,
     swiftpm: SwiftPmInfo.fromJson(json['swiftpm'] as Map<String, dynamic>),
-    alignment: AlignmentInfo.fromJson(json['alignment'] as Map<String, dynamic>),
+    alignment: AlignmentInfo.fromJson(
+      json['alignment'] as Map<String, dynamic>,
+    ),
     android: AndroidInfo.fromJson(json['android'] as Map<String, dynamic>),
     errors: [for (final e in (json['errors'] as List)) e as String],
   );
@@ -98,13 +127,21 @@ class PluginEntry {
 }
 
 class Snapshot {
-  const Snapshot({required this.schemaVersion, required this.generatedAt, required this.topN, required this.plugins});
+  const Snapshot({
+    required this.schemaVersion,
+    required this.generatedAt,
+    required this.topN,
+    required this.plugins,
+  });
 
   factory Snapshot.fromJson(Map<String, dynamic> json) => Snapshot(
     schemaVersion: json['schemaVersion'] as int,
     generatedAt: json['generatedAt'] as String,
     topN: json['topN'] as int,
-    plugins: [for (final p in (json['plugins'] as List)) PluginEntry.fromJson(p as Map<String, dynamic>)],
+    plugins: [
+      for (final p in (json['plugins'] as List))
+        PluginEntry.fromJson(p as Map<String, dynamic>),
+    ],
   );
 
   final int schemaVersion;
