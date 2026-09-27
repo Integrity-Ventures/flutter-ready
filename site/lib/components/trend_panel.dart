@@ -25,7 +25,7 @@ class TrendPanel extends StatelessComponent {
         p(classes: 'stat-value', [.text(latestShare == null ? '—' : '$latestShare%')]),
         p(classes: 'stat-label', [
           .text(
-            'of the top ${latest.snapshot.topN} plugins with a known status ship SwiftPM, '
+            'of the ${latest.snapshot.plugins.length} plugins with a known status ship SwiftPM, '
             'as of the ${latest.date} snapshot.',
           ),
         ]),

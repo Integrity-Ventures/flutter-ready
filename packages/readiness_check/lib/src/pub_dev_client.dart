@@ -33,6 +33,20 @@ class PubDevClient {
     return (body['packages'] as List).cast<String>();
   }
 
+  /// One page of `GET /api/search?q=<query>&sort=downloads&page=<page>`
+  /// results (SPEC §3.1.1, 2026-09-27): 10 package names per page, and
+  /// pub.dev rejects the query past page 10 (100 results per query).
+  Future<List<String>> searchPackages(String query, {required int page}) async {
+    final uri = _baseUri
+        .resolve('/api/search')
+        .replace(queryParameters: {'q': query, 'sort': 'downloads', 'page': '$page'});
+    final body = await _getJson(uri);
+    return [
+      for (final entry in body['packages'] as List)
+        (entry as Map<String, dynamic>)['package'] as String,
+    ];
+  }
+
   /// Score tags for a single package, e.g. `sdk:flutter`, `platform:ios`.
   Future<List<String>> fetchPackageTags(String packageName) async {
     final uri = _baseUri.resolve('/api/packages/$packageName/score');

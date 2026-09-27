@@ -2,6 +2,12 @@ import 'package:flutter_ready/flutter_ready.dart';
 import 'package:readiness_check/readiness_check.dart';
 import 'package:test/test.dart';
 
+const _discovery = DiscoveryInfo(
+  method: 'pubdev-search',
+  queries: ['is:plugin platform:ios -is:swiftpm-plugin', 'is:plugin'],
+  resultsPerQuery: 100,
+);
+
 PluginEntry _plugin(
   String name,
   String version, {
@@ -59,7 +65,7 @@ void main() {
     final snapshot = Snapshot(
       schemaVersion: 1,
       generatedAt: '2026-09-26T00:00:00Z',
-      topN: 1,
+      discovery: _discovery,
       plugins: [_plugin('no_spm_plugin', '1.0.0', swiftpmTag: false, swiftpmArchive: false)],
     );
     final locked = [const LockedPackage(name: 'no_spm_plugin', version: '1.0.0', isHosted: true)];
@@ -75,7 +81,7 @@ void main() {
     final snapshot = Snapshot(
       schemaVersion: 1,
       generatedAt: '2026-09-26T00:00:00Z',
-      topN: 1,
+      discovery: _discovery,
       plugins: [
         _plugin(
           'unaligned_plugin',
@@ -99,7 +105,7 @@ void main() {
     final snapshot = Snapshot(
       schemaVersion: 1,
       generatedAt: '2026-09-26T00:00:00Z',
-      topN: 1,
+      discovery: _discovery,
       plugins: [_plugin('some_plugin', '1.0.0', swiftpmTag: true, swiftpmArchive: true)],
     );
     final locked = [const LockedPackage(name: 'some_plugin', version: '2.0.0', isHosted: true)];
@@ -112,7 +118,7 @@ void main() {
   });
 
   test('a plugin missing from the data is reported as not checked', () {
-    final snapshot = const Snapshot(schemaVersion: 1, generatedAt: '2026-09-26T00:00:00Z', topN: 0, plugins: []);
+    final snapshot = const Snapshot(schemaVersion: 1, generatedAt: '2026-09-26T00:00:00Z', discovery: _discovery, plugins: []);
     final locked = [const LockedPackage(name: 'unknown_plugin', version: '1.0.0', isHosted: true)];
 
     final report = buildCheckReport(lockedPackages: locked, snapshot: snapshot, deadlines: _deadlines);
@@ -125,7 +131,7 @@ void main() {
     final snapshot = Snapshot(
       schemaVersion: 1,
       generatedAt: '2026-09-26T00:00:00Z',
-      topN: 1,
+      discovery: _discovery,
       plugins: [_plugin('ready_plugin', '1.0.0', swiftpmTag: true, swiftpmArchive: true)],
     );
     final locked = [const LockedPackage(name: 'ready_plugin', version: '1.0.0', isHosted: true)];
@@ -140,7 +146,7 @@ void main() {
     final snapshot = Snapshot(
       schemaVersion: 1,
       generatedAt: '2026-09-26T00:00:00Z',
-      topN: 1,
+      discovery: _discovery,
       plugins: [_plugin('no_spm_plugin', '1.0.0', swiftpmTag: false, swiftpmArchive: false)],
     );
     final locked = [const LockedPackage(name: 'no_spm_plugin', version: '1.0.0', isHosted: true)];
@@ -162,7 +168,7 @@ void main() {
     final snapshot = Snapshot(
       schemaVersion: 1,
       generatedAt: '2026-09-26T00:00:00Z',
-      topN: 1,
+      discovery: _discovery,
       plugins: [_plugin('no_spm_plugin', '1.0.0', swiftpmTag: false, swiftpmArchive: false)],
     );
     final locked = [const LockedPackage(name: 'no_spm_plugin', version: '1.0.0', isHosted: true)];
@@ -180,7 +186,7 @@ void main() {
   });
 
   test('git and path dependencies are ignored', () {
-    final snapshot = const Snapshot(schemaVersion: 1, generatedAt: '2026-09-26T00:00:00Z', topN: 0, plugins: []);
+    final snapshot = const Snapshot(schemaVersion: 1, generatedAt: '2026-09-26T00:00:00Z', discovery: _discovery, plugins: []);
     final locked = [const LockedPackage(name: 'my_fork', version: '1.0.0', isHosted: false)];
 
     final report = buildCheckReport(lockedPackages: locked, snapshot: snapshot, deadlines: _deadlines);

@@ -40,6 +40,16 @@ void main() {
 
       expect(listArchiveEntryPaths(bytes), isEmpty);
     });
+
+    test(
+      'throws (rather than hangs or returns garbage) on a corrupt archive, '
+      'so callers can catch and record it per plugin',
+      () {
+        final corruptBytes = [0x1f, 0x8b, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        expect(() => listArchiveEntryPaths(corruptBytes), throwsA(anything));
+      },
+    );
   });
 
   group('extractArchiveEntries', () {
@@ -72,6 +82,15 @@ void main() {
       expect(
         extractArchiveEntries(bytes, (path) => path.endsWith('.so')),
         isEmpty,
+      );
+    });
+
+    test('throws on a corrupt archive', () {
+      final corruptBytes = [0x1f, 0x8b, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+      expect(
+        () => extractArchiveEntries(corruptBytes, (path) => true),
+        throwsA(anything),
       );
     });
   });

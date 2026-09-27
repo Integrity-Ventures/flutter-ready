@@ -414,12 +414,66 @@ void main() {
     );
   });
 
+  group('assembleSnapshot: corrupt archive isolation', () {
+    test(
+      'a corrupt .tar.gz is recorded as an error, not an aborted run, and '
+      'never blocks another plugin in the same run',
+      () async {
+        final client = _fakePubDev(
+          scores: {
+            'corrupt_plugin': {
+              'tags': ['is:plugin'],
+            },
+            'good_plugin': {
+              'tags': ['is:plugin'],
+              'likeCount': 5,
+            },
+          },
+          infos: {
+            'corrupt_plugin': _info(version: '1.0.0'),
+            'good_plugin': _info(version: '2.0.0'),
+          },
+          archives: {
+            // Looks like a gzip header but decodes to nothing usable —
+            // the FormatException a real truncated download raises.
+            '1.0.0': [0x1f, 0x8b, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            '2.0.0': _buildArchive({'pubspec.yaml': utf8.encode('name: x')}),
+          },
+        );
+
+        final result = await assembleSnapshot(client, [
+          PluginCandidate(name: 'corrupt_plugin', tags: ['is:plugin']),
+          PluginCandidate(name: 'good_plugin', tags: ['is:plugin']),
+        ]);
+
+        final corrupt = result[0];
+        expect(corrupt.name, 'corrupt_plugin');
+        expect(corrupt.swiftpm, isNull);
+        expect(corrupt.alignment, isNull);
+        expect(corrupt.android, isNull);
+        expect(corrupt.errors, isNotEmpty);
+        expect(corrupt.errors.any((e) => e.contains('archive decode')), isTrue);
+
+        final good = result[1];
+        expect(good.name, 'good_plugin');
+        expect(good.version, '2.0.0');
+        expect(good.errors, isEmpty);
+      },
+    );
+  });
+
   group('buildSnapshotJson', () {
+    const discovery = DiscoveryInfo(
+      method: 'pubdev-search',
+      queries: ['is:plugin platform:ios -is:swiftpm-plugin', 'is:plugin'],
+      resultsPerQuery: 100,
+    );
+
     test('matches the schemaVersion 1 contract shape', () {
       final generatedAt = DateTime.utc(2026, 9, 27, 2);
       final json = buildSnapshotJson(
         generatedAt: generatedAt,
-        topN: 100,
+        discovery: discovery,
         plugins: [
           PluginSnapshot(
             name: 'url_launcher',
@@ -431,17 +485,50 @@ void main() {
             alignment: null,
             android: null,
             errors: const [],
+            search: const ['top-downloads'],
           ),
         ],
       );
 
       expect(json['schemaVersion'], 1);
       expect(json['generatedAt'], generatedAt.toIso8601String());
-      expect(json['topN'], 100);
+      expect(json['discovery'], discovery.toJson());
       final plugin = (json['plugins'] as List).single as Map<String, dynamic>;
       expect(plugin['name'], 'url_launcher');
       expect(plugin['swiftpm'], isNull);
       expect(plugin['errors'], isEmpty);
+      expect(plugin['search'], ['top-downloads']);
+    });
+
+    test('sorts plugins by downloads, descending', () {
+      final generatedAt = DateTime.utc(2026, 9, 27, 2);
+      PluginSnapshot plugin(String name, int? downloads) => PluginSnapshot(
+        name: name,
+        version: '1.0.0',
+        published: generatedAt,
+        downloadCount30Days: downloads,
+        likeCount: 0,
+        swiftpm: null,
+        alignment: null,
+        android: null,
+        errors: const [],
+      );
+
+      final json = buildSnapshotJson(
+        generatedAt: generatedAt,
+        discovery: discovery,
+        plugins: [
+          plugin('low', 10),
+          plugin('unknown', null),
+          plugin('high', 1000),
+        ],
+      );
+
+      final names = [
+        for (final p in json['plugins'] as List)
+          (p as Map<String, dynamic>)['name'],
+      ];
+      expect(names, ['high', 'low', 'unknown']);
     });
   });
 }

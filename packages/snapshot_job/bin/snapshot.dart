@@ -16,14 +16,21 @@ Future<void> main(List<String> arguments) async {
   final client = PubDevClient(httpClient: _UserAgentClient(http.Client()));
 
   final stopwatch = Stopwatch()..start();
-  final candidates = await discoverFlutterPlugins(client, topN: args.topN);
+  final candidates = await discoverFlutterPlugins(
+    client,
+    resultsPerQuery: args.resultsPerQuery,
+  );
   final plugins = await assembleSnapshot(client, candidates);
   stopwatch.stop();
 
   final generatedAt = DateTime.now().toUtc();
   final snapshot = buildSnapshotJson(
     generatedAt: generatedAt,
-    topN: args.topN,
+    discovery: DiscoveryInfo(
+      method: 'pubdev-search',
+      queries: [for (final q in discoveryQueries) q.query],
+      resultsPerQuery: args.resultsPerQuery,
+    ),
     plugins: plugins,
   );
   final encoded = '${const JsonEncoder.withIndent('  ').convert(snapshot)}\n';
@@ -43,15 +50,21 @@ Future<void> main(List<String> arguments) async {
 }
 
 class _SnapshotArgs {
-  const _SnapshotArgs({required this.topN, required this.outDir});
+  const _SnapshotArgs({required this.resultsPerQuery, required this.outDir});
 
-  final int topN;
+  final int resultsPerQuery;
   final String outDir;
 }
 
 _SnapshotArgs _parseArgs(List<String> arguments) {
   final parser = ArgParser()
-    ..addOption('top', defaultsTo: '100', help: 'How many plugins to check.')
+    ..addOption(
+      'top',
+      defaultsTo: '100',
+      help:
+          'Results per pub.dev search query, rounded up to pages of 10 '
+          '(the API caps a single query at 100).',
+    )
     ..addOption(
       'out',
       defaultsTo: 'data/snapshots/',
@@ -59,7 +72,7 @@ _SnapshotArgs _parseArgs(List<String> arguments) {
     );
   final results = parser.parse(arguments);
   return _SnapshotArgs(
-    topN: int.parse(results.option('top')!),
+    resultsPerQuery: int.parse(results.option('top')!),
     outDir: results.option('out')!,
   );
 }

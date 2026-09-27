@@ -44,6 +44,52 @@ void main() {
     });
   });
 
+  group('searchPackages', () {
+    test('reads package names in order and passes through sort/page', () async {
+      Uri? requested;
+      final mock = MockClient((request) async {
+        requested = request.url;
+        return http.Response(
+          jsonEncode({
+            'packages': [
+              {'package': 'google_maps_flutter'},
+              {'package': 'open_filex'},
+            ],
+          }),
+          200,
+        );
+      });
+      final client = PubDevClient(
+        httpClient: mock,
+        baseUri: Uri.parse('https://pub.dev'),
+      );
+
+      final names = await client.searchPackages(
+        'is:plugin platform:ios -is:swiftpm-plugin',
+        page: 3,
+      );
+
+      expect(names, ['google_maps_flutter', 'open_filex']);
+      expect(requested!.path, '/api/search');
+      expect(
+        requested!.queryParameters['q'],
+        'is:plugin platform:ios -is:swiftpm-plugin',
+      );
+      expect(requested!.queryParameters['sort'], 'downloads');
+      expect(requested!.queryParameters['page'], '3');
+    });
+
+    test('returns an empty list for a page past the results', () async {
+      final client = _fakeClient({
+        '/api/search': {'packages': <Map<String, dynamic>>[]},
+      });
+
+      final names = await client.searchPackages('is:plugin', page: 11);
+
+      expect(names, isEmpty);
+    });
+  });
+
   group('fetchPackageInfo', () {
     test(
       'reads version and published date for a non-federated package',

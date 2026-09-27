@@ -3,6 +3,7 @@ export 'src/android_build_settings.dart'
         AndroidBuildSettings,
         extractAndroidBuildSettings,
         isAndroidGradleFilePath;
+export 'src/concurrency_pool.dart' show mapWithConcurrency;
 export 'src/elf_alignment_check.dart'
     show
         ElfAlignmentResult,
@@ -29,7 +30,8 @@ export 'src/ios_resolution.dart'
         resolveNativeIos;
 export 'src/package_archive.dart'
     show extractArchiveEntries, listArchiveEntryPaths;
-export 'src/plugin_discovery.dart' show PluginCandidate, discoverFlutterPlugins;
+export 'src/plugin_discovery.dart'
+    show DiscoveryQuery, PluginCandidate, discoverFlutterPlugins, discoveryQueries;
 export 'src/pub_dev_client.dart'
     show
         PackageInfo,
@@ -42,6 +44,7 @@ export 'src/snapshot_model.dart'
         AlignmentInfo,
         AndroidInfo,
         Deadline,
+        DiscoveryInfo,
         PluginEntry,
         Snapshot,
         SoFile,

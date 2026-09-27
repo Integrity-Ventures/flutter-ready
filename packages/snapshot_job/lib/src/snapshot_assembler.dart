@@ -1,6 +1,5 @@
 import 'package:readiness_check/readiness_check.dart';
 
-import 'concurrency_pool.dart';
 import 'plugin_snapshot.dart';
 
 /// Assembles one [PluginSnapshot] per candidate (SPEC §3.1.2-3), running up
@@ -71,6 +70,7 @@ Future<PluginSnapshot> _assembleOne(
     iosResolution,
     resolvedInfo,
     archiveFor,
+    errors,
   );
   final (:alignment, :android) = await _assembleAndroid(
     androidPackage,
@@ -88,6 +88,7 @@ Future<PluginSnapshot> _assembleOne(
     alignment: alignment,
     android: android,
     errors: errors,
+    search: candidate.sources,
   );
 }
 
@@ -97,11 +98,19 @@ Future<SwiftPmSnapshot?> _assembleSwiftPm(
   IosResolution iosResolution,
   PackageInfo? resolvedInfo,
   Future<List<int>?> Function(String packageName) archiveFor,
+  List<String> errors,
 ) async {
   final checkedPackage = iosResolution.checkedPackage;
   final bytes = await archiveFor(checkedPackage);
   if (bytes == null) return null;
-  final entryPaths = listArchiveEntryPaths(bytes);
+  // A corrupt/truncated archive must never abort the whole run — record it
+  // as this plugin's error and grade it as "no archive" instead.
+  final entryPaths = await _safeCall(
+    errors,
+    '$checkedPackage archive decode',
+    () async => listArchiveEntryPaths(bytes),
+  );
+  if (entryPaths == null) return null;
   // The is:swiftpm-plugin tag stays the app-facing package's own tag
   // (architect decision) — only the archive lookup moves to checkedPackage.
   final readiness = checkSwiftPmReadiness(
@@ -131,10 +140,15 @@ _assembleAndroid(
   final bytes = await archiveFor(checkedPackage);
   if (bytes == null) return (alignment: null, android: null);
 
-  final entries = extractArchiveEntries(
-    bytes,
-    (path) => isSharedLibraryPath(path) || isAndroidGradleFilePath(path),
+  final entries = await _safeCall(
+    errors,
+    '$checkedPackage archive decode',
+    () async => extractArchiveEntries(
+      bytes,
+      (path) => isSharedLibraryPath(path) || isAndroidGradleFilePath(path),
+    ),
   );
+  if (entries == null) return (alignment: null, android: null);
 
   final soFiles = <ElfAlignmentResult>[];
   final gradleFiles = <String, List<int>>{};

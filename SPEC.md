@@ -55,16 +55,30 @@ The deadlines v1 covers:
 
 ### 3.1 Nightly data job
 
-1. **Pick the plugins.** Take the top N Flutter plugins from
-   `GET https://pub.dev/api/package-name-completion-data`, which returns
-   package names "ordered by overall ranking" (documented at pub.dev/help/api).
-   The list mixes Dart packages and plugins, so keep only packages whose score
-   tags include `sdk:flutter`, `is:plugin`, and at least one `platform:ios` or
-   `platform:android` tag (added 2026-09-27, acting PM for the owner:
-   pure-Dart packages such as provider and flutter_map carry the platform
-   tags too; url_launcher and shared_preferences carry is:plugin). N is
-   counted after this filter: take plugins from the ranked list, in order,
-   until N are found.
+1. **Pick the plugins** (rewritten 2026-09-27, owner approved: the prior
+   "overall ranking" source missed heavily-downloaded plugins like
+   `google_maps_flutter`, `flutter_native_splash` and `flutter_tts`, so the
+   board showed 0 reds). Build the candidate set from two
+   `GET https://pub.dev/api/search?q=<query>&sort=downloads&page=<n>`
+   searches, both sorted by downloads, 10 pages each — the API returns 10
+   packages per page and rejects the query past page 10, so each search
+   caps at its 100 most-downloaded matches:
+   - A, the likely reds: `q=is:plugin platform:ios -is:swiftpm-plugin`.
+   - B, context: `q=is:plugin`, the most-downloaded plugins overall.
+
+   The `is:plugin` tag in both queries is pub.dev's own "this is a Flutter
+   plugin" rule — same rule the old source applied by filtering score tags,
+   just expressed as search syntax instead of a post-fetch check. Merge the
+   two searches' results and dedupe. Federated plugins publish their
+   per-platform implementation as a separate package (`google_maps_flutter`
+   declares `google_maps_flutter_ios` as its iOS `default_package`) —
+   fold those platform packages into their app-facing plugin so a plugin's
+   downloads and status aren't split across two rows: drop a candidate when
+   another candidate's pubspec lists it as a `default_package`, and drop it
+   too when its name carries a recognised platform suffix (`_ios`,
+   `_android`, `_foundation`, `_macos`, `_windows`, `_linux`, `_web`,
+   `_darwin`) whose base name is also a candidate. Record which query (or
+   both) found each surviving plugin.
 2. **Record per plugin, for its latest version:**
    - **SwiftPM:** pub.dev's `GET /api/packages/<name>/score` already carries an
      `is:swiftpm-plugin` tag (checked 2026-09-26 on `url_launcher`,

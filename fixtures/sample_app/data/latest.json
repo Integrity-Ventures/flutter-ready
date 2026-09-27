@@ -1,7 +1,11 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-09-27T00:00:00Z",
-  "topN": 2,
+  "discovery": {
+    "method": "pubdev-search",
+    "queries": ["is:plugin platform:ios -is:swiftpm-plugin", "is:plugin"],
+    "resultsPerQuery": 100
+  },
   "plugins": [
     {
       "name": "fixture_blocked_plugin",

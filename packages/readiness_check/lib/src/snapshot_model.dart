@@ -106,20 +106,36 @@ class PluginEntry {
     required this.alignment,
     required this.android,
     required this.errors,
+    this.search = const [],
   });
 
+  /// `swiftpm`/`alignment`/`android` are null in the JSON for a plugin whose
+  /// checks couldn't run (SPEC §3.1.2-3: "never omitted" but null on
+  /// failure) — parsed here as an all-null sentinel rather than a missing
+  /// key, since [errors] (checked first by every grading function) is
+  /// always non-empty whenever they're null.
   factory PluginEntry.fromJson(Map<String, dynamic> json) => PluginEntry(
     name: json['name'] as String,
-    version: json['version'] as String,
+    // Null in the JSON when the package-info fetch failed (recorded in
+    // errors) — every caller displays this directly, so fall back to a
+    // placeholder rather than widening the type to String?.
+    version: json['version'] as String? ?? 'unknown',
     published: json['published'] as String?,
     downloadCount30Days: json['downloadCount30Days'] as int?,
     likeCount: json['likeCount'] as int?,
-    swiftpm: SwiftPmInfo.fromJson(json['swiftpm'] as Map<String, dynamic>),
-    alignment: AlignmentInfo.fromJson(
-      json['alignment'] as Map<String, dynamic>,
-    ),
-    android: AndroidInfo.fromJson(json['android'] as Map<String, dynamic>),
+    swiftpm: json['swiftpm'] == null
+        ? const SwiftPmInfo(tag: null, archive: null, agrees: null, checkedPackage: null)
+        : SwiftPmInfo.fromJson(json['swiftpm'] as Map<String, dynamic>),
+    alignment: json['alignment'] == null
+        ? const AlignmentInfo(checkedPackage: null, soFiles: [])
+        : AlignmentInfo.fromJson(json['alignment'] as Map<String, dynamic>),
+    android: json['android'] == null
+        ? const AndroidInfo(checkedPackage: null, compileSdk: null, agp: null, ndk: null)
+        : AndroidInfo.fromJson(json['android'] as Map<String, dynamic>),
     errors: [for (final e in (json['errors'] as List)) e as String],
+    // Null for snapshots taken before this field existed (additive,
+    // schemaVersion stays 1).
+    search: [for (final s in (json['search'] as List? ?? const [])) s as String],
   );
 
   final String name;
@@ -132,21 +148,54 @@ class PluginEntry {
   final AndroidInfo android;
   final List<String> errors;
 
+  /// Which pub.dev search(es) surfaced this plugin (SPEC §3.1.1), e.g.
+  /// `["no-swiftpm", "top-downloads"]`. Empty for snapshots taken before
+  /// this field existed.
+  final List<String> search;
+
   String get pubDevUrl => 'https://pub.dev/packages/$name';
+}
+
+/// How discovery built the candidate set for this snapshot (SPEC §3.1.1,
+/// 2026-09-27 owner-approved rework): pub.dev searches, sorted by downloads.
+class DiscoveryInfo {
+  const DiscoveryInfo({
+    required this.method,
+    required this.queries,
+    required this.resultsPerQuery,
+  });
+
+  factory DiscoveryInfo.fromJson(Map<String, dynamic> json) => DiscoveryInfo(
+    method: json['method'] as String,
+    queries: [for (final q in (json['queries'] as List)) q as String],
+    resultsPerQuery: json['resultsPerQuery'] as int,
+  );
+
+  final String method;
+  final List<String> queries;
+  final int resultsPerQuery;
+
+  Map<String, dynamic> toJson() => {
+    'method': method,
+    'queries': queries,
+    'resultsPerQuery': resultsPerQuery,
+  };
 }
 
 class Snapshot {
   const Snapshot({
     required this.schemaVersion,
     required this.generatedAt,
-    required this.topN,
+    required this.discovery,
     required this.plugins,
   });
 
   factory Snapshot.fromJson(Map<String, dynamic> json) => Snapshot(
     schemaVersion: json['schemaVersion'] as int,
     generatedAt: json['generatedAt'] as String,
-    topN: json['topN'] as int,
+    discovery: DiscoveryInfo.fromJson(
+      json['discovery'] as Map<String, dynamic>,
+    ),
     plugins: [
       for (final p in (json['plugins'] as List))
         PluginEntry.fromJson(p as Map<String, dynamic>),
@@ -155,7 +204,7 @@ class Snapshot {
 
   final int schemaVersion;
   final String generatedAt;
-  final int topN;
+  final DiscoveryInfo discovery;
   final List<PluginEntry> plugins;
 }
 

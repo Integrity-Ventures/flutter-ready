@@ -24,7 +24,7 @@ class IndexPage extends AsyncStatelessComponent {
       DeadlinesPanel(deadlines: deadlines),
       TrendPanel(history: history),
       section(classes: 'board', [
-        h2([.text('Top ${snapshot.topN} plugins')]),
+        h2([.text('${snapshot.plugins.length} plugins')]),
         PluginTable(plugins: snapshot.plugins),
       ]),
     ]);

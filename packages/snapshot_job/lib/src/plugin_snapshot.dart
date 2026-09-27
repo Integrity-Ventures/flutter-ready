@@ -1,17 +1,22 @@
 import 'package:readiness_check/readiness_check.dart';
 
 /// The top-level snapshot document (architect snapshot contract,
-/// `schemaVersion` 1): one dated JSON file per nightly run.
+/// `schemaVersion` 1): one dated JSON file per nightly run. Sorted by
+/// downloads, descending, so reds surface without the board having to sort
+/// (SPEC §3.1.1, 2026-09-27 owner-approved rework).
 Map<String, dynamic> buildSnapshotJson({
   required DateTime generatedAt,
-  required int topN,
+  required DiscoveryInfo discovery,
   required List<PluginSnapshot> plugins,
 }) {
+  final sorted = [...plugins]..sort(
+    (a, b) => (b.downloadCount30Days ?? 0).compareTo(a.downloadCount30Days ?? 0),
+  );
   return {
     'schemaVersion': 1,
     'generatedAt': generatedAt.toIso8601String(),
-    'topN': topN,
-    'plugins': [for (final plugin in plugins) plugin.toJson()],
+    'discovery': discovery.toJson(),
+    'plugins': [for (final plugin in sorted) plugin.toJson()],
   };
 }
 
@@ -31,6 +36,7 @@ class PluginSnapshot {
     required this.alignment,
     required this.android,
     required this.errors,
+    this.search = const [],
   });
 
   final String name;
@@ -45,6 +51,10 @@ class PluginSnapshot {
   /// One message per failed check. A failure here never aborts the run.
   final List<String> errors;
 
+  /// Which pub.dev search(es) surfaced this plugin (SPEC §3.1.1), e.g.
+  /// `["no-swiftpm", "top-downloads"]`.
+  final List<String> search;
+
   Map<String, dynamic> toJson() => {
     'name': name,
     'version': version,
@@ -55,6 +65,7 @@ class PluginSnapshot {
     'alignment': alignment?.toJson(),
     'android': android?.toJson(),
     'errors': errors,
+    'search': search,
   };
 }
 
