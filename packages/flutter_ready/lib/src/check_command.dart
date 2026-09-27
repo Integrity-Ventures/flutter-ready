@@ -4,14 +4,23 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
-import 'package:readiness_check/readiness_check.dart' show Deadline, Snapshot;
+import 'package:readiness_check/readiness_check.dart' show Deadline, PubDevClient, Snapshot;
 
 import 'check_report.dart';
+import 'live_check.dart';
 import 'pubspec_lock.dart';
 import 'replacements.dart';
 
 const defaultDataSource =
     'https://raw.githubusercontent.com/Integrity-Ventures/flutter-ready/main/data/latest.json';
+
+/// Sent on every live-check request to pub.dev (CLI live-check task,
+/// 2026-09-27): a descriptive User-Agent so pub.dev can identify the traffic.
+const _liveCheckUserAgent = 'flutter_ready-cli (+https://ready.hireflutter.dev)';
+
+/// How many packages [CheckCommand] live-checks at once (CLI live-check
+/// task, 2026-09-27).
+const _liveCheckConcurrency = 4;
 
 /// `flutter_ready check` (SPEC §3.3): reads `pubspec.lock`, fetches the
 /// Flutter Ready data, and prints a report of which plugins block this
@@ -26,7 +35,14 @@ class CheckCommand extends Command<void> {
             'Path or URL to the readiness data (latest.json). Deadlines are '
             'read from deadlines.json alongside it.',
       )
-      ..addOption('lockfile', defaultsTo: 'pubspec.lock', help: "Path to the app's pubspec.lock.");
+      ..addOption('lockfile', defaultsTo: 'pubspec.lock', help: "Path to the app's pubspec.lock.")
+      ..addFlag(
+        'offline',
+        defaultsTo: false,
+        help:
+            'Never check a plugin live against pub.dev; a plugin the data '
+            "doesn't cover at its locked version prints \"not checked\".",
+      );
   }
 
   @override
@@ -39,6 +55,7 @@ class CheckCommand extends Command<void> {
   Future<void> run() async {
     final dataSource = argResults!.option('data')!;
     final lockfilePath = argResults!.option('lockfile')!;
+    final offline = argResults!.flag('offline');
 
     final lockfile = File(lockfilePath);
     if (!lockfile.existsSync()) {
@@ -55,14 +72,57 @@ class CheckCommand extends Command<void> {
     ];
     final replacements = await _readReplacements(dataSource);
 
+    final liveResults = offline
+        ? const <LiveCheckResult>[]
+        : await _runLiveChecks(lockedPackages, snapshot);
+
     final report = buildCheckReport(
       lockedPackages: lockedPackages,
       snapshot: snapshot,
       deadlines: deadlines,
       replacements: replacements,
+      liveResults: liveResults,
     );
     stdout.writeln(report.text);
     exitCode = report.hasBlocker ? 1 : 0;
+  }
+}
+
+/// The hosted packages a live check would run for: those that aren't in
+/// [snapshot] at their exact locked version (CLI live-check task,
+/// 2026-09-27) — matches [buildCheckReport]'s own "otherwise" branch.
+List<LockedPackage> _packagesNeedingLiveCheck(List<LockedPackage> lockedPackages, Snapshot snapshot) {
+  final byName = {for (final plugin in snapshot.plugins) plugin.name: plugin};
+  bool matchesData(LockedPackage locked) => byName[locked.name]?.version == locked.version;
+  return lockedPackages.where((p) => p.isHosted && !matchesData(p)).toList();
+}
+
+Future<List<LiveCheckResult>> _runLiveChecks(List<LockedPackage> lockedPackages, Snapshot snapshot) async {
+  final toCheck = _packagesNeedingLiveCheck(lockedPackages, snapshot);
+  if (toCheck.isEmpty) return const [];
+
+  final lockedByName = {for (final locked in lockedPackages) locked.name: locked};
+  final client = PubDevClient(httpClient: _UserAgentHttpClient(http.Client(), _liveCheckUserAgent));
+  return runLiveChecks(
+    client,
+    toCheck,
+    lockedByName,
+    concurrency: _liveCheckConcurrency,
+    onProgress: stderr.writeln,
+  );
+}
+
+/// Wraps an [http.Client] to send [_liveCheckUserAgent] on every request.
+class _UserAgentHttpClient extends http.BaseClient {
+  _UserAgentHttpClient(this._inner, this._userAgent);
+
+  final http.Client _inner;
+  final String _userAgent;
+
+  @override
+  Future<http.StreamedResponse> send(http.BaseRequest request) {
+    request.headers['User-Agent'] = _userAgent;
+    return _inner.send(request);
   }
 }
 

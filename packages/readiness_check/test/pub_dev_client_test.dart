@@ -199,4 +199,77 @@ void main() {
       },
     );
   });
+
+  group('fetchPackageVersion', () {
+    test('reads the pubspec and archive URL for an exact version', () async {
+      final client = _fakeClient({
+        '/api/packages/some_plugin/versions/1.2.3': {
+          'version': '1.2.3',
+          'published': '2026-08-28T04:11:13.706203Z',
+          'archive_url': 'https://pub.dev/api/archives/some_plugin-1.2.3.tar.gz',
+          'pubspec': {
+            'name': 'some_plugin',
+            'flutter': {
+              'plugin': {
+                'platforms': {
+                  'ios': {'pluginClass': 'SomePlugin'},
+                },
+              },
+            },
+          },
+        },
+      });
+
+      final version = await client.fetchPackageVersion('some_plugin', '1.2.3');
+
+      expect(version.info.version, '1.2.3');
+      expect(version.info.isFlutterPlugin, isTrue);
+      expect(version.info.platformInfo('ios')?.pluginClass, 'SomePlugin');
+      expect(version.archiveUrl, Uri.parse('https://pub.dev/api/archives/some_plugin-1.2.3.tar.gz'));
+    });
+
+    test('treats a package with no flutter.plugin section as not a plugin', () async {
+      final client = _fakeClient({
+        '/api/packages/some_dart_pkg/versions/2.0.0': {
+          'version': '2.0.0',
+          'published': '2026-08-28T04:11:13.706203Z',
+          'archive_url': 'https://pub.dev/api/archives/some_dart_pkg-2.0.0.tar.gz',
+          'pubspec': {'name': 'some_dart_pkg'},
+        },
+      });
+
+      final version = await client.fetchPackageVersion('some_dart_pkg', '2.0.0');
+
+      expect(version.info.isFlutterPlugin, isFalse);
+    });
+
+    test('a version pub.dev has never published throws PubDevApiException', () async {
+      final client = _fakeClient({});
+
+      expect(
+        () => client.fetchPackageVersion('some_plugin', '99.99.99'),
+        throwsA(isA<PubDevApiException>()),
+      );
+    });
+  });
+
+  group('fetchLatestPackageVersion', () {
+    test('combines fetchPackageInfo and fetchLatestArchiveUrl', () async {
+      final client = _fakeClient({
+        '/api/packages/some_plugin': {
+          'latest': {
+            'version': '1.3.0',
+            'published': '2026-08-28T04:11:13.706203Z',
+            'archive_url': 'https://pub.dev/api/archives/some_plugin-1.3.0.tar.gz',
+            'pubspec': {'name': 'some_plugin'},
+          },
+        },
+      });
+
+      final version = await client.fetchLatestPackageVersion('some_plugin');
+
+      expect(version.info.version, '1.3.0');
+      expect(version.archiveUrl, Uri.parse('https://pub.dev/api/archives/some_plugin-1.3.0.tar.gz'));
+    });
+  });
 }

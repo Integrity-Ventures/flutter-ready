@@ -70,6 +70,54 @@ void main() {
     _expectGolden('not_checked.txt', report.text);
   });
 
+  test('mixed: from-data, checked-live and skipped packages in one report', () {
+    final locked = [
+      const LockedPackage(name: 'fixture_blocked_plugin', version: '1.0.0', isHosted: true),
+      const LockedPackage(name: 'some_dart_pkg', version: '1.0.0', isHosted: true),
+      const LockedPackage(name: 'some_unknown_plugin', version: '2.0.0', isHosted: true),
+      const LockedPackage(name: 'some_ready_plugin', version: '3.0.0', isHosted: true),
+      const LockedPackage(name: 'some_broken_plugin', version: '4.0.0', isHosted: true),
+    ];
+    final liveResults = [
+      LiveCheckResult.skipped('some_dart_pkg', '1.0.0'),
+      LiveCheckResult.checked(
+        'some_unknown_plugin',
+        '2.0.0',
+        grade: const LiveGrade(
+          swiftPm: Status.red,
+          swiftPmEvidence: 'No Package.swift in the some_unknown_plugin archive.',
+          alignment: Status.green,
+          alignmentEvidence: 'No native libraries in archive.',
+        ),
+        checkedPackage: 'some_unknown_plugin',
+        usedFallbackLatest: false,
+      ),
+      LiveCheckResult.checked(
+        'some_ready_plugin',
+        '3.0.0',
+        grade: const LiveGrade(
+          swiftPm: Status.green,
+          swiftPmEvidence: 'Package.swift found in the some_ready_plugin archive.',
+          alignment: Status.green,
+          alignmentEvidence: 'No native libraries in archive.',
+        ),
+        checkedPackage: 'some_ready_plugin',
+        usedFallbackLatest: false,
+      ),
+      LiveCheckResult.notChecked('some_broken_plugin', '4.0.0', 'HTTP 404 fetching some_broken_plugin'),
+    ];
+
+    final report = buildCheckReport(
+      lockedPackages: locked,
+      snapshot: snapshot,
+      deadlines: deadlines,
+      liveResults: liveResults,
+    );
+
+    expect(report.hasBlocker, isTrue);
+    _expectGolden('mixed.txt', report.text);
+  });
+
   test('suggestion: a blocker with a matching replacement prints it', () {
     final locked = [const LockedPackage(name: 'fixture_blocked_plugin', version: '1.0.0', isHosted: true)];
 

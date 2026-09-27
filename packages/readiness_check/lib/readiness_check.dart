@@ -28,6 +28,7 @@ export 'src/ios_resolution.dart'
         declaresNativeIos,
         resolveIosPackage,
         resolveNativeIos;
+export 'src/live_grade.dart' show LiveGrade, gradeLivePlugin;
 export 'src/package_archive.dart'
     show extractArchiveEntries, listArchiveEntryPaths;
 export 'src/plugin_discovery.dart'
@@ -36,6 +37,7 @@ export 'src/pub_dev_client.dart'
     show
         PackageInfo,
         PackageScore,
+        PackageVersion,
         PluginPlatformInfo,
         PubDevApiException,
         PubDevClient;

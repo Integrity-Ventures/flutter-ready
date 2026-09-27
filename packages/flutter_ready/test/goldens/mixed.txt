@@ -1,0 +1,9 @@
+Flutter Ready check — 5 hosted package(s) in pubspec.lock.
+Skipped 1 pure Dart package(s) (not Flutter plugins).
+
+CocoaPods registry goes read-only (2026-12-02):
+  BLOCKER: fixture_blocked_plugin 1.0.0: No Package.swift in the fixture_blocked_plugin archive. — from Flutter Ready data (2026-09-27)
+  BLOCKER: some_unknown_plugin 2.0.0: No Package.swift in the some_unknown_plugin archive. — checked live
+
+Not checked:
+  some_broken_plugin 4.0.0: not checked: HTTP 404 fetching some_broken_plugin

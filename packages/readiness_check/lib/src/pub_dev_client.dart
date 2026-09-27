@@ -95,14 +95,49 @@ class PubDevClient {
     final uri = _baseUri.resolve('/api/packages/$packageName');
     final body = await _getJson(uri);
     final latest = body['latest'] as Map<String, dynamic>;
-    final pubspec = latest['pubspec'] as Map<String, dynamic>;
-    final platforms =
-        ((pubspec['flutter'] as Map<String, dynamic>?)?['plugin']
-                as Map<String, dynamic>?)?['platforms']
+    return _packageInfoFromVersionJson(latest);
+  }
+
+  /// One package's exact published version — its pubspec (for plugin
+  /// platform declarations) and archive URL — from
+  /// `GET /api/packages/<name>/versions/<version>` (CLI live-check task,
+  /// 2026-09-27): unlike [fetchPackageInfo], this pins a specific historical
+  /// version rather than always reading the latest.
+  Future<PackageVersion> fetchPackageVersion(
+    String packageName,
+    String version,
+  ) async {
+    final uri = _baseUri.resolve('/api/packages/$packageName/versions/$version');
+    final body = await _getJson(uri);
+    return PackageVersion(
+      info: _packageInfoFromVersionJson(body),
+      archiveUrl: Uri.parse(body['archive_url'] as String),
+    );
+  }
+
+  /// The same shape [fetchPackageVersion] returns, but for a package's
+  /// current latest version — used when a federated platform package isn't
+  /// itself locked in the app's pubspec.lock.
+  Future<PackageVersion> fetchLatestPackageVersion(String packageName) async {
+    return PackageVersion(
+      info: await fetchPackageInfo(packageName),
+      archiveUrl: await fetchLatestArchiveUrl(packageName),
+    );
+  }
+
+  /// Shared by [fetchPackageInfo] and [fetchPackageVersion]: both endpoints
+  /// nest `pubspec`, `version` and `published` the same way, just under a
+  /// `latest` key or not.
+  PackageInfo _packageInfoFromVersionJson(Map<String, dynamic> versionJson) {
+    final pubspec = versionJson['pubspec'] as Map<String, dynamic>;
+    final pluginSection =
+        (pubspec['flutter'] as Map<String, dynamic>?)?['plugin']
             as Map<String, dynamic>?;
+    final platforms = pluginSection?['platforms'] as Map<String, dynamic>?;
     return PackageInfo(
-      version: latest['version'] as String,
-      published: DateTime.parse(latest['published'] as String),
+      version: versionJson['version'] as String,
+      published: DateTime.parse(versionJson['published'] as String),
+      isFlutterPlugin: pluginSection != null,
       platforms: {
         if (platforms != null)
           for (final entry in platforms.entries)
@@ -136,6 +171,18 @@ class PackageScore {
   final int downloadCount30Days;
 }
 
+/// One package's pubspec-derived [PackageInfo] paired with the archive URL
+/// for that same version (CLI live-check task, 2026-09-27), from either
+/// [PubDevClient.fetchPackageVersion] (an exact locked version) or
+/// [PubDevClient.fetchLatestPackageVersion] (a fallback when that version
+/// isn't locked).
+class PackageVersion {
+  const PackageVersion({required this.info, required this.archiveUrl});
+
+  final PackageInfo info;
+  final Uri archiveUrl;
+}
+
 /// Version, publish date and per-platform plugin declarations for a
 /// package's latest version, from `GET /api/packages/<name>`.
 class PackageInfo {
@@ -143,10 +190,16 @@ class PackageInfo {
     required this.version,
     required this.published,
     required this.platforms,
+    this.isFlutterPlugin = false,
   });
 
   final String version;
   final DateTime published;
+
+  /// Whether this version's pubspec declares a `flutter.plugin` section at
+  /// all (CLI live-check task, 2026-09-27) — false for a pure Dart package,
+  /// which can't block a native build and is skipped rather than checked.
+  final bool isFlutterPlugin;
 
   /// Platform name (`ios`, `macos`, `android`, ...) to its declared
   /// `flutter.plugin.platforms` entry, for platforms the pubspec lists.
