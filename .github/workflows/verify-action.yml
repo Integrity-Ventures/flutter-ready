@@ -19,16 +19,17 @@ jobs:
           data: fixtures/sample_app/data/latest.json
 
       - name: Assert the action failed on the known blocker
+        env:
+          REPORT: ${{ steps.check.outputs.report }}
         run: |
           if [ "${{ steps.check.outcome }}" != "failure" ]; then
             echo "Expected the action to fail on fixtures/sample_app/pubspec.lock's known fixture_blocked_plugin blocker, but it reported '${{ steps.check.outcome }}'."
             exit 1
           fi
 
-          report="${{ steps.check.outputs.report }}"
-          if [[ "$report" != *"BLOCKER: fixture_blocked_plugin"* ]]; then
+          if [[ "$REPORT" != *"BLOCKER: fixture_blocked_plugin"* ]]; then
             echo "Expected the report to contain a BLOCKER line for fixture_blocked_plugin, but got:"
-            echo "$report"
+            echo "$REPORT"
             exit 1
           fi
 
@@ -47,11 +48,12 @@ jobs:
           data: fixtures/sample_app/data/latest.json
 
       - name: Assert the action succeeded
+        env:
+          REPORT: ${{ steps.check.outputs.report }}
         run: |
-          report="${{ steps.check.outputs.report }}"
-          if [[ "$report" == *"BLOCKER"* ]]; then
+          if [[ "$REPORT" == *"BLOCKER"* ]]; then
             echo "Expected no BLOCKER line for fixture_green_plugin, but got:"
-            echo "$report"
+            echo "$REPORT"
             exit 1
           fi
 

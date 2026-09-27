@@ -27,7 +27,10 @@ runs:
 
     - name: Install flutter_ready
       shell: bash
-      run: dart pub global activate --source path "${{ github.action_path }}/packages/flutter_ready"
+      run: |
+        cd "${{ github.action_path }}/packages/flutter_ready"
+        dart pub get
+        dart compile exe bin/flutter_ready.dart -o "$RUNNER_TEMP/flutter_ready"
 
     - name: Run flutter_ready check
       id: run-check
@@ -38,7 +41,7 @@ runs:
           args+=(--data "${{ inputs.data }}")
         fi
         set +e
-        report="$(dart pub global run flutter_ready "${args[@]}")"
+        report="$("$RUNNER_TEMP/flutter_ready" "${args[@]}")"
         exit_code=$?
         set -e
         echo "$report"
