@@ -5,15 +5,26 @@ import '../data/grading.dart';
 
 /// Fixed status palette (never themed): good/warning/critical plus a muted
 /// grey for "not checked". Colour is never the only signal — every use pairs
-/// it with a text label.
-const Color statusGreen = Color('#0ca30c');
-const Color statusAmber = Color('#fab219');
-const Color statusRed = Color('#d03b3b');
-const Color statusGrey = Color('#898781');
+/// it with a text label. Each shade is darkened from the obvious
+/// red/amber/green/grey so that, as text, it clears WCAG AA (>= 4.5:1) on
+/// both white and the tinted `*Bg` pairing below — a plain amber in
+/// particular (e.g. `#fab219`) cannot pass at any normal text size.
+const Color statusGreen = Color('#0f7a0f');
+const Color statusAmber = Color('#9a6300');
+const Color statusRed = Color('#c02f2f');
+const Color statusGrey = Color('#6b6963');
 
 /// A distinct neutral for "not affected" (SPEC: never merge it into "ready"
 /// green, which is exactly the bug that made the board show a false 100%).
 const Color statusNeutral = Color('#5b6b8c');
+
+/// Light tints for status pills (tiles, chips): each keeps its paired
+/// foreground color above AA at normal text sizes.
+const Color statusGreenBg = Color('#e6f4e6');
+const Color statusAmberBg = Color('#fdf3e0');
+const Color statusRedBg = Color('#fbe9e9');
+const Color statusGreyBg = Color('#eeede9');
+const Color statusNeutralBg = Color('#e9edf5');
 
 Color colorForStatus(Status status) {
   switch (status) {
@@ -25,6 +36,19 @@ Color colorForStatus(Status status) {
       return statusRed;
     case Status.notChecked:
       return statusGrey;
+  }
+}
+
+Color bgColorForStatus(Status status) {
+  switch (status) {
+    case Status.green:
+      return statusGreenBg;
+    case Status.amber:
+      return statusAmberBg;
+    case Status.red:
+      return statusRedBg;
+    case Status.notChecked:
+      return statusGreyBg;
   }
 }
 
@@ -53,6 +77,21 @@ Color colorForCategory(BoardCategory category) {
       return statusNeutral;
     case BoardCategory.notChecked:
       return statusGrey;
+  }
+}
+
+Color bgColorForCategory(BoardCategory category) {
+  switch (category) {
+    case BoardCategory.blocked:
+      return statusRedBg;
+    case BoardCategory.unclear:
+      return statusAmberBg;
+    case BoardCategory.ready:
+      return statusGreenBg;
+    case BoardCategory.notAffected:
+      return statusNeutralBg;
+    case BoardCategory.notChecked:
+      return statusGreyBg;
   }
 }
 

@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../constants/status_colors.dart';
+import '../constants/theme.dart';
 import '../data/board.dart';
 
 /// One tile per [BoardCategory], never merged (SPEC: "It shows 100%. What is
@@ -29,7 +30,8 @@ class CountTiles extends StatelessComponent {
     return div(
       classes: 'count-tile',
       styles: Styles(
-        border: Border.all(color: colorForCategory(category), width: 2.px),
+        border: Border.all(color: colorForCategory(category), width: 1.px),
+        backgroundColor: bgColorForCategory(category),
       ),
       [
         p(classes: 'count-value', styles: Styles(color: colorForCategory(category)), [.text('$count')]),
@@ -53,11 +55,11 @@ class CountTiles extends StatelessComponent {
       css('&').styles(
         minWidth: 8.rem,
         padding: .symmetric(vertical: 0.8.em, horizontal: 1.2.em),
-        radius: .all(.circular(8.px)),
+        radius: .all(.circular(12.px)),
         textAlign: .center,
       ),
     ]),
     css('.count-value').styles(margin: .zero, fontSize: 2.2.rem, fontWeight: .w700),
-    css('.count-label').styles(margin: .zero, color: const Color('#52514e'), fontSize: 0.85.rem),
+    css('.count-label').styles(margin: .zero, color: textMuted, fontSize: 0.85.rem, fontWeight: .w600),
   ];
 }

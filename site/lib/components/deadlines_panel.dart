@@ -1,6 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
+import '../constants/theme.dart';
 import '../data/models.dart';
 
 /// The deadlines this board covers, read from `data/deadlines.json` (SPEC §1,
@@ -40,7 +41,7 @@ class DeadlinesPanel extends StatelessComponent {
       ),
       css('h2').styles(fontSize: 1.1.rem),
       css('li').styles(margin: .only(bottom: 0.5.em)),
-      css('.source').styles(color: const Color('#898781'), fontSize: 0.85.rem),
+      css('.source').styles(color: textMuted, fontSize: 0.85.rem),
     ]),
   ];
 }

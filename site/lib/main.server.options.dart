@@ -5,6 +5,7 @@
 // Generated with jaspr_builder
 
 import 'package:jaspr/server.dart';
+import 'package:site/components/blocked_list.dart' as _blocked_list;
 import 'package:site/components/count_tiles.dart' as _count_tiles;
 import 'package:site/components/deadlines_panel.dart' as _deadlines_panel;
 import 'package:site/components/header.dart' as _header;
@@ -37,6 +38,7 @@ ServerOptions get defaultServerOptions => ServerOptions(
   clientId: 'main.client.dart.js',
   styles: () => [
     ..._app.App.styles,
+    ..._blocked_list.BlockedList.styles,
     ..._count_tiles.CountTiles.styles,
     ..._deadlines_panel.DeadlinesPanel.styles,
     ..._header.Header.styles,

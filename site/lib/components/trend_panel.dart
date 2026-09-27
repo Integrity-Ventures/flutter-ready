@@ -1,6 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
+import '../constants/theme.dart';
 import '../data/board.dart';
 import '../data/models.dart';
 
@@ -73,7 +74,7 @@ class TrendPanel extends StatelessComponent {
       ]),
       css('.trend-note').styles(
         margin: .only(top: 0.6.em),
-        color: const Color('#898781'),
+        color: textMuted,
         fontSize: 0.82.rem,
       ),
     ]),

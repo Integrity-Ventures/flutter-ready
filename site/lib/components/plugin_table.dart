@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
+import '../constants/theme.dart';
 import '../data/board.dart';
 import '../data/grading.dart';
 import 'hireflutter_cta.dart';
@@ -26,19 +27,21 @@ class PluginTable extends StatelessComponent {
           .text(' Show only plugins that need attention'),
         ]),
       ]),
-      table(classes: 'plugin-table', id: 'plugin-table', [
-        thead([
-          tr([
-            th([.text('#')]),
-            th([.text('Plugin')]),
-            th([.text('Downloads (30d)')]),
-            th([.text('Version')]),
-            th([.text('SwiftPM (CocoaPods read-only 2 Dec 2026)')]),
-            th([.text('16 KB alignment')]),
-            th([.text('Android (facts only)')]),
+      div(classes: 'table-scroll', [
+        table(classes: 'plugin-table', id: 'plugin-table', [
+          thead([
+            tr([
+              th([.text('#')]),
+              th([.text('Plugin')]),
+              th([.text('Downloads (30d)')]),
+              th([.text('Version')]),
+              th([.text('SwiftPM (CocoaPods read-only 2 Dec 2026)')]),
+              th([.text('16 KB alignment')]),
+              th([.text('Android (facts only)')]),
+            ]),
           ]),
+          tbody([for (final row in rows) ..._rows(row)]),
         ]),
-        tbody([for (final row in rows) ..._rows(row)]),
       ]),
       if (anyNeedsAttention) _toggleScript(),
     ]);
@@ -112,6 +115,12 @@ class PluginTable extends StatelessComponent {
   @css
   static List<StyleRule> get styles => [
     css('.attention-toggle').styles(margin: .only(bottom: 1.em)),
+    css('.table-scroll').styles(
+      border: Border.all(color: borderSubtle, width: 1.px),
+      radius: .all(.circular(12.px)),
+      overflow: Overflow.only(x: Overflow.auto),
+      backgroundColor: surfaceCard,
+    ),
     css('.plugin-table', [
       css('&').styles(width: 100.percent, fontSize: 0.95.rem),
       css('th, td').styles(
@@ -120,22 +129,22 @@ class PluginTable extends StatelessComponent {
       ),
       css('thead th').styles(
         border: .only(
-          bottom: BorderSide.solid(color: const Color('#dcdbd4'), width: 2.px),
+          bottom: BorderSide.solid(color: borderSubtle, width: 2.px),
         ),
-        color: const Color('#52514e'),
+        color: textMuted,
         fontSize: 0.8.rem,
         textTransform: .upperCase,
       ),
       css('tbody tr', [
         css('&').styles(
           border: .only(
-            bottom: BorderSide.solid(color: const Color('#eeede8'), width: 1.px),
+            bottom: BorderSide.solid(color: borderSubtle, width: 1.px),
           ),
         ),
       ]),
       css('.evidence').styles(
         margin: .only(top: 0.2.em),
-        color: const Color('#898781'),
+        color: textMuted,
         fontSize: 0.82.rem,
       ),
     ]),

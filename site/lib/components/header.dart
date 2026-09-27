@@ -23,16 +23,19 @@ class Header extends StatelessComponent {
       css('&').styles(
         display: .flex,
         padding: .symmetric(vertical: 1.5.em, horizontal: 1.em),
+        border: .only(bottom: BorderSide.solid(color: borderSubtle, width: 1.px)),
         flexDirection: .column,
         alignItems: .center,
+        color: brandNavy,
         textAlign: .center,
+        backgroundColor: surfaceCard,
       ),
-      css('h1').styles(margin: .zero, color: primaryColor, fontSize: 2.2.rem),
+      css('h1').styles(margin: .zero, color: brandNavy, fontSize: 2.2.rem, fontWeight: .w800),
       css('a').styles(textDecoration: TextDecoration(line: .none)),
       css('.tagline').styles(
         maxWidth: 40.rem,
         margin: .only(top: 0.5.em),
-        color: const Color('#52514e'),
+        color: textMuted,
       ),
     ]),
   ];

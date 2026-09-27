@@ -5,6 +5,7 @@ import 'package:jaspr_router/jaspr_router.dart';
 import '../components/hireflutter_cta.dart';
 import '../components/status_chip.dart';
 import '../constants/status_colors.dart';
+import '../constants/theme.dart';
 import '../data/grading.dart';
 import '../data/models.dart';
 
@@ -96,9 +97,11 @@ class PluginPage extends StatelessComponent {
         padding: .symmetric(vertical: 2.em, horizontal: 1.em),
         margin: .symmetric(horizontal: .auto),
       ),
-      css('.meta').styles(color: const Color('#52514e')),
+      css('a').styles(color: brandBlue, fontWeight: .w600),
+      css('h1').styles(color: brandNavy),
+      css('.meta').styles(color: textMuted),
       css('.evidence-section').styles(margin: .only(top: 1.5.em)),
-      css('.note').styles(color: const Color('#898781'), fontSize: 0.9.rem),
+      css('.note').styles(color: textMuted, fontSize: 0.9.rem),
       css('.errors').styles(color: statusRed),
     ]),
   ];
