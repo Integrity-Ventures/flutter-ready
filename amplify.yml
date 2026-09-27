@@ -1,0 +1,21 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - curl -sSL -o /tmp/dart.zip https://storage.googleapis.com/dart-archive/channels/stable/release/3.13.4/sdk/dartsdk-linux-x64-release.zip
+        - unzip -q -o /tmp/dart.zip -d /tmp
+        - export PATH="/tmp/dart-sdk/bin:$HOME/.pub-cache/bin:$PATH"
+        - dart --version
+        - dart pub global activate jaspr_cli 0.23.5
+    build:
+      commands:
+        - export PATH="/tmp/dart-sdk/bin:$HOME/.pub-cache/bin:$PATH"
+        - cd site && dart pub get && jaspr build
+  artifacts:
+    baseDirectory: site/build/jaspr
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - $HOME/.pub-cache/**/*
