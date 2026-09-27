@@ -1,9 +1,12 @@
 # Status
 
-**As of 2026-09-27, on branch `develop`. `main` holds only the documents
-until the owner merges.** Built and tested, but not deployed or published.
+**As of 2026-09-27, `main` and `develop` are the same.** The board is live
+on AWS Amplify at https://main.d1rgrd4z45pwk3.amplifyapp.com/ (app
+`flutter-ready`, us-east-1, built from `main` by `amplify.yml`). The
+`ready.hireflutter.dev` DNS record is the owner's to add. The CLI isn't
+published to pub.dev yet.
 
-## Built (on `develop`)
+## Built
 
 | Path | What it is | Tests |
 |---|---|---|
@@ -17,8 +20,7 @@ until the owner merges.** Built and tested, but not deployed or published.
 
 ## Not done: held for the owner
 
-- **Deployment** (Amplify plus the `ready.hireflutter.dev` DNS record), SPEC
-  open decision 5.
+- **DNS:** `ready.hireflutter.dev` pointing at the Amplify app (the owner adds it).
 - **Publishing `flutter_ready` to pub.dev** under the `hireflutter.dev`
   publisher. It can't be undone, and the publisher must exist first.
 
