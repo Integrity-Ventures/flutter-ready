@@ -10,12 +10,12 @@ published to pub.dev yet.
 
 | Path | What it is | Tests |
 |---|---|---|
-| `packages/readiness_check/` | Shared library: plugin discovery (top N after the `is:plugin` filter), SwiftPM tag and archive check, 16 KB ELF alignment check, Android Gradle facts, shared grading | 45 |
-| `packages/snapshot_job/` | Nightly job: `dart run bin/snapshot.dart --top 100 --out ../../data/snapshots/` | 5 |
+| `packages/readiness_check/` | Shared library: plugin discovery (two pub.dev searches by downloads: iOS plugins without SwiftPM, and top plugins), SwiftPM tag and archive check, 16 KB ELF alignment check, Android Gradle facts, shared grading | 57 |
+| `packages/snapshot_job/` | Nightly job: `dart run bin/snapshot.dart --out ../../data/snapshots/` | 10 |
 | `packages/flutter_ready/` | CLI: `flutter_ready check [--data <path\|url>] [--lockfile <path>]`, exits 1 on a blocker | 17 (4 goldens) |
-| `site/` | The board, a static Jaspr site: `jaspr build` → `build/jaspr/` (index plus one page per plugin) | 14 |
+| `site/` | The board, a static Jaspr site: blocked-count headline, count tiles, reds first by downloads, an attention filter, one page per plugin | 28 |
 | `action.yml` | GitHub Action wrapper around `flutter_ready check` (compiles the CLI, fails the job on a blocker) | Verify Action workflow: green on GitHub (run 36296257946) |
-| `data/` | `latest.json`, `snapshots/` (real top-100 runs; latest has 0 red, 0 amber, 11 not affected), `deadlines.json`, `replacements.json` (empty, hand-kept) | |
+| `data/` | `latest.json`, `snapshots/2026-09-27.json` (146 most-downloaded plugins: 81 blocked, 8 unclear, 45 ready, 9 not affected, 3 not checked), `deadlines.json`, `replacements.json` (empty, hand-kept) | |
 | `.github/workflows/` | `ci.yml` (analyze and test every package, output kept), `verify-action.yml`, `nightly-snapshot.yml` (02:00 UTC; runs only once on `main`) | |
 
 ## Not done: held for the owner
