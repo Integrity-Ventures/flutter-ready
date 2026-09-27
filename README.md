@@ -8,6 +8,10 @@ Package Manager before CocoaPods goes read-only on 2 December 2026, and
 Android API 36 with 16 KB-aligned native libraries on Google Play. A CLI and a
 GitHub Action will check your own app's `pubspec.lock` against the same data.
 
+## Built with 10xs
+
+This repository is written by AI coding agents managed through [10xs](https://10xs.ai). A human owner sets the direction, approves the plan and accepts every card on the 10xs board; agents write the code, tests and evidence in their own sessions and push through the board's gates. Commits carry `Co-Authored-By: 10xs.ai`. The first commits, made before 10xs was connected, carry the agent's own attribution and are kept as they were.
+
 **Status:** built and tested on `develop`, not yet deployed or published. See [`STATUS.md`](STATUS.md).
 
 - [`BRIEF.md`](BRIEF.md): what was asked for, written before work started.
