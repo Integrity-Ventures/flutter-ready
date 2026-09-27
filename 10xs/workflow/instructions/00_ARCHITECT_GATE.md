@@ -1,5 +1,14 @@
 # Architect gate: read before any card (architect, 2026-09-27)
 
+**Step 0: claim the card before anything else.** Call the 10xs
+`claim_task` tool with your card id. Load it with ToolSearch if it's
+deferred; the MCP server `10xs` is configured for you. Continue only if it
+returns `claimed: true`. If it returns `claimed: false` (for any reason:
+`claim_conflict`, `unconfirmed_plan`, …) or the tool isn't available,
+STOP: don't read further, don't edit files, and report the refusal
+verbatim. Never work on an unclaimed card. (Added 2026-09-27 after a
+worker did the design card unclaimed.)
+
 Workers on this board **never merge into `develop` or `main`** and never
 delete branches.
 
