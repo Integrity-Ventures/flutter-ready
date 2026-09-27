@@ -2,14 +2,17 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
 
 import '../components/deadlines_panel.dart';
+import '../components/headline_panel.dart';
 import '../components/plugin_table.dart';
 import '../components/trend_panel.dart';
+import '../data/board.dart';
 import '../data/data_source.dart';
 import '../data/models.dart';
 
-/// The board: one row per plugin, plus the deadlines and the SwiftPM trend
-/// (SPEC §3.2). [snapshot] is loaded once by [App], which also needs it to
-/// register every plugin's static route.
+/// The board: the reds-on-top headline, count tiles, one row per plugin,
+/// plus the deadlines and trend (SPEC §3.2, and the "reds on top, honest
+/// counts" rework). [snapshot] is loaded once by [App], which also needs it
+/// to register every plugin's static route.
 class IndexPage extends AsyncStatelessComponent {
   const IndexPage({required this.snapshot, super.key});
 
@@ -20,12 +23,17 @@ class IndexPage extends AsyncStatelessComponent {
     final deadlines = await loadDeadlines();
     final history = await loadAllSnapshots();
 
+    final rows = buildBoardRows(snapshot.plugins);
+    final counts = BoardCounts.from(snapshot.plugins);
+    final blocked = [for (final row in rows.where((r) => r.category == BoardCategory.blocked)) row.plugin];
+
     return div(classes: 'index-page', [
+      HeadlinePanel(blocked: blocked, counts: counts, totalPlugins: snapshot.plugins.length),
       DeadlinesPanel(deadlines: deadlines),
       TrendPanel(history: history),
       section(classes: 'board', [
         h2([.text('${snapshot.plugins.length} plugins')]),
-        PluginTable(plugins: snapshot.plugins),
+        PluginTable(rows: rows),
       ]),
     ]);
   }

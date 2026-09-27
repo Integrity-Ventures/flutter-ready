@@ -1,12 +1,14 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
-import '../data/grading.dart';
+import '../data/board.dart';
 import '../data/models.dart';
 
-/// A single ratio plus its history is a stat tile, not a chart (a 1-2 point
-/// series isn't worth a sparkline yet — see the dataviz form heuristic).
-/// Grows into a real trend once more nightly snapshots land.
+/// Counts per snapshot date (SPEC: replace the percentage trend — comparing
+/// 2026-09-26's 88% with 2026-09-27's 100% looked like plugins improved
+/// overnight, when the jump was really the grading fixes landing that day).
+/// A count table is honest about that: it can't be misread as plugins
+/// changing when the grading rules did.
 class TrendPanel extends StatelessComponent {
   const TrendPanel({required this.history, super.key});
 
@@ -16,40 +18,37 @@ class TrendPanel extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     if (history.isEmpty) return .empty();
-    final latest = history.last;
-    final latestShare = swiftPmGreenSharePercent(latest.snapshot.plugins);
 
     return section(classes: 'trend-panel', [
       h2([.text('Trend')]),
-      div(classes: 'stat-tile', [
-        p(classes: 'stat-value', [.text(latestShare == null ? '—' : '$latestShare%')]),
-        p(classes: 'stat-label', [
-          .text(
-            'of the ${latest.snapshot.plugins.length} plugins with a known status ship SwiftPM, '
-            'as of the ${latest.date} snapshot.',
-          ),
+      table(classes: 'trend-history', [
+        thead([
+          tr([
+            th([.text('Snapshot date')]),
+            th([.text('Blocked')]),
+            th([.text('Unclear')]),
+            th([.text('Ready')]),
+            th([.text('Not affected')]),
+          ]),
         ]),
+        tbody([for (final snapshot in history.reversed) _historyRow(snapshot)]),
       ]),
-      if (history.length > 1)
-        table(classes: 'trend-history', [
-          thead([
-            tr([
-              th([.text('Snapshot date')]),
-              th([.text('SwiftPM ready')]),
-            ]),
-          ]),
-          tbody([
-            for (final snapshot in history.reversed) _historyRow(snapshot),
-          ]),
-        ]),
+      p(classes: 'trend-note', [
+        .text(
+          'Counts use the grading rules of 2026-09-27; earlier snapshots were removed.',
+        ),
+      ]),
     ]);
   }
 
   Component _historyRow(DatedSnapshot dated) {
-    final share = swiftPmGreenSharePercent(dated.snapshot.plugins);
+    final counts = BoardCounts.from(dated.snapshot.plugins);
     return tr([
       td([.text(dated.date)]),
-      td([.text(share == null ? '—' : '$share%')]),
+      td([.text('${counts.blocked}')]),
+      td([.text('${counts.unclear}')]),
+      td([.text('${counts.ready}')]),
+      td([.text('${counts.notAffected}')]),
     ]);
   }
 
@@ -62,9 +61,6 @@ class TrendPanel extends StatelessComponent {
         textAlign: .center,
       ),
       css('h2').styles(fontSize: 1.1.rem),
-      css('.stat-tile').styles(margin: .symmetric(vertical: 1.em)),
-      css('.stat-value').styles(margin: .zero, fontSize: 3.rem, fontWeight: .w700),
-      css('.stat-label').styles(margin: .zero, color: const Color('#52514e')),
       css('.trend-history', [
         css('&').styles(
           width: 100.percent,
@@ -75,6 +71,11 @@ class TrendPanel extends StatelessComponent {
           textAlign: .center,
         ),
       ]),
+      css('.trend-note').styles(
+        margin: .only(top: 0.6.em),
+        color: const Color('#898781'),
+        fontSize: 0.82.rem,
+      ),
     ]),
   ];
 }

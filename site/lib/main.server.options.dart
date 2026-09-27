@@ -5,8 +5,10 @@
 // Generated with jaspr_builder
 
 import 'package:jaspr/server.dart';
+import 'package:site/components/count_tiles.dart' as _count_tiles;
 import 'package:site/components/deadlines_panel.dart' as _deadlines_panel;
 import 'package:site/components/header.dart' as _header;
+import 'package:site/components/headline_panel.dart' as _headline_panel;
 import 'package:site/components/hireflutter_cta.dart' as _hireflutter_cta;
 import 'package:site/components/plugin_table.dart' as _plugin_table;
 import 'package:site/components/status_chip.dart' as _status_chip;
@@ -35,8 +37,10 @@ ServerOptions get defaultServerOptions => ServerOptions(
   clientId: 'main.client.dart.js',
   styles: () => [
     ..._app.App.styles,
+    ..._count_tiles.CountTiles.styles,
     ..._deadlines_panel.DeadlinesPanel.styles,
     ..._header.Header.styles,
+    ..._headline_panel.HeadlinePanel.styles,
     ..._hireflutter_cta.HireFlutterCta.styles,
     ..._plugin_table.PluginTable.styles,
     ..._status_chip.StatusChip.styles,
