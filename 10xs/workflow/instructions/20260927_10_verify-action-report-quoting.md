@@ -1,6 +1,6 @@
-# Microtask Instruction: verify-action report quoting (OPEN, parked for the owner)
+# Microtask Instruction: e5-s1 REWORK 2 — verify-action report quoting (OPEN, not done)
 
-Status: **OPEN, parked.** Written by the architect on 2026-09-27. Card e5-s1
+Status: **OPEN.** The owner approved a third run of card e5-s1 on 2026-09-27. A worker launched on card e5-s1 executes THIS file. Use the lane branch `feature/e5-s1-rework-report-quoting` and write a report at `10xs/workflow/task_reports/e5-s1-rework2_report.md`. Previously parked: Written by the architect on 2026-09-27. Card e5-s1
 was parked after its second failure on GitHub, per the acting PM's rule
 (park after two fails, never hand-fix). This file is the exact fix for the
 next run.
