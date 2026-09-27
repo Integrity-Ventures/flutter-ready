@@ -263,6 +263,7 @@ void main() {
       final snapshot = result.single;
       expect(snapshot.swiftpm!.checkedPackage, 'path_provider_foundation');
       expect(snapshot.swiftpm!.nativeIos, isFalse);
+      expect(snapshot.swiftpm!.reason, 'no-native-ios-code');
     });
 
     test(
@@ -307,6 +308,50 @@ void main() {
         expect(snapshot.swiftpm!.readiness.archiveSaysReady, isTrue);
         expect(snapshot.swiftpm!.readiness.agrees, isTrue);
         expect(snapshot.swiftpm!.nativeIos, isTrue);
+      },
+    );
+  });
+
+  group('assembleSnapshot: Android-only plugins are not iOS plugins (e2-s1 '
+      'rework 2)', () {
+    test(
+      'in_app_update shape: an Android-only pubspec with a stray ios/ '
+      'podspec grades not-ios-plugin, without consulting the podspec',
+      () async {
+        final client = _fakePubDev(
+          scores: {
+            'in_app_update': {
+              'tags': ['is:plugin', 'platform:android'],
+            },
+          },
+          infos: {
+            'in_app_update': _info(
+              version: '5.0.0',
+              platforms: {
+                'android': {'pluginClass': 'InAppUpdatePlugin'},
+              },
+            ),
+          },
+          archives: {
+            '5.0.0': _buildArchive({
+              // Leftover from `flutter create --template=plugin`: never
+              // installed, since the pubspec declares no ios/macos platform.
+              'ios/in_app_update.podspec': utf8.encode('// stray'),
+            }),
+          },
+        );
+
+        final result = await assembleSnapshot(client, [
+          PluginCandidate(
+            name: 'in_app_update',
+            tags: ['is:plugin', 'platform:android'],
+          ),
+        ]);
+
+        final snapshot = result.single;
+        expect(snapshot.swiftpm!.checkedPackage, 'in_app_update');
+        expect(snapshot.swiftpm!.nativeIos, isFalse);
+        expect(snapshot.swiftpm!.reason, 'not-ios-plugin');
       },
     );
   });

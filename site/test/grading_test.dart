@@ -6,6 +6,7 @@ PluginEntry _plugin({
   bool? tag,
   bool? archive,
   bool? nativeIos,
+  String? reason,
   List<SoFile> soFiles = const [],
   List<String> errors = const [],
 }) {
@@ -21,6 +22,7 @@ PluginEntry _plugin({
       agrees: tag == archive,
       checkedPackage: 'example_ios',
       nativeIos: nativeIos,
+      reason: reason,
     ),
     alignment: AlignmentInfo(checkedPackage: 'example_android', soFiles: soFiles),
     android: const AndroidInfo(checkedPackage: null, compileSdk: null, agp: null, ndk: null),
@@ -51,10 +53,26 @@ void main() {
     test('green when nativeIos is false, regardless of tag/archive (e2-s1 rework)', () {
       expect(swiftPmStatus(_plugin(tag: false, archive: false, nativeIos: false)), Status.green);
       expect(
-        swiftPmEvidence(_plugin(tag: false, archive: false, nativeIos: false)),
+        swiftPmEvidence(
+          _plugin(tag: false, archive: false, nativeIos: false, reason: 'no-native-ios-code'),
+        ),
         'Not affected: no native iOS code.',
       );
     });
+
+    test(
+      'green "not an iOS plugin" when reason is not-ios-plugin (e2-s1 rework 2)',
+      () {
+        final plugin = _plugin(
+          tag: false,
+          archive: false,
+          nativeIos: false,
+          reason: 'not-ios-plugin',
+        );
+        expect(swiftPmStatus(plugin), Status.green);
+        expect(swiftPmEvidence(plugin), 'Not affected: not an iOS plugin.');
+      },
+    );
 
     test('nativeIos true does not override the tag/archive rules', () {
       expect(swiftPmStatus(_plugin(tag: false, archive: false, nativeIos: true)), Status.red);

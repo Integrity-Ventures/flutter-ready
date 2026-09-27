@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-27T03:08:15.629380Z",
+  "generatedAt": "2026-09-27T04:21:58.657173Z",
   "topN": 100,
   "plugins": [
     {
@@ -14,7 +14,8 @@
         "archive": false,
         "agrees": true,
         "checkedPackage": "path_provider_foundation",
-        "nativeIos": false
+        "nativeIos": false,
+        "reason": "no-native-ios-code"
       },
       "alignment": {
         "checkedPackage": "path_provider_android",
@@ -39,7 +40,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "shared_preferences_foundation",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "shared_preferences_android",
@@ -64,7 +66,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "url_launcher_ios",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "url_launcher_android",
@@ -89,7 +92,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "image_picker_ios",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "image_picker_android",
@@ -114,7 +118,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "firebase_core",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "firebase_core",
@@ -139,7 +144,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "file_picker_darwin",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "android_file_picker",
@@ -164,7 +170,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_secure_storage_darwin",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_secure_storage",
@@ -189,7 +196,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "permission_handler_apple",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "permission_handler_android",
@@ -207,14 +215,15 @@
       "name": "connectivity_plus",
       "version": "7.3.1",
       "published": "2026-07-23T21:33:03.771147Z",
-      "downloadCount30Days": 3683923,
+      "downloadCount30Days": 3689161,
       "likeCount": 4095,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "connectivity_plus",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "connectivity_plus",
@@ -239,7 +248,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "sqflite_darwin",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "sqflite_android",
@@ -264,7 +274,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "webview_flutter_wkwebview",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "webview_flutter_android",
@@ -289,7 +300,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "firebase_messaging",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "firebase_messaging",
@@ -314,7 +326,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "geolocator_apple",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "geolocator_android",
@@ -339,7 +352,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "google_sign_in_ios",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "google_sign_in_android",
@@ -364,7 +378,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "local_auth_darwin",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "local_auth_android",
@@ -389,7 +404,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "mobile_scanner",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "mobile_scanner",
@@ -414,7 +430,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "in_app_review",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "in_app_review",
@@ -432,14 +449,15 @@
       "name": "app_links",
       "version": "7.2.1",
       "published": "2026-07-09T13:35:28.512394Z",
-      "downloadCount30Days": 2845489,
+      "downloadCount30Days": 2859568,
       "likeCount": 1321,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "app_links",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "app_links",
@@ -464,7 +482,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "firebase_crashlytics",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "firebase_crashlytics",
@@ -489,7 +508,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "firebase_analytics",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "firebase_analytics",
@@ -514,7 +534,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "google_mobile_ads",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "google_mobile_ads",
@@ -539,7 +560,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "printing",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "printing",
@@ -557,14 +579,15 @@
       "name": "camera",
       "version": "0.12.1",
       "published": "2026-09-03T15:28:41.235977Z",
-      "downloadCount30Days": 682280,
+      "downloadCount30Days": 690819,
       "likeCount": 2600,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "camera_avfoundation",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "camera_android_camerax",
@@ -589,7 +612,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "in_app_purchase_storekit",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "in_app_purchase_android",
@@ -607,14 +631,15 @@
       "name": "app_settings",
       "version": "9.0.0",
       "published": "2026-08-16T23:32:09.389664Z",
-      "downloadCount30Days": 837879,
-      "likeCount": 1251,
+      "downloadCount30Days": 829318,
+      "likeCount": 1250,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "app_settings",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "app_settings",
@@ -639,7 +664,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_keyboard_visibility",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_keyboard_visibility",
@@ -664,7 +690,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "geocoding_darwin",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "geocoding_android",
@@ -689,7 +716,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "wakelock_plus",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "wakelock_plus",
@@ -714,7 +742,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "record_ios",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "record_android",
@@ -739,7 +768,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "firebase_remote_config",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "firebase_remote_config",
@@ -764,7 +794,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "sensors_plus",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "sensors_plus",
@@ -789,7 +820,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "open_file_ios",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "open_file_android",
@@ -814,7 +846,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "vibration",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "vibration",
@@ -839,7 +872,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_webrtc",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_webrtc",
@@ -864,7 +898,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_pdfview",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_pdfview",
@@ -889,7 +924,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "photo_manager",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "photo_manager",
@@ -914,7 +950,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "gal",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "gal",
@@ -939,7 +976,8 @@
         "archive": false,
         "agrees": true,
         "checkedPackage": "in_app_update",
-        "nativeIos": true
+        "nativeIos": false,
+        "reason": "not-ios-plugin"
       },
       "alignment": {
         "checkedPackage": "in_app_update",
@@ -964,7 +1002,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "home_widget",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "home_widget",
@@ -982,14 +1021,15 @@
       "name": "cloud_functions",
       "version": "6.5.0",
       "published": "2026-09-14T13:34:05.156313Z",
-      "downloadCount30Days": 556942,
+      "downloadCount30Days": 556550,
       "likeCount": 512,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "cloud_functions",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "cloud_functions",
@@ -1014,7 +1054,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "quick_actions_ios",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "quick_actions_android",
@@ -1039,7 +1080,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "file_selector_ios",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "file_selector_android",
@@ -1064,7 +1106,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "pdfx",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "pdfx",
@@ -1089,7 +1132,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "map_launcher",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "map_launcher",
@@ -1114,7 +1158,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_appauth",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_appauth",
@@ -1132,14 +1177,15 @@
       "name": "app_tracking_transparency",
       "version": "2.0.7",
       "published": "2026-05-28T08:12:01.948811Z",
-      "downloadCount30Days": 301852,
+      "downloadCount30Days": 307515,
       "likeCount": 480,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "app_tracking_transparency",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "app_tracking_transparency",
@@ -1164,7 +1210,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_contacts",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_contacts",
@@ -1189,7 +1236,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "file_saver",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "file_saver",
@@ -1214,7 +1262,8 @@
         "archive": false,
         "agrees": true,
         "checkedPackage": "youtube_player_iframe",
-        "nativeIos": false
+        "nativeIos": false,
+        "reason": "not-ios-plugin"
       },
       "alignment": {
         "checkedPackage": "youtube_player_iframe",
@@ -1239,7 +1288,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "emoji_picker_flutter",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "emoji_picker_flutter",
@@ -1264,7 +1314,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "background_downloader",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "background_downloader",
@@ -1289,7 +1340,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "health",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "health",
@@ -1314,7 +1366,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_email_sender_method_channel",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_email_sender_method_channel",
@@ -1339,7 +1392,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_soloud",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_soloud",
@@ -1364,7 +1418,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "restart_app",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "restart_app",
@@ -1382,14 +1437,15 @@
       "name": "clipboard",
       "version": "3.0.14",
       "published": "2026-01-09T14:44:20.764598Z",
-      "downloadCount30Days": 114750,
+      "downloadCount30Days": 114104,
       "likeCount": 642,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "clipboard",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "clipboard",
@@ -1414,7 +1470,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_callkit_incoming",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_callkit_incoming",
@@ -1439,7 +1496,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "facebook_app_events",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "facebook_app_events",
@@ -1464,7 +1522,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "cross_file_darwin",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "cross_file_android",
@@ -1482,14 +1541,15 @@
       "name": "add_2_calendar",
       "version": "3.1.1",
       "published": "2026-06-15T13:58:57.903045Z",
-      "downloadCount30Days": 133307,
+      "downloadCount30Days": 133592,
       "likeCount": 364,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "add_2_calendar",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "add_2_calendar",
@@ -1514,7 +1574,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "nfc_manager",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "nfc_manager",
@@ -1539,7 +1600,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "firebase_app_check",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "firebase_app_check",
@@ -1564,7 +1626,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_background_geolocation",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_background_geolocation",
@@ -1589,7 +1652,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "firebase_performance",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "firebase_performance",
@@ -1614,7 +1678,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_udid",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_udid",
@@ -1632,14 +1697,15 @@
       "name": "appsflyer_sdk",
       "version": "7.0.2+2-rc1",
       "published": "2026-09-15T11:44:52.102800Z",
-      "downloadCount30Days": 524515,
+      "downloadCount30Days": 526472,
       "likeCount": 175,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "appsflyer_sdk",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "appsflyer_sdk",
@@ -1664,7 +1730,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_custom_tabs_ios",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_custom_tabs_android",
@@ -1689,7 +1756,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "pro_image_editor",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "pro_image_editor",
@@ -1714,7 +1782,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "no_screenshot",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "no_screenshot",
@@ -1739,7 +1808,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "freerasp",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "freerasp",
@@ -1764,7 +1834,8 @@
         "archive": false,
         "agrees": true,
         "checkedPackage": "flutter_plugin_android_lifecycle",
-        "nativeIos": false
+        "nativeIos": false,
+        "reason": "not-ios-plugin"
       },
       "alignment": {
         "checkedPackage": "flutter_plugin_android_lifecycle",
@@ -1789,7 +1860,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_nfc_kit",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_nfc_kit",
@@ -1807,14 +1879,15 @@
       "name": "app_badge_plus",
       "version": "1.3.5",
       "published": "2026-09-07T04:00:56.928703Z",
-      "downloadCount30Days": 337087,
+      "downloadCount30Days": 334398,
       "likeCount": 170,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "app_badge_plus",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "app_badge_plus",
@@ -1832,14 +1905,15 @@
       "name": "clarity_flutter",
       "version": "1.10.0",
       "published": "2026-09-01T14:23:26.024576Z",
-      "downloadCount30Days": 119273,
+      "downloadCount30Days": 119640,
       "likeCount": 234,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "clarity_flutter",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "clarity_flutter",
@@ -1864,7 +1938,8 @@
         "archive": false,
         "agrees": true,
         "checkedPackage": "flutter_displaymode",
-        "nativeIos": true
+        "nativeIos": false,
+        "reason": "not-ios-plugin"
       },
       "alignment": {
         "checkedPackage": "flutter_displaymode",
@@ -1889,7 +1964,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "screen_brightness_ios",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "screen_brightness_android",
@@ -1914,7 +1990,8 @@
         "archive": false,
         "agrees": true,
         "checkedPackage": "smart_auth",
-        "nativeIos": false
+        "nativeIos": false,
+        "reason": "not-ios-plugin"
       },
       "alignment": {
         "checkedPackage": "smart_auth",
@@ -1939,7 +2016,8 @@
         "archive": false,
         "agrees": true,
         "checkedPackage": "android_id",
-        "nativeIos": false
+        "nativeIos": false,
+        "reason": "not-ios-plugin"
       },
       "alignment": {
         "checkedPackage": "android_id",
@@ -1964,7 +2042,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "rate_my_app",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "rate_my_app",
@@ -1989,7 +2068,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "external_path",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "external_path",
@@ -2014,7 +2094,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "intercom_flutter",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "intercom_flutter",
@@ -2032,14 +2113,15 @@
       "name": "cunning_document_scanner",
       "version": "3.0.3",
       "published": "2026-09-13T09:37:06.931442Z",
-      "downloadCount30Days": 61574,
+      "downloadCount30Days": 61992,
       "likeCount": 269,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "cunning_document_scanner",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "cunning_document_scanner",
@@ -2064,7 +2146,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "native_device_orientation",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "native_device_orientation",
@@ -2089,7 +2172,8 @@
         "archive": false,
         "agrees": true,
         "checkedPackage": "flutter_background",
-        "nativeIos": true
+        "nativeIos": false,
+        "reason": "not-ios-plugin"
       },
       "alignment": {
         "checkedPackage": "flutter_background",
@@ -2107,14 +2191,15 @@
       "name": "amplitude_flutter",
       "version": "4.7.2",
       "published": "2026-09-21T20:38:24.599448Z",
-      "downloadCount30Days": 235171,
+      "downloadCount30Days": 234151,
       "likeCount": 121,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "amplitude_flutter",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "amplitude_flutter",
@@ -2139,7 +2224,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "volume_controller",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "volume_controller",
@@ -2164,7 +2250,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "pedometer",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "pedometer",
@@ -2189,7 +2276,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "maplibre_gl",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "maplibre_gl",
@@ -2214,7 +2302,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "gaimon",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "gaimon",
@@ -2232,14 +2321,15 @@
       "name": "bonsoir",
       "version": "7.1.5",
       "published": "2026-08-11T22:26:28.487293Z",
-      "downloadCount30Days": 63361,
+      "downloadCount30Days": 63666,
       "likeCount": 160,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "bonsoir_darwin",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "bonsoir_android",
@@ -2257,14 +2347,15 @@
       "name": "background_fetch",
       "version": "1.7.0",
       "published": "2026-05-25T14:46:29.301892Z",
-      "downloadCount30Days": 87204,
+      "downloadCount30Days": 87882,
       "likeCount": 1264,
       "swiftpm": {
         "tag": true,
         "archive": true,
         "agrees": true,
         "checkedPackage": "background_fetch",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "background_fetch",
@@ -2289,7 +2380,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "image_gallery_saver_plus",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "image_gallery_saver_plus",
@@ -2307,14 +2399,15 @@
       "name": "android_alarm_manager_plus",
       "version": "5.1.1",
       "published": "2026-07-23T21:32:48.517833Z",
-      "downloadCount30Days": 15642,
+      "downloadCount30Days": 15234,
       "likeCount": 616,
       "swiftpm": {
         "tag": false,
         "archive": false,
         "agrees": true,
         "checkedPackage": "android_alarm_manager_plus",
-        "nativeIos": false
+        "nativeIos": false,
+        "reason": "not-ios-plugin"
       },
       "alignment": {
         "checkedPackage": "android_alarm_manager_plus",
@@ -2339,7 +2432,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "print_bluetooth_thermal",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "print_bluetooth_thermal",
@@ -2364,7 +2458,8 @@
         "archive": false,
         "agrees": true,
         "checkedPackage": "flutter_overlay_window",
-        "nativeIos": false
+        "nativeIos": false,
+        "reason": "not-ios-plugin"
       },
       "alignment": {
         "checkedPackage": "flutter_overlay_window",
@@ -2389,7 +2484,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "flutter_archive",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "flutter_archive",
@@ -2414,7 +2510,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "just_waveform",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "just_waveform",
@@ -2439,7 +2536,8 @@
         "archive": false,
         "agrees": true,
         "checkedPackage": "camera_android_camerax",
-        "nativeIos": false
+        "nativeIos": false,
+        "reason": "not-ios-plugin"
       },
       "alignment": {
         "checkedPackage": "camera_android_camerax",
@@ -2464,7 +2562,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "universal_ble",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "universal_ble",
@@ -2489,7 +2588,8 @@
         "archive": true,
         "agrees": true,
         "checkedPackage": "qr_code_scanner_plus",
-        "nativeIos": true
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "qr_code_scanner_plus",

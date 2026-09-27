@@ -31,7 +31,9 @@ Status alignmentStatus(PluginEntry plugin) {
 String swiftPmEvidence(PluginEntry plugin) {
   if (plugin.errors.isNotEmpty) return 'Could not be checked.';
   if (plugin.swiftpm.nativeIos == false) {
-    return 'Not affected: no native iOS code.';
+    return plugin.swiftpm.reason == 'not-ios-plugin'
+        ? 'Not affected: not an iOS plugin.'
+        : 'Not affected: no native iOS code.';
   }
   final tag = plugin.swiftpm.tag;
   final archive = plugin.swiftpm.archive;

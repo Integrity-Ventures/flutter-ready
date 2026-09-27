@@ -10,6 +10,7 @@ class SwiftPmInfo {
     required this.agrees,
     required this.checkedPackage,
     this.nativeIos,
+    this.reason,
   });
 
   factory SwiftPmInfo.fromJson(Map<String, dynamic> json) => SwiftPmInfo(
@@ -18,6 +19,7 @@ class SwiftPmInfo {
     agrees: json['agrees'] as bool?,
     checkedPackage: json['checkedPackage'] as String?,
     nativeIos: json['nativeIos'] as bool?,
+    reason: json['reason'] as String?,
   );
 
   final bool? tag;
@@ -29,6 +31,13 @@ class SwiftPmInfo {
   /// `schemaVersion` stays 1) — grading treats that the same as `true`.
   /// False means the resolved package ships no native iOS code at all.
   final bool? nativeIos;
+
+  /// Set only when [nativeIos] is false: `not-ios-plugin` (the app-facing
+  /// pubspec declares no `ios`/`macos` platform at all) or
+  /// `no-native-ios-code` (the platform is declared but is Dart-only). Null
+  /// for snapshots taken before this field existed, or when [nativeIos]
+  /// isn't false.
+  final String? reason;
 }
 
 class SoFile {

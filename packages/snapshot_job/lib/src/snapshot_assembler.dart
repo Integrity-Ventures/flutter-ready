@@ -67,6 +67,7 @@ Future<PluginSnapshot> _assembleOne(
 
   final swiftpm = await _assembleSwiftPm(
     candidate,
+    info,
     iosResolution,
     resolvedInfo,
     archiveFor,
@@ -92,6 +93,7 @@ Future<PluginSnapshot> _assembleOne(
 
 Future<SwiftPmSnapshot?> _assembleSwiftPm(
   PluginCandidate candidate,
+  PackageInfo? appInfo,
   IosResolution iosResolution,
   PackageInfo? resolvedInfo,
   Future<List<int>?> Function(String packageName) archiveFor,
@@ -106,11 +108,17 @@ Future<SwiftPmSnapshot?> _assembleSwiftPm(
     PluginCandidate(name: checkedPackage, tags: candidate.tags),
     entryPaths,
   );
-  final nativeIos = declaresNativeIos(iosResolution, resolvedInfo, entryPaths);
+  final native = resolveNativeIos(
+    appInfo,
+    iosResolution,
+    resolvedInfo,
+    entryPaths,
+  );
   return SwiftPmSnapshot(
     checkedPackage: checkedPackage,
     readiness: readiness,
-    nativeIos: nativeIos,
+    nativeIos: native.nativeIos,
+    reason: native.reason,
   );
 }
 

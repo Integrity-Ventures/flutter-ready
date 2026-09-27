@@ -21,7 +21,12 @@ export 'src/grading.dart'
         swiftPmGreenSharePercent,
         swiftPmStatus;
 export 'src/ios_resolution.dart'
-    show IosResolution, declaresNativeIos, resolveIosPackage;
+    show
+        IosResolution,
+        NativeIosResult,
+        declaresNativeIos,
+        resolveIosPackage,
+        resolveNativeIos;
 export 'src/package_archive.dart'
     show extractArchiveEntries, listArchiveEntryPaths;
 export 'src/plugin_discovery.dart' show PluginCandidate, discoverFlutterPlugins;

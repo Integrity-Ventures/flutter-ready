@@ -61,3 +61,38 @@ bool declaresNativeIos(
         archiveEntryPaths.contains('$dir/${resolution.checkedPackage}.podspec'),
   );
 }
+
+/// Whether a plugin has native iOS code that could be blocked by the
+/// CocoaPods deadline, and why not when it doesn't (SPEC e2-s1 rework 2).
+class NativeIosResult {
+  const NativeIosResult({required this.nativeIos, required this.reason});
+
+  final bool nativeIos;
+
+  /// Set only when [nativeIos] is false.
+  final String? reason;
+}
+
+/// Combines the "not an iOS plugin at all" and "declares iOS but it's
+/// Dart-only" cases (SPEC e2-s1 rework 2). When the app-facing pubspec
+/// ([appInfo]) declares neither an `ios` nor a `macos` platform, Flutter
+/// never registers pods for this plugin on an iOS app, so a leftover
+/// `ios/<name>.podspec` in its own archive (a `flutter create
+/// --template=plugin` artifact) doesn't apply — [declaresNativeIos] isn't
+/// even consulted in that case.
+NativeIosResult resolveNativeIos(
+  PackageInfo? appInfo,
+  IosResolution resolution,
+  PackageInfo? resolvedInfo,
+  List<String> archiveEntryPaths,
+) {
+  if (appInfo?.platformInfo('ios') == null &&
+      appInfo?.platformInfo('macos') == null) {
+    return const NativeIosResult(nativeIos: false, reason: 'not-ios-plugin');
+  }
+  final native = declaresNativeIos(resolution, resolvedInfo, archiveEntryPaths);
+  return NativeIosResult(
+    nativeIos: native,
+    reason: native ? null : 'no-native-ios-code',
+  );
+}

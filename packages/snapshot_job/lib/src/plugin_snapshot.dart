@@ -66,6 +66,7 @@ class SwiftPmSnapshot {
     required this.checkedPackage,
     required this.readiness,
     required this.nativeIos,
+    this.reason,
   });
 
   final String checkedPackage;
@@ -76,12 +77,17 @@ class SwiftPmSnapshot {
   /// the CocoaPods deadline can't block it regardless of [readiness].
   final bool nativeIos;
 
+  /// Set only when [nativeIos] is false: `not-ios-plugin` or
+  /// `no-native-ios-code` (SPEC e2-s1 rework 2). See [NativeIosResult].
+  final String? reason;
+
   Map<String, dynamic> toJson() => {
     'tag': readiness.tagSaysReady,
     'archive': readiness.archiveSaysReady,
     'agrees': readiness.agrees,
     'checkedPackage': checkedPackage,
     'nativeIos': nativeIos,
+    'reason': reason,
   };
 }
 
