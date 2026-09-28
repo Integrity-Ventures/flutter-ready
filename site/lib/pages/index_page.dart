@@ -3,6 +3,7 @@ import 'package:jaspr/server.dart';
 
 import '../components/deadlines_panel.dart';
 import '../components/headline_panel.dart';
+import '../components/hero.dart';
 import '../components/plugin_table.dart';
 import '../components/trend_panel.dart';
 import '../data/board.dart';
@@ -28,7 +29,10 @@ class IndexPage extends AsyncStatelessComponent {
     final blocked = [for (final row in rows.where((r) => r.category == BoardCategory.blocked)) row.plugin];
 
     return div(classes: 'index-page', [
-      HeadlinePanel(blocked: blocked, counts: counts, totalPlugins: snapshot.plugins.length),
+      Hero(
+        subtitle: headlineText(blocked: blocked, totalPlugins: snapshot.plugins.length),
+      ),
+      HeadlinePanel(blocked: blocked, counts: counts),
       DeadlinesPanel(deadlines: deadlines),
       TrendPanel(history: history),
       section(classes: 'board', [

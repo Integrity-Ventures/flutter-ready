@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
+import '../components/hero.dart';
 import '../components/hireflutter_cta.dart';
 import '../components/status_chip.dart';
 import '../constants/status_colors.dart';
@@ -24,6 +25,7 @@ class PluginPage extends StatelessComponent {
 
     return section(classes: 'plugin-page', [
       Document.head(meta: {'description': '${swiftPmEvidence(plugin)} ${alignmentEvidence(plugin)}'}),
+      Hero(subtitle: 'Is ${plugin.name} ready for CocoaPods going read-only and Play’s API 36?'),
       Link(to: '/', child: .text('← Back to the board')),
       h1([.text(plugin.name)]),
       p(classes: 'meta', [

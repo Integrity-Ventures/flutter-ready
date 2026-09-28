@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
+import 'components/footer.dart';
 import 'components/header.dart';
 import 'data/data_source.dart';
 import 'pages/index_page.dart';
@@ -30,26 +31,30 @@ class App extends AsyncStatelessComponent {
 
     return div(classes: 'main', [
       const Header(),
-      Router(
-        routes: [
-          Route(
-            path: '/',
-            title: 'Flutter Ready',
-            builder: (context, state) => IndexPage(snapshot: snapshot),
-          ),
-          for (final plugin in snapshot.plugins)
+      div(classes: 'page-content', [
+        Router(
+          routes: [
             Route(
-              path: '/p/${plugin.name}',
-              title: '${plugin.name} — Flutter Ready',
-              builder: (context, state) => PluginPage(plugin: plugin),
+              path: '/',
+              title: 'Flutter Ready',
+              builder: (context, state) => IndexPage(snapshot: snapshot),
             ),
-        ],
-      ),
+            for (final plugin in snapshot.plugins)
+              Route(
+                path: '/p/${plugin.name}',
+                title: '${plugin.name} — Flutter Ready',
+                builder: (context, state) => PluginPage(plugin: plugin),
+              ),
+          ],
+        ),
+      ]),
+      const Footer(),
     ]);
   }
 
   @css
   static List<StyleRule> get styles => [
     css('.main').styles(display: .flex, minHeight: 100.vh, flexDirection: .column),
+    css('.page-content').styles(flex: const Flex.grow(1)),
   ];
 }
