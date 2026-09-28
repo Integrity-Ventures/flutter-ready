@@ -52,19 +52,6 @@ Color bgColorForStatus(Status status) {
   }
 }
 
-String labelForStatus(Status status) {
-  switch (status) {
-    case Status.green:
-      return 'Ready';
-    case Status.amber:
-      return 'Caution';
-    case Status.red:
-      return 'Blocked';
-    case Status.notChecked:
-      return 'Not checked';
-  }
-}
-
 Color colorForCategory(BoardCategory category) {
   switch (category) {
     case BoardCategory.blocked:

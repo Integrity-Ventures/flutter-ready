@@ -1,4 +1,6 @@
+import 'package:site/constants/status_colors.dart';
 import 'package:site/data/board.dart';
+import 'package:site/data/grading.dart';
 import 'package:site/data/models.dart';
 import 'package:test/test.dart';
 
@@ -43,6 +45,35 @@ void main() {
         boardCategoryOf(_plugin(name: 'e', tag: true, archive: true, errors: const ['boom'])),
         BoardCategory.notChecked,
       );
+    });
+  });
+
+  group('categoryForStatus (chip labels match the board tiles)', () {
+    test('a not-affected shape (green, nativeIos: false) gets the same category as the tile', () {
+      final pathProvider = _plugin(name: 'path_provider', tag: false, archive: false, nativeIos: false);
+      final category = categoryForStatus(swiftPmStatus(pathProvider), nativeIos: pathProvider.swiftpm.nativeIos);
+      expect(category, boardCategoryOf(pathProvider));
+      expect(labelForCategory(category), 'Not affected');
+    });
+
+    test('a green plugin with nativeIos: true gets "Ready"', () {
+      final plugin = _plugin(name: 'ready-plugin', tag: true, archive: true, nativeIos: true);
+      final category = categoryForStatus(swiftPmStatus(plugin), nativeIos: plugin.swiftpm.nativeIos);
+      expect(category, boardCategoryOf(plugin));
+      expect(labelForCategory(category), 'Ready');
+    });
+
+    test('an amber result gets "Unclear", never "Caution"', () {
+      final plugin = _plugin(name: 'amber-plugin', tag: true, archive: false);
+      final category = categoryForStatus(swiftPmStatus(plugin), nativeIos: plugin.swiftpm.nativeIos);
+      expect(category, boardCategoryOf(plugin));
+      expect(labelForCategory(category), 'Unclear');
+      expect(labelForCategory(category), isNot('Caution'));
+    });
+
+    test('a check with no not-affected case (nativeIos: null) never labels green as "Not affected"', () {
+      expect(labelForCategory(categoryForStatus(Status.green, nativeIos: null)), 'Ready');
+      expect(labelForCategory(categoryForStatus(Status.amber, nativeIos: null)), 'Unclear');
     });
   });
 

@@ -66,7 +66,7 @@ class PluginTable extends StatelessComponent {
           td([.text(formatDownloads(plugin.downloadCount30Days))]),
           td([.text(plugin.version)]),
           td(classes: 'evidence-cell', [
-            StatusChip(status: swiftPmStatus(plugin)),
+            StatusChip(status: swiftPmStatus(plugin), nativeIos: plugin.swiftpm.nativeIos),
             p(classes: 'evidence', [.text(swiftPmEvidence(plugin))]),
           ]),
           td(classes: 'evidence-cell', [

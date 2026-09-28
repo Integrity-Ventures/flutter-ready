@@ -15,14 +15,23 @@ import 'models.dart';
 
 enum BoardCategory { blocked, unclear, ready, notAffected, notChecked }
 
-BoardCategory boardCategoryOf(PluginEntry plugin) {
-  return switch (swiftPmStatus(plugin)) {
+/// The one place a raw grading [Status] becomes a [BoardCategory] — the
+/// tiles (via [boardCategoryOf]) and the status chips both call this, so a
+/// chip's label can never drift from the tile that counts it. [nativeIos]
+/// only applies to checks with a "not affected" case (SwiftPM); pass null
+/// for checks that don't have one (alignment), and a green status is always
+/// [BoardCategory.ready] there.
+BoardCategory categoryForStatus(Status status, {bool? nativeIos}) {
+  return switch (status) {
     Status.red => BoardCategory.blocked,
     Status.amber => BoardCategory.unclear,
     Status.notChecked => BoardCategory.notChecked,
-    Status.green => plugin.swiftpm.nativeIos == false ? BoardCategory.notAffected : BoardCategory.ready,
+    Status.green => nativeIos == false ? BoardCategory.notAffected : BoardCategory.ready,
   };
 }
+
+BoardCategory boardCategoryOf(PluginEntry plugin) =>
+    categoryForStatus(swiftPmStatus(plugin), nativeIos: plugin.swiftpm.nativeIos);
 
 /// Table order (SPEC: "reds on top"): red, amber, grey, green — [ready] and
 /// [notAffected] share the last slot since both are shown as one

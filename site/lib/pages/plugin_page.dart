@@ -46,7 +46,10 @@ class PluginPage extends StatelessComponent {
           ]),
         ]),
       section(classes: 'evidence-section', [
-        h2([StatusChip(status: swiftPm), .text(' SwiftPM (CocoaPods goes read-only 2 December 2026)')]),
+        h2([
+          StatusChip(status: swiftPm, nativeIos: plugin.swiftpm.nativeIos),
+          .text(' SwiftPM (CocoaPods goes read-only 2 December 2026)'),
+        ]),
         p([.text(swiftPmEvidence(plugin))]),
         ul([
           li([.text('pub.dev is:swiftpm-plugin tag: ${plugin.swiftpm.tag ?? 'unknown'}')]),
