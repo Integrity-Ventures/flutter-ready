@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-28T02:23:03.724345Z",
+  "generatedAt": "2026-09-28T03:23:07.972251Z",
   "discovery": {
     "method": "pubdev-search",
     "queries": [
@@ -1668,8 +1668,8 @@
     },
     {
       "name": "media_kit_video",
-      "version": null,
-      "published": null,
+      "version": "2.0.1",
+      "published": "2025-12-02T13:15:41.014639Z",
       "downloadCount30Days": 306531,
       "likeCount": 44,
       "swiftpm": {
@@ -1677,8 +1677,8 @@
         "archive": false,
         "agrees": true,
         "checkedPackage": "media_kit_video",
-        "nativeIos": false,
-        "reason": "not-ios-plugin"
+        "nativeIos": true,
+        "reason": null
       },
       "alignment": {
         "checkedPackage": "media_kit_video",
@@ -1690,9 +1690,7 @@
         "agp": "8.13.0",
         "ndk": null
       },
-      "errors": [
-        "package info: type 'Null' is not a subtype of type 'Map<String, dynamic>' in type cast"
-      ],
+      "errors": [],
       "search": [
         "no-swiftpm"
       ]

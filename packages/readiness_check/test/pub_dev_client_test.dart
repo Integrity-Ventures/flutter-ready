@@ -198,6 +198,43 @@ void main() {
         expect(info.defaultPackageFor('web'), isNull);
       },
     );
+
+    test(
+      'skips a platform declared with no settings at all (seen live on '
+      'pub.dev, e.g. media_kit_video\'s web: null)',
+      () async {
+        final client = _fakeClient({
+          '/api/packages/media_kit_video': {
+            'latest': {
+              'version': '2.0.1',
+              'published': '2026-05-01T00:00:00.000000Z',
+              'pubspec': {
+                'name': 'media_kit_video',
+                'flutter': {
+                  'plugin': {
+                    'platforms': {
+                      'ios': {'pluginClass': 'MediaKitVideoPlugin'},
+                      'android': {'pluginClass': 'MediaKitVideoPlugin'},
+                      'web': null,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        });
+
+        final info = await client.fetchPackageInfo('media_kit_video');
+
+        expect(info.isFlutterPlugin, isTrue);
+        expect(info.platformInfo('ios')?.pluginClass, 'MediaKitVideoPlugin');
+        expect(
+          info.platformInfo('android')?.pluginClass,
+          'MediaKitVideoPlugin',
+        );
+        expect(info.platformInfo('web'), isNull);
+      },
+    );
   });
 
   group('fetchPackageVersion', () {

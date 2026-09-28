@@ -141,9 +141,13 @@ class PubDevClient {
       platforms: {
         if (platforms != null)
           for (final entry in platforms.entries)
-            entry.key: PluginPlatformInfo.fromJson(
-              entry.value as Map<String, dynamic>,
-            ),
+            // A platform can be declared with no settings at all (seen live
+            // on pub.dev, e.g. media_kit_video's `web: null`) — skip it
+            // rather than throwing on the cast.
+            if (entry.value != null)
+              entry.key: PluginPlatformInfo.fromJson(
+                entry.value as Map<String, dynamic>,
+              ),
       },
     );
   }
