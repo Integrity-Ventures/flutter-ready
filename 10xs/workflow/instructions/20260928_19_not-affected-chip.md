@@ -1,4 +1,4 @@
-# Microtask Instruction: "Not affected" chip matches the board tile (OPEN)
+# Microtask Instruction: chip labels match the board tiles ("Not affected", "Unclear") (OPEN)
 
 Status: **OPEN.** The owner approved this on 2026-09-28 (relayed by the
 chethanprabhakar.com session: "Agree with your recommendation"). Read
@@ -29,21 +29,27 @@ them as "Not affected".
    Don't copy the `nativeIos == false` test into a second place.
 2. A green SwiftPM result with `nativeIos == false` shows **"Not affected"**,
    in the same green colours as "Ready" (it's all-clear, not a warning).
-   Everything else keeps its current label.
+   Every other label stays as it is, except amber (item 4).
 3. The 16 KB alignment chip is unchanged (it has no "not affected" case).
-4. Out of scope: the amber chip says "Caution" while its tile says
-   "Unclear". Don't change it. Note it in the report; the owner decides
-   separately.
+4. The amber chip says **"Unclear"**, matching its tile, not "Caution".
+   The owner approved this on 2026-09-28 ("I agree with your
+   recommendation", relayed by the chethanprabhakar.com session). Same
+   shared rule: tile and chip labels come from one place. Amber colours are
+   unchanged. This applies to the SwiftPM chip; if the alignment chip can
+   be amber, it says "Unclear" too.
 
 ## Tests and check
 
 - A site test: path_provider's shape (green SwiftPM, `nativeIos: false`)
   gets the "Not affected" label; a green plugin with `nativeIos: true` gets
-  "Ready"; the label and the tile category come from the same function.
+  "Ready"; an amber result gets "Unclear" (never "Caution"); the label and
+  the tile category come from the same function. No visitor-facing
+  "Caution" text is left in site/.
 - `dart analyze --fatal-infos` and `dart test` in site/ (and the other
   three packages, untouched). `jaspr build` passes.
 - The tile counts on `/` are identical before and after (quote both).
-- Playwright screenshots of `/p/path_provider/` and `/` at 1280x800 and
+- Playwright screenshots of `/p/path_provider/`, `/p/flutter_facebook_auth/` (amber)
+  and `/` at 1280x800 and
   400x800 under `10xs/workflow/evidence/not-affected-*.png`.
 - Lane branch `feature/not-affected-chip`, pushed to your clone's origin;
   report at `10xs/workflow/task_reports/not-affected-chip_report.md`.
