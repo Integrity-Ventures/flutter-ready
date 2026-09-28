@@ -1,0 +1,10 @@
+# Keep the test fixtures out of the pub.dev upload. They include copies of
+# third-party plugin files (see test/fixtures/THIRD_PARTY.md) that users of
+# the CLI never need. They stay in the GitHub repo for our own tests.
+test/fixtures/
+
+# pub reads .pubignore instead of .gitignore in this folder, so repeat the
+# repo's ignore rules that apply here.
+.dart_tool/
+build/
+pubspec.lock
