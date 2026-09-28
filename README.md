@@ -7,7 +7,7 @@
 [![CI](https://github.com/Integrity-Ventures/flutter-ready/actions/workflows/ci.yml/badge.svg)](https://github.com/Integrity-Ventures/flutter-ready/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Live board](https://img.shields.io/badge/live%20board-ready.hireflutter.dev-1f6feb)](https://ready.hireflutter.dev)
-<!-- pub.dev version badge goes here once flutter_ready is published -->
+[![pub package](https://img.shields.io/pub/v/flutter_ready.svg)](https://pub.dev/packages/flutter_ready)
 
 </div>
 
