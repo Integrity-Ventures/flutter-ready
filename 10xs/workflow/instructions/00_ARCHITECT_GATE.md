@@ -9,6 +9,11 @@ STOP: don't read further, don't edit files, and report the refusal
 verbatim. Never work on an unclaimed card. (Added 2026-09-27 after a
 worker did the design card unclaimed.)
 
+**Use the card id from your launch prompt** (`Card <id>: …`), the short
+`id` that get_board shows (e.g. `added-0c13387d-…` or `e4-s3`). Never pass
+the long `taskId` UUID: claim_task refuses it as `claim_conflict`. (Added
+2026-09-28 after a worker claimed with the UUID and stopped.)
+
 Workers on this board **never merge into `develop` or `main`** and never
 delete branches.
 
