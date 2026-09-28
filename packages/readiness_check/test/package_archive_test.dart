@@ -14,6 +14,15 @@ List<int> _buildPackageArchiveBytes(List<String> entryPaths) {
   return GZipEncoder().encodeBytes(tarBytes);
 }
 
+/// Pads [gzipBytes] with zero bytes up to the next 10240-byte boundary, the
+/// way pub.dev serves some archives (a gzip member followed by tar's
+/// record-boundary padding).
+List<int> _padToTarRecordBoundary(List<int> gzipBytes) {
+  final remainder = gzipBytes.length % 10240;
+  final padLength = remainder == 0 ? 10240 : 10240 - remainder;
+  return [...gzipBytes, ...List.filled(padLength, 0)];
+}
+
 void main() {
   group('listArchiveEntryPaths', () {
     test('lists every entry path in a gzip-then-tar package archive', () {
@@ -92,6 +101,45 @@ void main() {
         () => extractArchiveEntries(corruptBytes, (path) => true),
         throwsA(anything),
       );
+    });
+  });
+
+  group('zero-padded gzip archives', () {
+    test(
+      'decodes a valid tar.gz padded with zeros to a 10240-byte boundary',
+      () {
+        final bytes = _padToTarRecordBoundary(
+          _buildPackageArchiveBytes([
+            'pubspec.yaml',
+            'ios/some_plugin/Package.swift',
+          ]),
+        );
+
+        expect(
+          listArchiveEntryPaths(bytes),
+          containsAll(['pubspec.yaml', 'ios/some_plugin/Package.swift']),
+        );
+      },
+    );
+
+    test('still throws on an archive with non-zero trailing garbage', () {
+      final gzipBytes = _buildPackageArchiveBytes(['pubspec.yaml']);
+      final padded = _padToTarRecordBoundary(gzipBytes);
+      final garbageLength = padded.length - gzipBytes.length;
+      final bytes = [...gzipBytes, ...List.filled(garbageLength, 7)];
+
+      expect(() => listArchiveEntryPaths(bytes), throwsA(anything));
+    });
+
+    test('still throws on a truncated archive', () {
+      final gzipBytes = _buildPackageArchiveBytes([
+        'pubspec.yaml',
+        'lib/some_plugin.dart',
+        'ios/some_plugin/Package.swift',
+      ]);
+      final truncated = gzipBytes.sublist(0, gzipBytes.length - 20);
+
+      expect(() => listArchiveEntryPaths(truncated), throwsA(anything));
     });
   });
 }
