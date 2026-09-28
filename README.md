@@ -37,7 +37,7 @@ board and a CLI to find out before that day comes.
 - **A public board** at [ready.hireflutter.dev](https://ready.hireflutter.dev): every checked plugin, its own page, reds sorted to the top by downloads.
 - **A CLI** (`flutter_ready check`) that reads your app's `pubspec.lock` and reports which of your plugins will block your next release, with evidence and a suggested replacement where one is known.
 - **A GitHub Action** that runs the same check in CI and fails the job on a blocker.
-- **A nightly data refresh**: the board and the CLI's bundled data are rebuilt from pub.dev every night.
+- **A nightly data refresh**: the data behind the board and the CLI is rebuilt from pub.dev every night; the CLI downloads the latest copy each run.
 
 ## Quick start
 
