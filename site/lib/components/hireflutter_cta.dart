@@ -41,12 +41,12 @@ class HireFlutterCta extends StatelessComponent {
       css('.hireflutter-cta-button', [
         css('&').styles(
           display: .inlineBlock,
-          margin: .only(left: 0.15.em),
           padding: .symmetric(vertical: 0.15.em, horizontal: 0.6.em),
+          margin: .only(left: 0.15.em),
           radius: .all(.circular(999.px)),
           color: surfaceCard,
-          textDecoration: TextDecoration(line: .none),
           fontWeight: .w600,
+          textDecoration: TextDecoration(line: .none),
           backgroundColor: brandBlue,
         ),
         css('&:hover').styles(backgroundColor: brandBlueDark),

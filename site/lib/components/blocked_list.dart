@@ -21,7 +21,9 @@ class BlockedList extends StatelessComponent {
       h2([.text('Blocked plugins')]),
       ul(
         classes: 'blocked-list-items',
-        [for (final plugin in blocked) li([Link(to: '/p/${plugin.name}', child: .text(plugin.name))])],
+        [
+          for (final plugin in blocked) li([Link(to: '/p/${plugin.name}', child: .text(plugin.name))]),
+        ],
       ),
     ]);
   }
@@ -51,8 +53,8 @@ class BlockedList extends StatelessComponent {
         padding: .symmetric(vertical: 0.3.em, horizontal: 0.7.em),
         radius: .all(.circular(999.px)),
         color: statusRed,
-        textDecoration: TextDecoration(line: .none),
         fontSize: 0.85.rem,
+        textDecoration: TextDecoration(line: .none),
         backgroundColor: statusRedBg,
       ),
       css('a:hover').styles(textDecoration: TextDecoration(line: .underline)),

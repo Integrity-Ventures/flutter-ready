@@ -78,7 +78,7 @@ class PluginPage extends StatelessComponent {
       section(classes: 'evidence-section', [
         h2([.text('Android build settings (facts only)')]),
         p(classes: 'note', [
-          .text('What these mean for an app targeting API 36 is unresolved (SPEC open decision 3) — no colour yet.'),
+          .text("We don't grade these yet; they're shown as facts."),
         ]),
         ul([
           li([.text('compileSdk: ${plugin.android.compileSdk ?? 'not found'}')]),
