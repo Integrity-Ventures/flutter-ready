@@ -4,7 +4,7 @@
 /// `site/test/grading_test.dart` keeps working.
 library;
 
-export 'package:readiness_check/readiness_check.dart'
+export 'package:flutter_ready/readiness_check.dart'
     show
         Status,
         alignmentEvidence,

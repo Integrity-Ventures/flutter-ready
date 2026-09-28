@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
-import 'package:readiness_check/readiness_check.dart' show Deadline, PubDevClient, Snapshot;
+import 'package:flutter_ready/readiness_check.dart' show Deadline, PubDevClient, Snapshot;
 
 import 'check_report.dart';
 import 'live_check.dart';

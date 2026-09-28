@@ -1,10 +1,10 @@
-export 'src/android_build_settings.dart'
+export 'src/readiness/android_build_settings.dart'
     show
         AndroidBuildSettings,
         extractAndroidBuildSettings,
         isAndroidGradleFilePath;
-export 'src/concurrency_pool.dart' show mapWithConcurrency;
-export 'src/elf_alignment_check.dart'
+export 'src/readiness/concurrency_pool.dart' show mapWithConcurrency;
+export 'src/readiness/elf_alignment_check.dart'
     show
         ElfAlignmentResult,
         NotElfException,
@@ -12,7 +12,7 @@ export 'src/elf_alignment_check.dart'
         checkSoAlignment,
         isSharedLibraryPath,
         requiredLoadSegmentAlignment;
-export 'src/grading.dart'
+export 'src/readiness/grading.dart'
     show
         Status,
         alignmentEvidence,
@@ -21,19 +21,19 @@ export 'src/grading.dart'
         swiftPmEvidence,
         swiftPmGreenSharePercent,
         swiftPmStatus;
-export 'src/ios_resolution.dart'
+export 'src/readiness/ios_resolution.dart'
     show
         IosResolution,
         NativeIosResult,
         declaresNativeIos,
         resolveIosPackage,
         resolveNativeIos;
-export 'src/live_grade.dart' show LiveGrade, gradeLivePlugin;
-export 'src/package_archive.dart'
+export 'src/readiness/live_grade.dart' show LiveGrade, gradeLivePlugin;
+export 'src/readiness/package_archive.dart'
     show extractArchiveEntries, listArchiveEntryPaths;
-export 'src/plugin_discovery.dart'
+export 'src/readiness/plugin_discovery.dart'
     show DiscoveryQuery, PluginCandidate, discoverFlutterPlugins, discoveryQueries;
-export 'src/pub_dev_client.dart'
+export 'src/readiness/pub_dev_client.dart'
     show
         PackageInfo,
         PackageScore,
@@ -41,7 +41,7 @@ export 'src/pub_dev_client.dart'
         PluginPlatformInfo,
         PubDevApiException,
         PubDevClient;
-export 'src/snapshot_model.dart'
+export 'src/readiness/snapshot_model.dart'
     show
         AlignmentInfo,
         AndroidInfo,
@@ -51,4 +51,4 @@ export 'src/snapshot_model.dart'
         Snapshot,
         SoFile,
         SwiftPmInfo;
-export 'src/swiftpm_check.dart' show SwiftPmReadiness, checkSwiftPmReadiness;
+export 'src/readiness/swiftpm_check.dart' show SwiftPmReadiness, checkSwiftPmReadiness;

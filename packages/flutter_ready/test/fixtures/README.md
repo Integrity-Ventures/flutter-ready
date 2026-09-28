@@ -1,4 +1,4 @@
-# readiness_check test fixtures
+# flutter_ready readiness-check test fixtures
 
 Fixtures for one readiness state each (SwiftPM present, absent, disagreeing)
 plus aligned/misaligned `.so` samples, so tests never call the network
@@ -46,7 +46,7 @@ Everything under `archives/*.tar.gz` and `so_files/*.so` is written by
 rebuild them:
 
 ```
-cd packages/readiness_check
+cd packages/flutter_ready
 dart run test/fixtures/generate_fixtures.dart
 ```
 

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:archive/archive.dart';
-import 'package:readiness_check/readiness_check.dart';
+import 'package:flutter_ready/readiness_check.dart';
 import 'package:test/test.dart';
 
 List<int> _buildPackageArchiveBytes(List<String> entryPaths) {

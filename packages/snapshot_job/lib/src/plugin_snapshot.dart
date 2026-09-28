@@ -1,4 +1,4 @@
-import 'package:readiness_check/readiness_check.dart';
+import 'package:flutter_ready/readiness_check.dart';
 
 /// The top-level snapshot document (architect snapshot contract,
 /// `schemaVersion` 1): one dated JSON file per nightly run. Sorted by

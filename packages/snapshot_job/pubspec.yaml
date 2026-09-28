@@ -10,10 +10,10 @@ environment:
 
 dependencies:
   args: ^2.5.0
+  flutter_ready:
+    path: ../flutter_ready
   http: ^1.2.0
   path: ^1.9.0
-  readiness_check:
-    path: ../readiness_check
 
 dev_dependencies:
   archive: ^4.3.0

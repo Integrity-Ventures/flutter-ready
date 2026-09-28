@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
-import 'package:readiness_check/readiness_check.dart';
+import 'package:flutter_ready/readiness_check.dart';
 import 'package:snapshot_job/snapshot_job.dart';
 
 const _userAgent =

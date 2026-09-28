@@ -1,6 +1,6 @@
 // Regenerates the binary fixtures under test/fixtures/archives/ and
 // test/fixtures/so_files/, from the plain-text sources under
-// test/fixtures/sources/. Run from the readiness_check package root:
+// test/fixtures/sources/. Run from the flutter_ready package root:
 //
 //   dart run test/fixtures/generate_fixtures.dart
 //
@@ -19,7 +19,7 @@ const _soDir = 'test/fixtures/so_files';
 void main() {
   if (!Directory('test/fixtures').existsSync()) {
     stderr.writeln(
-      'Run this from the readiness_check package root (test/fixtures/ not found here).',
+      'Run this from the flutter_ready package root (test/fixtures/ not found here).',
     );
     exitCode = 1;
     return;

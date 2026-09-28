@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          dart pub get -C packages/readiness_check
+          dart pub get -C packages/flutter_ready
           dart pub get -C packages/snapshot_job
 
       - name: Run snapshot job

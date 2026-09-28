@@ -3,9 +3,9 @@
 /// here so every existing relative import in `site/lib` keeps working.
 library;
 
-import 'package:readiness_check/readiness_check.dart';
+import 'package:flutter_ready/readiness_check.dart';
 
-export 'package:readiness_check/readiness_check.dart'
+export 'package:flutter_ready/readiness_check.dart'
     show AlignmentInfo, AndroidInfo, Deadline, PluginEntry, Snapshot, SoFile, SwiftPmInfo;
 
 /// One dated snapshot, tagged with the UTC date taken from its filename

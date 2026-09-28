@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:readiness_check/readiness_check.dart';
+import 'package:flutter_ready/readiness_check.dart';
 import 'package:test/test.dart';
 
 /// Builds a minimal synthetic ELF file (header + one `PT_LOAD` program

@@ -8,7 +8,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_ready/flutter_ready.dart';
-import 'package:readiness_check/readiness_check.dart';
+import 'package:flutter_ready/readiness_check.dart';
 import 'package:test/test.dart';
 
 const _fixtureDataDir = '../../fixtures/sample_app/data';

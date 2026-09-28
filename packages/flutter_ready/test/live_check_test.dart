@@ -1,6 +1,6 @@
 // Tests runLiveChecks (CLI live-check task, 2026-09-27) against a MockClient
-// fed with the e6-s1 fixtures from packages/readiness_check/test/fixtures/
-// (recorded pub.dev responses and archives) — never the real network. The
+// fed with the e6-s1 fixtures from test/fixtures/ (recorded pub.dev
+// responses and archives) — never the real network. The
 // "latest" object those fixtures record is the same shape
 // GET /api/packages/<name>/versions/<version> returns, just wrapped.
 import 'dart:convert';
@@ -9,10 +9,10 @@ import 'dart:io';
 import 'package:flutter_ready/flutter_ready.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:readiness_check/readiness_check.dart';
+import 'package:flutter_ready/readiness_check.dart';
 import 'package:test/test.dart';
 
-const _fixturesDir = '../readiness_check/test/fixtures';
+const _fixturesDir = 'test/fixtures';
 
 Map<String, dynamic> _fixtureJson(String relativePath) =>
     jsonDecode(File('$_fixturesDir/$relativePath').readAsStringSync()) as Map<String, dynamic>;

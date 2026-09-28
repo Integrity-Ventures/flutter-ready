@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:readiness_check/readiness_check.dart';
+import 'package:flutter_ready/readiness_check.dart';
 import 'package:test/test.dart';
 
 Map<String, List<int>> _gradleContents(String path, String text) {

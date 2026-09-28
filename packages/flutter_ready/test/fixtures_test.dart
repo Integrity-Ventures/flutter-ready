@@ -2,7 +2,7 @@
 // test/fixtures/ (SPEC §5): one plugin per SwiftPM readiness state, a
 // federated plugin set, and a package archive with both an aligned and a
 // misaligned .so. No test in this file calls the network.
-import 'package:readiness_check/readiness_check.dart';
+import 'package:flutter_ready/readiness_check.dart';
 import 'package:test/test.dart';
 
 import 'fixtures/fixture_loader.dart';

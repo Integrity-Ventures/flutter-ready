@@ -1,7 +1,7 @@
 // Tests gradeLivePlugin (CLI live-check task, 2026-09-27) against the e6-s1
 // archive fixtures directly — it's a pure function over already-downloaded
 // bytes, so no network or PubDevClient is needed here.
-import 'package:readiness_check/readiness_check.dart';
+import 'package:flutter_ready/readiness_check.dart';
 import 'package:test/test.dart';
 
 import 'fixtures/fixture_loader.dart';
