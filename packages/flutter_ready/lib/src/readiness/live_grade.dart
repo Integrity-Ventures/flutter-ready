@@ -37,7 +37,12 @@ LiveGrade gradeLivePlugin({
   required List<int> archiveBytes,
 }) {
   final entryPaths = listArchiveEntryPaths(archiveBytes);
-  final native = resolveNativeIos(appInfo, resolution, resolvedInfo, entryPaths);
+  final native = resolveNativeIos(
+    appInfo,
+    resolution,
+    resolvedInfo,
+    entryPaths,
+  );
 
   final Status swiftPm;
   final String swiftPmEvidence;
@@ -58,7 +63,10 @@ LiveGrade gradeLivePlugin({
   }
 
   final soFiles = <ElfAlignmentResult>[];
-  for (final entry in extractArchiveEntries(archiveBytes, isSharedLibraryPath).entries) {
+  for (final entry in extractArchiveEntries(
+    archiveBytes,
+    isSharedLibraryPath,
+  ).entries) {
     try {
       soFiles.add(checkSoAlignment(entry.key, entry.value));
     } on NotElfException {
@@ -71,8 +79,8 @@ LiveGrade gradeLivePlugin({
   final alignmentEvidence = soFiles.isEmpty
       ? 'No native libraries in archive.'
       : misaligned.isEmpty
-          ? '${soFiles.length} .so file(s), all 16 KB aligned.'
-          : '${misaligned.length} of ${soFiles.length} .so file(s) misaligned, e.g. ${misaligned.first.path}.';
+      ? '${soFiles.length} .so file(s), all 16 KB aligned.'
+      : '${misaligned.length} of ${soFiles.length} .so file(s) misaligned, e.g. ${misaligned.first.path}.';
 
   return LiveGrade(
     swiftPm: swiftPm,

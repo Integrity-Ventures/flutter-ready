@@ -2,7 +2,7 @@ name: flutter_ready
 description: >
   Reads an app's pubspec.lock and reports which of its plugins will block
   this season's App Store or Play release, using the Flutter Ready data.
-version: 0.1.0
+version: 0.1.1
 homepage: https://ready.hireflutter.dev
 repository: https://github.com/Integrity-Ventures/flutter-ready
 issue_tracker: https://github.com/Integrity-Ventures/flutter-ready/issues

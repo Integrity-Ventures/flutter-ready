@@ -2,7 +2,11 @@ import 'package:yaml/yaml.dart';
 
 /// One resolved dependency from a `pubspec.lock`'s `packages:` map.
 class LockedPackage {
-  const LockedPackage({required this.name, required this.version, required this.isHosted});
+  const LockedPackage({
+    required this.name,
+    required this.version,
+    required this.isHosted,
+  });
 
   final String name;
   final String version;

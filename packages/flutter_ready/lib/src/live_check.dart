@@ -38,8 +38,16 @@ class LiveCheckResult {
 
   /// A network failure, a 404, or a corrupt archive — never green, and never
   /// aborts the run of the other packages.
-  factory LiveCheckResult.notChecked(String name, String version, String reason) =>
-      LiveCheckResult._(name: name, version: version, isPlugin: true, notCheckedReason: reason);
+  factory LiveCheckResult.notChecked(
+    String name,
+    String version,
+    String reason,
+  ) => LiveCheckResult._(
+    name: name,
+    version: version,
+    isPlugin: true,
+    notCheckedReason: reason,
+  );
 
   final String name;
   final String version;
@@ -78,7 +86,9 @@ Future<List<LiveCheckResult>> runLiveChecks(
   return mapWithConcurrency(toCheck, concurrency, (locked) async {
     final result = await _checkOne(client, locked, lockedByName);
     done++;
-    onProgress?.call('flutter_ready: checked ${locked.name} live ($done/${toCheck.length})');
+    onProgress?.call(
+      'flutter_ready: checked ${locked.name} live ($done/${toCheck.length})',
+    );
     return result;
   });
 }
@@ -89,7 +99,10 @@ Future<LiveCheckResult> _checkOne(
   Map<String, LockedPackage> lockedByName,
 ) async {
   try {
-    final appVersion = await client.fetchPackageVersion(locked.name, locked.version);
+    final appVersion = await client.fetchPackageVersion(
+      locked.name,
+      locked.version,
+    );
     if (!appVersion.info.isFlutterPlugin) {
       return LiveCheckResult.skipped(locked.name, locked.version);
     }
@@ -110,11 +123,15 @@ Future<LiveCheckResult> _checkOne(
         );
       } else {
         usedFallbackLatest = true;
-        resolvedVersion = await client.fetchLatestPackageVersion(resolution.checkedPackage);
+        resolvedVersion = await client.fetchLatestPackageVersion(
+          resolution.checkedPackage,
+        );
       }
     }
 
-    final archiveBytes = await client.fetchArchiveBytes(resolvedVersion.archiveUrl);
+    final archiveBytes = await client.fetchArchiveBytes(
+      resolvedVersion.archiveUrl,
+    );
     final grade = gradeLivePlugin(
       appInfo: appVersion.info,
       resolution: resolution,

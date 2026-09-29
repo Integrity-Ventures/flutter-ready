@@ -124,18 +124,30 @@ class PluginEntry {
     downloadCount30Days: json['downloadCount30Days'] as int?,
     likeCount: json['likeCount'] as int?,
     swiftpm: json['swiftpm'] == null
-        ? const SwiftPmInfo(tag: null, archive: null, agrees: null, checkedPackage: null)
+        ? const SwiftPmInfo(
+            tag: null,
+            archive: null,
+            agrees: null,
+            checkedPackage: null,
+          )
         : SwiftPmInfo.fromJson(json['swiftpm'] as Map<String, dynamic>),
     alignment: json['alignment'] == null
         ? const AlignmentInfo(checkedPackage: null, soFiles: [])
         : AlignmentInfo.fromJson(json['alignment'] as Map<String, dynamic>),
     android: json['android'] == null
-        ? const AndroidInfo(checkedPackage: null, compileSdk: null, agp: null, ndk: null)
+        ? const AndroidInfo(
+            checkedPackage: null,
+            compileSdk: null,
+            agp: null,
+            ndk: null,
+          )
         : AndroidInfo.fromJson(json['android'] as Map<String, dynamic>),
     errors: [for (final e in (json['errors'] as List)) e as String],
     // Null for snapshots taken before this field existed (additive,
     // schemaVersion stays 1).
-    search: [for (final s in (json['search'] as List? ?? const [])) s as String],
+    search: [
+      for (final s in (json['search'] as List? ?? const [])) s as String,
+    ],
   );
 
   final String name;

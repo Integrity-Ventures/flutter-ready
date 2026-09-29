@@ -32,7 +32,11 @@ export 'src/readiness/live_grade.dart' show LiveGrade, gradeLivePlugin;
 export 'src/readiness/package_archive.dart'
     show extractArchiveEntries, listArchiveEntryPaths;
 export 'src/readiness/plugin_discovery.dart'
-    show DiscoveryQuery, PluginCandidate, discoverFlutterPlugins, discoveryQueries;
+    show
+        DiscoveryQuery,
+        PluginCandidate,
+        discoverFlutterPlugins,
+        discoveryQueries;
 export 'src/readiness/pub_dev_client.dart'
     show
         PackageInfo,
@@ -51,4 +55,5 @@ export 'src/readiness/snapshot_model.dart'
         Snapshot,
         SoFile,
         SwiftPmInfo;
-export 'src/readiness/swiftpm_check.dart' show SwiftPmReadiness, checkSwiftPmReadiness;
+export 'src/readiness/swiftpm_check.dart'
+    show SwiftPmReadiness, checkSwiftPmReadiness;

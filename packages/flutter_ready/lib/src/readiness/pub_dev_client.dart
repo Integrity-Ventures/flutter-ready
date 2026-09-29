@@ -39,7 +39,9 @@ class PubDevClient {
   Future<List<String>> searchPackages(String query, {required int page}) async {
     final uri = _baseUri
         .resolve('/api/search')
-        .replace(queryParameters: {'q': query, 'sort': 'downloads', 'page': '$page'});
+        .replace(
+          queryParameters: {'q': query, 'sort': 'downloads', 'page': '$page'},
+        );
     final body = await _getJson(uri);
     return [
       for (final entry in body['packages'] as List)
@@ -107,7 +109,9 @@ class PubDevClient {
     String packageName,
     String version,
   ) async {
-    final uri = _baseUri.resolve('/api/packages/$packageName/versions/$version');
+    final uri = _baseUri.resolve(
+      '/api/packages/$packageName/versions/$version',
+    );
     final body = await _getJson(uri);
     return PackageVersion(
       info: _packageInfoFromVersionJson(body),

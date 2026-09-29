@@ -46,8 +46,11 @@ CheckReport buildCheckReport({
         blockersByDeadline: blockersByDeadline,
         locked: locked,
         replacements: replacements,
-        statusFor: (check) => check == 'swiftpm' ? swiftPmStatus(entry) : alignmentStatus(entry),
-        evidenceFor: (check) => check == 'swiftpm' ? swiftPmEvidence(entry) : alignmentEvidence(entry),
+        statusFor: (check) =>
+            check == 'swiftpm' ? swiftPmStatus(entry) : alignmentStatus(entry),
+        evidenceFor: (check) => check == 'swiftpm'
+            ? swiftPmEvidence(entry)
+            : alignmentEvidence(entry),
         originLabel: 'from Flutter Ready data ($dataDate)',
       );
       continue;
@@ -67,7 +70,9 @@ CheckReport buildCheckReport({
       continue;
     }
     if (live.notCheckedReason != null) {
-      notChecked.add('${locked.name} ${locked.version}: not checked: ${live.notCheckedReason}');
+      notChecked.add(
+        '${locked.name} ${locked.version}: not checked: ${live.notCheckedReason}',
+      );
       continue;
     }
 
@@ -80,18 +85,27 @@ CheckReport buildCheckReport({
       blockersByDeadline: blockersByDeadline,
       locked: locked,
       replacements: replacements,
-      statusFor: (check) => check == 'swiftpm' ? grade.swiftPm : grade.alignment,
-      evidenceFor: (check) => '${check == 'swiftpm' ? grade.swiftPmEvidence : grade.alignmentEvidence}$fallbackNote',
+      statusFor: (check) =>
+          check == 'swiftpm' ? grade.swiftPm : grade.alignment,
+      evidenceFor: (check) =>
+          '${check == 'swiftpm' ? grade.swiftPmEvidence : grade.alignmentEvidence}$fallbackNote',
       originLabel: 'checked live',
     );
   }
 
-  final blockerCount = blockersByDeadline.values.fold(0, (sum, lines) => sum + lines.length);
+  final blockerCount = blockersByDeadline.values.fold(
+    0,
+    (sum, lines) => sum + lines.length,
+  );
 
   final buffer = StringBuffer()
-    ..writeln('Flutter Ready check — ${hosted.length} hosted package(s) in pubspec.lock.');
+    ..writeln(
+      'Flutter Ready check — ${hosted.length} hosted package(s) in pubspec.lock.',
+    );
   if (skippedCount > 0) {
-    buffer.writeln('Skipped $skippedCount pure Dart package(s) (not Flutter plugins).');
+    buffer.writeln(
+      'Skipped $skippedCount pure Dart package(s) (not Flutter plugins).',
+    );
   }
   buffer.writeln();
 
@@ -117,7 +131,10 @@ CheckReport buildCheckReport({
     }
   }
 
-  return CheckReport(text: buffer.toString().trimRight(), hasBlocker: blockerCount > 0);
+  return CheckReport(
+    text: buffer.toString().trimRight(),
+    hasBlocker: blockerCount > 0,
+  );
 }
 
 /// Appends a BLOCKER line, labelled with [originLabel], to
@@ -148,7 +165,11 @@ void _addDeadlineBlockers({
 
 /// A blocker line, with a hand-curated suggestion appended per entry in
 /// [suggestions], if any (SPEC §3.3, open decision 4: never generated).
-String _blockerLine(LockedPackage locked, String evidence, List<Replacement>? suggestions) {
+String _blockerLine(
+  LockedPackage locked,
+  String evidence,
+  List<Replacement>? suggestions,
+) {
   final buffer = StringBuffer('${locked.name} ${locked.version}: $evidence');
   for (final suggestion in suggestions ?? const []) {
     buffer.write('\n    Suggested replacement: ${suggestion.replacement}');

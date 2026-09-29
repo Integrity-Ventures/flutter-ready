@@ -4,7 +4,8 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
-import 'package:flutter_ready/readiness_check.dart' show Deadline, PubDevClient, Snapshot;
+import 'package:flutter_ready/readiness_check.dart'
+    show Deadline, PubDevClient, Snapshot;
 
 import 'check_report.dart';
 import 'live_check.dart';
@@ -16,7 +17,8 @@ const defaultDataSource =
 
 /// Sent on every live-check request to pub.dev (CLI live-check task,
 /// 2026-09-27): a descriptive User-Agent so pub.dev can identify the traffic.
-const _liveCheckUserAgent = 'flutter_ready-cli (+https://ready.hireflutter.dev)';
+const _liveCheckUserAgent =
+    'flutter_ready-cli (+https://ready.hireflutter.dev)';
 
 /// How many packages [CheckCommand] live-checks at once (CLI live-check
 /// task, 2026-09-27).
@@ -35,7 +37,11 @@ class CheckCommand extends Command<void> {
             'Path or URL to the readiness data (latest.json). Deadlines are '
             'read from deadlines.json alongside it.',
       )
-      ..addOption('lockfile', defaultsTo: 'pubspec.lock', help: "Path to the app's pubspec.lock.")
+      ..addOption(
+        'lockfile',
+        defaultsTo: 'pubspec.lock',
+        help: "Path to the app's pubspec.lock.",
+      )
       ..addFlag(
         'offline',
         defaultsTo: false,
@@ -49,7 +55,8 @@ class CheckCommand extends Command<void> {
   final name = 'check';
 
   @override
-  final description = "Reports which of this app's plugins block this season's release.";
+  final description =
+      "Reports which of this app's plugins block this season's release.";
 
   @override
   Future<void> run() async {
@@ -65,10 +72,15 @@ class CheckCommand extends Command<void> {
     }
 
     final lockedPackages = parsePubspecLock(await lockfile.readAsString());
-    final snapshot = Snapshot.fromJson(jsonDecode(await _read(dataSource)) as Map<String, dynamic>);
-    final deadlinesJson = jsonDecode(await _read(_sibling(dataSource, 'deadlines.json'))) as Map<String, dynamic>;
+    final snapshot = Snapshot.fromJson(
+      jsonDecode(await _read(dataSource)) as Map<String, dynamic>,
+    );
+    final deadlinesJson = jsonDecode(
+      await _read(_sibling(dataSource, 'deadlines.json')),
+    ) as Map<String, dynamic>;
     final deadlines = [
-      for (final d in deadlinesJson['deadlines'] as List) Deadline.fromJson(d as Map<String, dynamic>),
+      for (final d in deadlinesJson['deadlines'] as List)
+        Deadline.fromJson(d as Map<String, dynamic>),
     ];
     final replacements = await _readReplacements(dataSource);
 
@@ -91,18 +103,29 @@ class CheckCommand extends Command<void> {
 /// The hosted packages a live check would run for: those that aren't in
 /// [snapshot] at their exact locked version (CLI live-check task,
 /// 2026-09-27) — matches [buildCheckReport]'s own "otherwise" branch.
-List<LockedPackage> _packagesNeedingLiveCheck(List<LockedPackage> lockedPackages, Snapshot snapshot) {
+List<LockedPackage> _packagesNeedingLiveCheck(
+  List<LockedPackage> lockedPackages,
+  Snapshot snapshot,
+) {
   final byName = {for (final plugin in snapshot.plugins) plugin.name: plugin};
-  bool matchesData(LockedPackage locked) => byName[locked.name]?.version == locked.version;
+  bool matchesData(LockedPackage locked) =>
+      byName[locked.name]?.version == locked.version;
   return lockedPackages.where((p) => p.isHosted && !matchesData(p)).toList();
 }
 
-Future<List<LiveCheckResult>> _runLiveChecks(List<LockedPackage> lockedPackages, Snapshot snapshot) async {
+Future<List<LiveCheckResult>> _runLiveChecks(
+  List<LockedPackage> lockedPackages,
+  Snapshot snapshot,
+) async {
   final toCheck = _packagesNeedingLiveCheck(lockedPackages, snapshot);
   if (toCheck.isEmpty) return const [];
 
-  final lockedByName = {for (final locked in lockedPackages) locked.name: locked};
-  final client = PubDevClient(httpClient: _UserAgentHttpClient(http.Client(), _liveCheckUserAgent));
+  final lockedByName = {
+    for (final locked in lockedPackages) locked.name: locked,
+  };
+  final client = PubDevClient(
+    httpClient: _UserAgentHttpClient(http.Client(), _liveCheckUserAgent),
+  );
   return runLiveChecks(
     client,
     toCheck,
@@ -130,21 +153,28 @@ class _UserAgentHttpClient extends http.BaseClient {
 /// read as a sibling of the data source, same as `deadlines.json`. Missing
 /// or unfetchable is not fatal — a data source that predates this file, or
 /// hosts it nowhere, still produces a report, just without suggestions.
-Future<Map<String, List<Replacement>>> _readReplacements(String dataSource) async {
+Future<Map<String, List<Replacement>>> _readReplacements(
+  String dataSource,
+) async {
   try {
-    return parseReplacements(await _read(_sibling(dataSource, 'replacements.json')));
+    return parseReplacements(
+      await _read(_sibling(dataSource, 'replacements.json')),
+    );
   } catch (_) {
     return const {};
   }
 }
 
-bool _isUrl(String source) => source.startsWith('http://') || source.startsWith('https://');
+bool _isUrl(String source) =>
+    source.startsWith('http://') || source.startsWith('https://');
 
 Future<String> _read(String source) async {
   if (_isUrl(source)) {
     final response = await http.get(Uri.parse(source));
     if (response.statusCode != 200) {
-      throw StateError('Could not fetch $source (HTTP ${response.statusCode}).');
+      throw StateError(
+        'Could not fetch $source (HTTP ${response.statusCode}).',
+      );
     }
     return response.body;
   }
