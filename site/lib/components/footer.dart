@@ -21,7 +21,8 @@ class Footer extends StatelessComponent {
       p([
         .text('Open source (MIT) · '),
         a(href: 'https://github.com/Integrity-Ventures/flutter-ready', [.text('Source on GitHub')]),
-        .text(' · Data from pub.dev, updated nightly'),
+        .text(' · Data from pub.dev, updated nightly · '),
+        a(href: 'https://pub.dev/packages/flutter_ready', [.text('flutter_ready on pub.dev')]),
       ]),
     ]);
   }

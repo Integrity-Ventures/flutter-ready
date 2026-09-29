@@ -39,6 +39,15 @@ class PluginPage extends StatelessComponent {
           ],
         ),
       ]),
+      p(classes: 'cli-nudge', [
+        .text('Check all of your app\'s plugins at once with the '),
+        a(
+          href: 'https://pub.dev/packages/flutter_ready',
+          target: .blank,
+          attributes: {'rel': 'noopener noreferrer'},
+          [.text('flutter_ready CLI →')],
+        ),
+      ]),
       if (isBlocked(plugin)) const HireFlutterCta(),
       if (plugin.errors.isNotEmpty)
         section(classes: 'errors', [
@@ -105,6 +114,7 @@ class PluginPage extends StatelessComponent {
       css('a').styles(color: brandBlue, fontWeight: .w600),
       css('h1').styles(color: brandNavy),
       css('.meta').styles(color: textMuted),
+      css('.cli-nudge').styles(color: textMuted, fontSize: 0.9.rem),
       css('.evidence-section').styles(margin: .only(top: 1.5.em)),
       css('.note').styles(color: textMuted, fontSize: 0.9.rem),
       css('.errors').styles(color: statusRed),
