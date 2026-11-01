@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-31T08:29:42.003876Z",
+  "generatedAt": "2026-11-01T09:21:40.361633Z",
   "discovery": {
     "method": "pubdev-search",
     "queries": [
@@ -14,8 +14,8 @@
       "name": "path_provider",
       "version": "2.1.6",
       "published": "2026-06-15T13:51:07.158561Z",
-      "downloadCount30Days": 10190742,
-      "likeCount": 5571,
+      "downloadCount30Days": 10235662,
+      "likeCount": 5572,
       "swiftpm": {
         "tag": false,
         "archive": false,
@@ -44,8 +44,8 @@
       "name": "url_launcher",
       "version": "6.3.3",
       "published": "2026-10-02T19:30:33.326395Z",
-      "downloadCount30Days": 9402182,
-      "likeCount": 8189,
+      "downloadCount30Days": 9481052,
+      "likeCount": 8190,
       "swiftpm": {
         "tag": true,
         "archive": true,
@@ -73,7 +73,7 @@
       "name": "jni",
       "version": "1.1.1",
       "published": "2026-10-27T10:51:08.270676Z",
-      "downloadCount30Days": 9208349,
+      "downloadCount30Days": 9329602,
       "likeCount": 63,
       "swiftpm": {
         "tag": false,
@@ -102,7 +102,7 @@
       "name": "shared_preferences",
       "version": "2.5.6",
       "published": "2026-10-05T23:53:39.579508Z",
-      "downloadCount30Days": 9048641,
+      "downloadCount30Days": 9102812,
       "likeCount": 10584,
       "swiftpm": {
         "tag": true,
@@ -131,7 +131,7 @@
       "name": "flutter_plugin_android_lifecycle",
       "version": "2.0.35",
       "published": "2026-06-02T22:24:01.293753Z",
-      "downloadCount30Days": 7794902,
+      "downloadCount30Days": 7817878,
       "likeCount": 120,
       "swiftpm": {
         "tag": false,
@@ -160,7 +160,7 @@
       "name": "package_info_plus",
       "version": "10.2.2",
       "published": "2026-10-01T19:31:55.187002Z",
-      "downloadCount30Days": 7419554,
+      "downloadCount30Days": 7447016,
       "likeCount": 2807,
       "swiftpm": {
         "tag": true,
@@ -189,8 +189,8 @@
       "name": "flutter_secure_storage",
       "version": "11.2.0",
       "published": "2026-09-16T11:48:19.409417Z",
-      "downloadCount30Days": 5896351,
-      "likeCount": 4505,
+      "downloadCount30Days": 5922868,
+      "likeCount": 4506,
       "swiftpm": {
         "tag": true,
         "archive": true,
@@ -218,7 +218,7 @@
       "name": "firebase_core",
       "version": "5.1.0",
       "published": "2026-10-23T08:45:15.972932Z",
-      "downloadCount30Days": 5875967,
+      "downloadCount30Days": 5903948,
       "likeCount": 4080,
       "swiftpm": {
         "tag": true,
@@ -247,7 +247,7 @@
       "name": "image_picker",
       "version": "1.2.4",
       "published": "2026-10-06T01:57:15.735158Z",
-      "downloadCount30Days": 5838938,
+      "downloadCount30Days": 5860096,
       "likeCount": 7774,
       "swiftpm": {
         "tag": true,
@@ -276,7 +276,7 @@
       "name": "share_plus",
       "version": "13.3.1",
       "published": "2026-10-01T19:31:45.572575Z",
-      "downloadCount30Days": 5167020,
+      "downloadCount30Days": 5184373,
       "likeCount": 4033,
       "swiftpm": {
         "tag": true,
@@ -303,9 +303,9 @@
     },
     {
       "name": "file_picker",
-      "version": "13.3.0",
-      "published": "2026-10-26T05:29:41.313752Z",
-      "downloadCount30Days": 4920855,
+      "version": "13.3.1",
+      "published": "2026-11-01T07:52:20.135229Z",
+      "downloadCount30Days": 4936732,
       "likeCount": 4953,
       "swiftpm": {
         "tag": true,
@@ -334,7 +334,7 @@
       "name": "device_info_plus",
       "version": "13.3.0",
       "published": "2026-10-01T19:32:00.385215Z",
-      "downloadCount30Days": 4848217,
+      "downloadCount30Days": 4853601,
       "likeCount": 3043,
       "swiftpm": {
         "tag": true,
@@ -363,7 +363,7 @@
       "name": "connectivity_plus",
       "version": "7.3.2",
       "published": "2026-10-01T19:32:11.339157Z",
-      "downloadCount30Days": 4576324,
+      "downloadCount30Days": 4588555,
       "likeCount": 4102,
       "swiftpm": {
         "tag": true,
@@ -392,7 +392,7 @@
       "name": "jni_flutter",
       "version": "1.0.4+1",
       "published": "2026-10-06T09:30:42.811680Z",
-      "downloadCount30Days": 4481688,
+      "downloadCount30Days": 4398821,
       "likeCount": 16,
       "swiftpm": {
         "tag": false,
@@ -421,7 +421,7 @@
       "name": "firebase_messaging",
       "version": "17.0.1",
       "published": "2026-10-23T08:47:20.023812Z",
-      "downloadCount30Days": 4301460,
+      "downloadCount30Days": 4315883,
       "likeCount": 3951,
       "swiftpm": {
         "tag": true,
@@ -450,7 +450,7 @@
       "name": "permission_handler",
       "version": "13.0.2",
       "published": "2026-09-04T09:59:07.411412Z",
-      "downloadCount30Days": 4040095,
+      "downloadCount30Days": 4045707,
       "likeCount": 6017,
       "swiftpm": {
         "tag": true,
@@ -479,8 +479,8 @@
       "name": "webview_flutter",
       "version": "4.14.1",
       "published": "2026-07-07T17:29:37.749395Z",
-      "downloadCount30Days": 3986129,
-      "likeCount": 4535,
+      "downloadCount30Days": 4008181,
+      "likeCount": 4534,
       "swiftpm": {
         "tag": true,
         "archive": true,
@@ -508,7 +508,7 @@
       "name": "video_player",
       "version": "2.14.1",
       "published": "2026-10-02T21:58:29.522962Z",
-      "downloadCount30Days": 3941886,
+      "downloadCount30Days": 3961416,
       "likeCount": 3726,
       "swiftpm": {
         "tag": true,
@@ -537,8 +537,8 @@
       "name": "flutter_local_notifications",
       "version": "22.3.3",
       "published": "2026-10-25T03:06:31.843179Z",
-      "downloadCount30Days": 3752393,
-      "likeCount": 7360,
+      "downloadCount30Days": 3776014,
+      "likeCount": 7361,
       "swiftpm": {
         "tag": true,
         "archive": true,
@@ -566,7 +566,7 @@
       "name": "app_links",
       "version": "7.2.2",
       "published": "2026-10-06T13:54:36.730853Z",
-      "downloadCount30Days": 3659980,
+      "downloadCount30Days": 3669869,
       "likeCount": 1325,
       "swiftpm": {
         "tag": true,
@@ -595,8 +595,8 @@
       "name": "sqflite",
       "version": "2.4.5",
       "published": "2026-10-21T14:07:10.037023Z",
-      "downloadCount30Days": 3253475,
-      "likeCount": 5573,
+      "downloadCount30Days": 3252906,
+      "likeCount": 5574,
       "swiftpm": {
         "tag": true,
         "archive": true,
@@ -624,7 +624,7 @@
       "name": "geolocator",
       "version": "14.1.2",
       "published": "2026-10-19T15:29:42.700997Z",
-      "downloadCount30Days": 3012580,
+      "downloadCount30Days": 3025324,
       "likeCount": 6134,
       "swiftpm": {
         "tag": true,
@@ -653,7 +653,7 @@
       "name": "gtk",
       "version": "2.2.0",
       "published": "2026-05-04T15:05:00.061999Z",
-      "downloadCount30Days": 2955368,
+      "downloadCount30Days": 2923763,
       "likeCount": 42,
       "swiftpm": {
         "tag": false,
@@ -682,7 +682,7 @@
       "name": "wakelock_plus",
       "version": "1.8.2",
       "published": "2026-10-22T18:16:32.151366Z",
-      "downloadCount30Days": 2712202,
+      "downloadCount30Days": 2717607,
       "likeCount": 648,
       "swiftpm": {
         "tag": true,
@@ -711,7 +711,7 @@
       "name": "firebase_analytics",
       "version": "13.0.1",
       "published": "2026-10-23T08:50:06.836189Z",
-      "downloadCount30Days": 2613978,
+      "downloadCount30Days": 2622609,
       "likeCount": 1314,
       "swiftpm": {
         "tag": true,
@@ -740,7 +740,7 @@
       "name": "google_sign_in",
       "version": "7.2.0",
       "published": "2025-09-17T18:37:54.811927Z",
-      "downloadCount30Days": 2530343,
+      "downloadCount30Days": 2536935,
       "likeCount": 3609,
       "swiftpm": {
         "tag": true,
@@ -769,7 +769,7 @@
       "name": "firebase_crashlytics",
       "version": "6.0.1",
       "published": "2026-10-23T08:49:22.712303Z",
-      "downloadCount30Days": 2498862,
+      "downloadCount30Days": 2512556,
       "likeCount": 1334,
       "swiftpm": {
         "tag": true,
@@ -798,12 +798,12 @@
       "name": "mobile_scanner",
       "version": "7.4.3",
       "published": "2026-10-31T08:07:42.937746Z",
-      "downloadCount30Days": 2151360,
+      "downloadCount30Days": 2165031,
       "likeCount": 2309,
       "swiftpm": {
-        "tag": false,
+        "tag": true,
         "archive": true,
-        "agrees": false,
+        "agrees": true,
         "checkedPackage": "mobile_scanner",
         "nativeIos": true,
         "reason": null
@@ -827,7 +827,7 @@
       "name": "firebase_auth",
       "version": "7.0.1",
       "published": "2026-10-23T08:48:49.179059Z",
-      "downloadCount30Days": 2144168,
+      "downloadCount30Days": 2157847,
       "likeCount": 4301,
       "swiftpm": {
         "tag": true,
@@ -856,7 +856,7 @@
       "name": "sentry_flutter",
       "version": "10.2.0",
       "published": "2026-10-22T14:25:47.160243Z",
-      "downloadCount30Days": 1989239,
+      "downloadCount30Days": 1991861,
       "likeCount": 1087,
       "swiftpm": {
         "tag": true,
@@ -885,8 +885,8 @@
       "name": "flutter_native_splash",
       "version": "2.4.8",
       "published": "2026-05-29T20:03:33.749162Z",
-      "downloadCount30Days": 1971779,
-      "likeCount": 9812,
+      "downloadCount30Days": 1972965,
+      "likeCount": 9813,
       "swiftpm": {
         "tag": false,
         "archive": false,
@@ -915,7 +915,7 @@
       "name": "local_auth",
       "version": "3.0.2",
       "published": "2026-07-09T14:20:36.444883Z",
-      "downloadCount30Days": 1905456,
+      "downloadCount30Days": 1911890,
       "likeCount": 3384,
       "swiftpm": {
         "tag": true,
@@ -944,7 +944,7 @@
       "name": "audio_session",
       "version": "0.2.4",
       "published": "2026-06-29T13:10:31.881382Z",
-      "downloadCount30Days": 1748784,
+      "downloadCount30Days": 1755404,
       "likeCount": 366,
       "swiftpm": {
         "tag": true,
@@ -973,7 +973,7 @@
       "name": "sign_in_with_apple",
       "version": "8.2.0",
       "published": "2026-08-27T11:42:37.872720Z",
-      "downloadCount30Days": 1715913,
+      "downloadCount30Days": 1714579,
       "likeCount": 2201,
       "swiftpm": {
         "tag": true,
@@ -1002,7 +1002,7 @@
       "name": "audioplayers",
       "version": "6.8.1",
       "published": "2026-06-27T13:47:09.650930Z",
-      "downloadCount30Days": 1629004,
+      "downloadCount30Days": 1641994,
       "likeCount": 3448,
       "swiftpm": {
         "tag": true,
@@ -1031,7 +1031,7 @@
       "name": "cloud_firestore",
       "version": "7.1.0",
       "published": "2026-10-23T08:50:58.437568Z",
-      "downloadCount30Days": 1618630,
+      "downloadCount30Days": 1630885,
       "likeCount": 3783,
       "swiftpm": {
         "tag": true,
@@ -1060,7 +1060,7 @@
       "name": "just_audio",
       "version": "0.10.6",
       "published": "2026-06-29T13:36:46.318814Z",
-      "downloadCount30Days": 1558414,
+      "downloadCount30Days": 1563393,
       "likeCount": 4151,
       "swiftpm": {
         "tag": true,
@@ -1089,7 +1089,7 @@
       "name": "record",
       "version": "7.1.2",
       "published": "2026-10-09T15:35:07.302543Z",
-      "downloadCount30Days": 1524495,
+      "downloadCount30Days": 1531443,
       "likeCount": 896,
       "swiftpm": {
         "tag": true,
@@ -1118,8 +1118,8 @@
       "name": "in_app_review",
       "version": "2.0.12",
       "published": "2026-05-15T13:02:25.768745Z",
-      "downloadCount30Days": 1464639,
-      "likeCount": 2458,
+      "downloadCount30Days": 1461720,
+      "likeCount": 2459,
       "swiftpm": {
         "tag": true,
         "archive": true,
@@ -1147,7 +1147,7 @@
       "name": "firebase_remote_config",
       "version": "7.0.1",
       "published": "2026-10-23T08:46:23.684655Z",
-      "downloadCount30Days": 1452107,
+      "downloadCount30Days": 1461317,
       "likeCount": 655,
       "swiftpm": {
         "tag": true,
@@ -1176,7 +1176,7 @@
       "name": "flutter_timezone",
       "version": "5.1.1",
       "published": "2026-10-03T11:34:16.951907Z",
-      "downloadCount30Days": 1396723,
+      "downloadCount30Days": 1405757,
       "likeCount": 343,
       "swiftpm": {
         "tag": true,
@@ -1205,7 +1205,7 @@
       "name": "flutter_inappwebview",
       "version": "6.1.5",
       "published": "2024-10-08T22:11:28.023785Z",
-      "downloadCount30Days": 1342422,
+      "downloadCount30Days": 1346118,
       "likeCount": 2854,
       "swiftpm": {
         "tag": false,
@@ -1234,7 +1234,7 @@
       "name": "printing",
       "version": "5.15.1",
       "published": "2026-09-19T10:56:41.880487Z",
-      "downloadCount30Days": 1221370,
+      "downloadCount30Days": 1221713,
       "likeCount": 1809,
       "swiftpm": {
         "tag": true,
@@ -1263,7 +1263,7 @@
       "name": "flutter_image_compress",
       "version": "2.5.1",
       "published": "2026-07-25T13:02:06.533259Z",
-      "downloadCount30Days": 1179593,
+      "downloadCount30Days": 1178889,
       "likeCount": 1829,
       "swiftpm": {
         "tag": true,
@@ -1292,7 +1292,7 @@
       "name": "google_maps_flutter",
       "version": "2.19.0",
       "published": "2026-10-14T17:34:38.697353Z",
-      "downloadCount30Days": 1147903,
+      "downloadCount30Days": 1149408,
       "likeCount": 4630,
       "swiftpm": {
         "tag": false,
@@ -1322,7 +1322,7 @@
       "name": "flutter_keyboard_visibility_linux",
       "version": "2.0.0",
       "published": "2026-08-24T01:38:02.651634Z",
-      "downloadCount30Days": 1112258,
+      "downloadCount30Days": 1113816,
       "likeCount": 0,
       "swiftpm": {
         "tag": false,
@@ -1351,7 +1351,7 @@
       "name": "flutter_keyboard_visibility_macos",
       "version": "2.0.0",
       "published": "2026-08-24T01:39:37.424247Z",
-      "downloadCount30Days": 1112116,
+      "downloadCount30Days": 1113665,
       "likeCount": 0,
       "swiftpm": {
         "tag": false,
@@ -1380,7 +1380,7 @@
       "name": "flutter_keyboard_visibility_windows",
       "version": "2.0.0",
       "published": "2026-08-24T01:41:29.386465Z",
-      "downloadCount30Days": 1111867,
+      "downloadCount30Days": 1113446,
       "likeCount": 0,
       "swiftpm": {
         "tag": false,
@@ -1409,7 +1409,7 @@
       "name": "google_mobile_ads",
       "version": "9.2.0",
       "published": "2026-10-21T19:26:18.024772Z",
-      "downloadCount30Days": 1067512,
+      "downloadCount30Days": 1075131,
       "likeCount": 2484,
       "swiftpm": {
         "tag": true,
@@ -1438,7 +1438,7 @@
       "name": "camera",
       "version": "0.12.2",
       "published": "2026-10-27T21:07:05.285083Z",
-      "downloadCount30Days": 1030972,
+      "downloadCount30Days": 1041121,
       "likeCount": 2603,
       "swiftpm": {
         "tag": true,
@@ -1467,8 +1467,8 @@
       "name": "file_selector",
       "version": "1.1.0",
       "published": "2025-11-21T18:58:18.508014Z",
-      "downloadCount30Days": 984882,
-      "likeCount": 440,
+      "downloadCount30Days": 991144,
+      "likeCount": 441,
       "swiftpm": {
         "tag": true,
         "archive": true,
@@ -1496,7 +1496,7 @@
       "name": "window_manager",
       "version": "0.5.2",
       "published": "2026-07-04T15:26:18.818367Z",
-      "downloadCount30Days": 914131,
+      "downloadCount30Days": 915466,
       "likeCount": 1126,
       "swiftpm": {
         "tag": true,
@@ -1525,7 +1525,7 @@
       "name": "firebase_storage",
       "version": "14.0.1",
       "published": "2026-10-23T08:45:56.795379Z",
-      "downloadCount30Days": 899101,
+      "downloadCount30Days": 902639,
       "likeCount": 1765,
       "swiftpm": {
         "tag": true,
@@ -1554,8 +1554,8 @@
       "name": "speech_to_text",
       "version": "7.5.0",
       "published": "2026-09-14T19:14:48.036781Z",
-      "downloadCount30Days": 867773,
-      "likeCount": 1625,
+      "downloadCount30Days": 873676,
+      "likeCount": 1626,
       "swiftpm": {
         "tag": true,
         "archive": true,
@@ -1583,8 +1583,8 @@
       "name": "flutter_tts",
       "version": "4.2.5",
       "published": "2026-01-05T17:54:55.367504Z",
-      "downloadCount30Days": 666018,
-      "likeCount": 1605,
+      "downloadCount30Days": 672851,
+      "likeCount": 1606,
       "swiftpm": {
         "tag": false,
         "archive": false,
@@ -1612,7 +1612,7 @@
       "name": "google_mlkit_commons",
       "version": "0.13.0",
       "published": "2026-08-17T20:37:26.118473Z",
-      "downloadCount30Days": 636181,
+      "downloadCount30Days": 639965,
       "likeCount": 38,
       "swiftpm": {
         "tag": false,
@@ -1641,7 +1641,7 @@
       "name": "google_mlkit_text_recognition",
       "version": "0.17.1",
       "published": "2026-08-17T20:46:30.141172Z",
-      "downloadCount30Days": 365040,
+      "downloadCount30Days": 366070,
       "likeCount": 414,
       "swiftpm": {
         "tag": false,
@@ -1670,7 +1670,7 @@
       "name": "media_kit_video",
       "version": "2.0.1",
       "published": "2025-12-02T13:15:41.014639Z",
-      "downloadCount30Days": 318026,
+      "downloadCount30Days": 318397,
       "likeCount": 44,
       "swiftpm": {
         "tag": false,
@@ -1699,7 +1699,7 @@
       "name": "youtube_player_iframe",
       "version": "6.0.2",
       "published": "2026-05-30T19:55:44.807495Z",
-      "downloadCount30Days": 262593,
+      "downloadCount30Days": 264132,
       "likeCount": 668,
       "swiftpm": {
         "tag": false,
@@ -1728,7 +1728,7 @@
       "name": "video_compress",
       "version": "3.1.4",
       "published": "2025-02-13T05:50:56.603448Z",
-      "downloadCount30Days": 225222,
+      "downloadCount30Days": 226156,
       "likeCount": 748,
       "swiftpm": {
         "tag": false,
@@ -1757,7 +1757,7 @@
       "name": "video_thumbnail",
       "version": "0.5.6",
       "published": "2025-05-14T02:35:13.711279Z",
-      "downloadCount30Days": 201866,
+      "downloadCount30Days": 202714,
       "likeCount": 618,
       "swiftpm": {
         "tag": false,
@@ -1786,7 +1786,7 @@
       "name": "ua_client_hints",
       "version": "1.7.0",
       "published": "2026-04-14T15:16:47.638231Z",
-      "downloadCount30Days": 190393,
+      "downloadCount30Days": 187024,
       "likeCount": 52,
       "swiftpm": {
         "tag": false,
@@ -1815,7 +1815,7 @@
       "name": "amplify_analytics_pinpoint",
       "version": "2.16.0",
       "published": "2026-10-14T07:38:35.126354Z",
-      "downloadCount30Days": 175145,
+      "downloadCount30Days": 174624,
       "likeCount": 21,
       "swiftpm": {
         "tag": false,
@@ -1844,7 +1844,7 @@
       "name": "google_mlkit_barcode_scanning",
       "version": "0.16.1",
       "published": "2026-08-17T20:45:29.511848Z",
-      "downloadCount30Days": 150050,
+      "downloadCount30Days": 150413,
       "likeCount": 157,
       "swiftpm": {
         "tag": false,
@@ -1873,7 +1873,7 @@
       "name": "google_mlkit_face_detection",
       "version": "0.15.1",
       "published": "2026-08-17T20:45:47.793625Z",
-      "downloadCount30Days": 132571,
+      "downloadCount30Days": 132980,
       "likeCount": 329,
       "swiftpm": {
         "tag": false,
@@ -1902,7 +1902,7 @@
       "name": "flutter_background_service",
       "version": "5.1.0",
       "published": "2024-12-21T13:29:54.276202Z",
-      "downloadCount30Days": 112781,
+      "downloadCount30Days": 113176,
       "likeCount": 1591,
       "swiftpm": {
         "tag": false,
@@ -1931,7 +1931,7 @@
       "name": "advertising_id",
       "version": "2.7.1",
       "published": "2024-09-06T06:04:23.062711Z",
-      "downloadCount30Days": 112483,
+      "downloadCount30Days": 112731,
       "likeCount": 42,
       "swiftpm": {
         "tag": false,
@@ -1960,7 +1960,7 @@
       "name": "flutter_compass",
       "version": "0.8.1",
       "published": "2024-11-17T13:38:31.566122Z",
-      "downloadCount30Days": 106337,
+      "downloadCount30Days": 106772,
       "likeCount": 191,
       "swiftpm": {
         "tag": false,
@@ -1989,7 +1989,7 @@
       "name": "flutter_downloader",
       "version": "1.12.1",
       "published": "2026-08-22T08:28:20.083161Z",
-      "downloadCount30Days": 105035,
+      "downloadCount30Days": 104720,
       "likeCount": 1640,
       "swiftpm": {
         "tag": false,
@@ -2018,7 +2018,7 @@
       "name": "get_thumbnail_video",
       "version": "0.7.3",
       "published": "2024-11-15T13:16:07.084484Z",
-      "downloadCount30Days": 99406,
+      "downloadCount30Days": 100963,
       "likeCount": 63,
       "swiftpm": {
         "tag": false,
@@ -2047,7 +2047,7 @@
       "name": "device_calendar",
       "version": "4.3.3",
       "published": "2024-09-29T02:43:09.550526Z",
-      "downloadCount30Days": 95741,
+      "downloadCount30Days": 96399,
       "likeCount": 281,
       "swiftpm": {
         "tag": false,
@@ -2076,7 +2076,7 @@
       "name": "store_redirect",
       "version": "2.0.4",
       "published": "2025-02-13T23:41:15.141104Z",
-      "downloadCount30Days": 95391,
+      "downloadCount30Days": 95224,
       "likeCount": 296,
       "swiftpm": {
         "tag": false,
@@ -2105,7 +2105,7 @@
       "name": "sqflite_sqlcipher",
       "version": "3.4.1",
       "published": "2026-08-04T08:31:20.360794Z",
-      "downloadCount30Days": 94496,
+      "downloadCount30Days": 94276,
       "likeCount": 165,
       "swiftpm": {
         "tag": false,
@@ -2134,7 +2134,7 @@
       "name": "share_handler",
       "version": "0.0.25",
       "published": "2025-07-29T22:22:52.533994Z",
-      "downloadCount30Days": 87861,
+      "downloadCount30Days": 88313,
       "likeCount": 161,
       "swiftpm": {
         "tag": false,
@@ -2163,7 +2163,7 @@
       "name": "flutter_sound",
       "version": "9.30.0",
       "published": "2025-11-27T16:50:18.300063Z",
-      "downloadCount30Days": 82254,
+      "downloadCount30Days": 81621,
       "likeCount": 1641,
       "swiftpm": {
         "tag": false,
@@ -2192,7 +2192,7 @@
       "name": "tflite_flutter",
       "version": "0.12.1",
       "published": "2025-10-28T16:19:44.210882Z",
-      "downloadCount30Days": 79981,
+      "downloadCount30Days": 80297,
       "likeCount": 913,
       "swiftpm": {
         "tag": false,
@@ -2221,7 +2221,7 @@
       "name": "sherpa_onnx",
       "version": "2.0.1",
       "published": "2026-10-26T15:19:47.684633Z",
-      "downloadCount30Days": 78740,
+      "downloadCount30Days": 79284,
       "likeCount": 123,
       "swiftpm": {
         "tag": false,
@@ -2266,7 +2266,7 @@
       "name": "awesome_notifications",
       "version": "0.12.1",
       "published": "2026-07-01T20:30:52.743117Z",
-      "downloadCount30Days": 77025,
+      "downloadCount30Days": 77611,
       "likeCount": 3443,
       "swiftpm": {
         "tag": false,
@@ -2295,7 +2295,7 @@
       "name": "audio_waveforms",
       "version": "2.0.2",
       "published": "2026-01-09T11:59:16.583870Z",
-      "downloadCount30Days": 75476,
+      "downloadCount30Days": 75614,
       "likeCount": 871,
       "swiftpm": {
         "tag": false,
@@ -2324,7 +2324,7 @@
       "name": "image_editor",
       "version": "1.6.0",
       "published": "2024-11-22T06:28:50.850356Z",
-      "downloadCount30Days": 70425,
+      "downloadCount30Days": 69738,
       "likeCount": 370,
       "swiftpm": {
         "tag": false,
@@ -2350,39 +2350,10 @@
       ]
     },
     {
-      "name": "pinwheel",
-      "version": "4.2.0",
-      "published": "2026-10-29T18:37:28.504189Z",
-      "downloadCount30Days": 59437,
-      "likeCount": 1,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "pinwheel",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "pinwheel",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "pinwheel",
-        "compileSdk": "34",
-        "agp": "8.3.2",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
       "name": "disk_space_plus",
       "version": "0.2.6",
       "published": "2025-06-04T16:44:41.826843Z",
-      "downloadCount30Days": 59378,
+      "downloadCount30Days": 59131,
       "likeCount": 15,
       "swiftpm": {
         "tag": false,
@@ -2408,56 +2379,27 @@
       ]
     },
     {
-      "name": "flutter_network_capabilities",
-      "version": "0.0.3",
-      "published": "2026-06-15T16:38:10.814379Z",
-      "downloadCount30Days": 57807,
-      "likeCount": 7,
+      "name": "pinwheel",
+      "version": "4.2.0",
+      "published": "2026-10-29T18:37:28.504189Z",
+      "downloadCount30Days": 57314,
+      "likeCount": 1,
       "swiftpm": {
         "tag": false,
         "archive": false,
         "agrees": true,
-        "checkedPackage": "flutter_network_capabilities",
+        "checkedPackage": "pinwheel",
         "nativeIos": true,
         "reason": null
       },
       "alignment": {
-        "checkedPackage": "flutter_network_capabilities",
+        "checkedPackage": "pinwheel",
         "soFiles": []
       },
       "android": {
-        "checkedPackage": "flutter_network_capabilities",
-        "compileSdk": "33",
-        "agp": "8.6.0",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
-      "name": "desktop_webview_auth",
-      "version": "0.0.16",
-      "published": "2025-10-28T10:16:01.927118Z",
-      "downloadCount30Days": 57274,
-      "likeCount": 54,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "desktop_webview_auth",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "desktop_webview_auth",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "desktop_webview_auth",
-        "compileSdk": "flutter.compileSdkVersion",
-        "agp": "7.1.2",
+        "checkedPackage": "pinwheel",
+        "compileSdk": "34",
+        "agp": "8.3.2",
         "ndk": null
       },
       "errors": [],
@@ -2469,7 +2411,7 @@
       "name": "flutter_js",
       "version": "0.8.7",
       "published": "2026-01-27T20:22:28.611796Z",
-      "downloadCount30Days": 56380,
+      "downloadCount30Days": 57265,
       "likeCount": 360,
       "swiftpm": {
         "tag": false,
@@ -2501,10 +2443,68 @@
       ]
     },
     {
+      "name": "desktop_webview_auth",
+      "version": "0.0.16",
+      "published": "2025-10-28T10:16:01.927118Z",
+      "downloadCount30Days": 57235,
+      "likeCount": 54,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "desktop_webview_auth",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "desktop_webview_auth",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "desktop_webview_auth",
+        "compileSdk": "flutter.compileSdkVersion",
+        "agp": "7.1.2",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
+      "name": "flutter_network_capabilities",
+      "version": "0.0.3",
+      "published": "2026-06-15T16:38:10.814379Z",
+      "downloadCount30Days": 55653,
+      "likeCount": 7,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "flutter_network_capabilities",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "flutter_network_capabilities",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "flutter_network_capabilities",
+        "compileSdk": "33",
+        "agp": "8.6.0",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
       "name": "onetrust_publishers_native_cmp",
       "version": "202609.2.0",
       "published": "2026-10-08T12:02:41.864128Z",
-      "downloadCount30Days": 55322,
+      "downloadCount30Days": 55410,
       "likeCount": 10,
       "swiftpm": {
         "tag": false,
@@ -2530,39 +2530,10 @@
       ]
     },
     {
-      "name": "flutter_aepcore",
-      "version": "5.1.0",
-      "published": "2026-06-05T10:31:42.026165Z",
-      "downloadCount30Days": 49517,
-      "likeCount": 2,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "flutter_aepcore",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "flutter_aepcore",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "flutter_aepcore",
-        "compileSdk": "34",
-        "agp": "8.1.2",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
       "name": "flutter_zxing",
       "version": "3.1.0",
       "published": "2026-09-25T18:11:30.609448Z",
-      "downloadCount30Days": 48711,
+      "downloadCount30Days": 49564,
       "likeCount": 150,
       "swiftpm": {
         "tag": false,
@@ -2588,10 +2559,39 @@
       ]
     },
     {
+      "name": "flutter_aepcore",
+      "version": "5.1.0",
+      "published": "2026-06-05T10:31:42.026165Z",
+      "downloadCount30Days": 49107,
+      "likeCount": 2,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "flutter_aepcore",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "flutter_aepcore",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "flutter_aepcore",
+        "compileSdk": "34",
+        "agp": "8.1.2",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
       "name": "flutter_exif_rotation",
       "version": "0.5.2",
       "published": "2024-09-30T20:01:11.899426Z",
-      "downloadCount30Days": 47267,
+      "downloadCount30Days": 47502,
       "likeCount": 96,
       "swiftpm": {
         "tag": false,
@@ -2620,7 +2620,7 @@
       "name": "google_mlkit_translation",
       "version": "0.15.1",
       "published": "2026-08-17T20:46:34.334880Z",
-      "downloadCount30Days": 46640,
+      "downloadCount30Days": 47049,
       "likeCount": 74,
       "swiftpm": {
         "tag": false,
@@ -2649,27 +2649,15 @@
       "name": "ios_insecure_screen_detector",
       "version": "0.0.2",
       "published": "2021-09-16T12:56:55.428911Z",
-      "downloadCount30Days": 45502,
+      "downloadCount30Days": 44537,
       "likeCount": 20,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "ios_insecure_screen_detector",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "ios_insecure_screen_detector",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "ios_insecure_screen_detector",
-        "compileSdk": "30",
-        "agp": "4.1.0",
-        "ndk": null
-      },
-      "errors": [],
+      "swiftpm": null,
+      "alignment": null,
+      "android": null,
+      "errors": [
+        "ios_insecure_screen_detector archive decode: FormatException: Truncated gzip archive",
+        "ios_insecure_screen_detector archive decode: FormatException: Truncated gzip archive"
+      ],
       "search": [
         "no-swiftpm"
       ]
@@ -2678,7 +2666,7 @@
       "name": "flutter_icmp_ping",
       "version": "3.1.3",
       "published": "2023-09-01T06:38:14.196020Z",
-      "downloadCount30Days": 43763,
+      "downloadCount30Days": 44429,
       "likeCount": 15,
       "swiftpm": {
         "tag": false,
@@ -2707,7 +2695,7 @@
       "name": "flutter_aepedge",
       "version": "5.0.0",
       "published": "2025-03-05T01:25:24.317464Z",
-      "downloadCount30Days": 42278,
+      "downloadCount30Days": 41887,
       "likeCount": 2,
       "swiftpm": {
         "tag": false,
@@ -2736,7 +2724,7 @@
       "name": "flutter_aepedgeidentity",
       "version": "5.0.0",
       "published": "2025-03-05T00:49:47.846301Z",
-      "downloadCount30Days": 42275,
+      "downloadCount30Days": 41875,
       "likeCount": 0,
       "swiftpm": {
         "tag": false,
@@ -2765,7 +2753,7 @@
       "name": "super_keyboard",
       "version": "0.4.2",
       "published": "2026-10-28T19:04:14.191018Z",
-      "downloadCount30Days": 40220,
+      "downloadCount30Days": 40955,
       "likeCount": 8,
       "swiftpm": {
         "tag": false,
@@ -2791,97 +2779,10 @@
       ]
     },
     {
-      "name": "apple_maps_flutter",
-      "version": "1.4.0",
-      "published": "2025-01-23T12:40:38.379129Z",
-      "downloadCount30Days": 36567,
-      "likeCount": 73,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "apple_maps_flutter",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "apple_maps_flutter",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "apple_maps_flutter",
-        "compileSdk": null,
-        "agp": null,
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
-      "name": "flutter_pcm_sound",
-      "version": "3.3.3",
-      "published": "2025-10-04T18:02:52.109823Z",
-      "downloadCount30Days": 36013,
-      "likeCount": 45,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "flutter_pcm_sound",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "flutter_pcm_sound",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "flutter_pcm_sound",
-        "compileSdk": "33",
-        "agp": null,
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
-      "name": "google_mlkit_language_id",
-      "version": "0.15.1",
-      "published": "2026-08-17T20:46:03.762876Z",
-      "downloadCount30Days": 35915,
-      "likeCount": 21,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "google_mlkit_language_id",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "google_mlkit_language_id",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "google_mlkit_language_id",
-        "compileSdk": "36",
-        "agp": "8.13.0",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
       "name": "fdb_helper",
       "version": "1.15.1",
       "published": "2026-10-26T11:52:02.338459Z",
-      "downloadCount30Days": 35350,
+      "downloadCount30Days": 36673,
       "likeCount": 1,
       "swiftpm": {
         "tag": false,
@@ -2907,10 +2808,97 @@
       ]
     },
     {
+      "name": "flutter_pcm_sound",
+      "version": "3.3.3",
+      "published": "2025-10-04T18:02:52.109823Z",
+      "downloadCount30Days": 36620,
+      "likeCount": 45,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "flutter_pcm_sound",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "flutter_pcm_sound",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "flutter_pcm_sound",
+        "compileSdk": "33",
+        "agp": null,
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
+      "name": "apple_maps_flutter",
+      "version": "1.4.0",
+      "published": "2025-01-23T12:40:38.379129Z",
+      "downloadCount30Days": 36272,
+      "likeCount": 73,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "apple_maps_flutter",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "apple_maps_flutter",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "apple_maps_flutter",
+        "compileSdk": null,
+        "agp": null,
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
+      "name": "google_mlkit_language_id",
+      "version": "0.15.1",
+      "published": "2026-08-17T20:46:03.762876Z",
+      "downloadCount30Days": 36138,
+      "likeCount": 21,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "google_mlkit_language_id",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "google_mlkit_language_id",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "google_mlkit_language_id",
+        "compileSdk": "36",
+        "agp": "8.13.0",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
       "name": "onfido_sdk",
       "version": "11.1.0",
       "published": "2026-09-30T11:24:18.277158Z",
-      "downloadCount30Days": 34688,
+      "downloadCount30Days": 34962,
       "likeCount": 17,
       "swiftpm": {
         "tag": false,
@@ -2936,68 +2924,10 @@
       ]
     },
     {
-      "name": "push",
-      "version": "3.3.3",
-      "published": "2025-01-14T22:20:14.899935Z",
-      "downloadCount30Days": 33929,
-      "likeCount": 141,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "push",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "push",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "push",
-        "compileSdk": "35",
-        "agp": "8.7.3",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
-      "name": "gallery_saver_plus",
-      "version": "3.2.9",
-      "published": "2025-08-25T13:40:32.609630Z",
-      "downloadCount30Days": 33215,
-      "likeCount": 32,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "gallery_saver_plus",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "gallery_saver_plus",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "gallery_saver_plus",
-        "compileSdk": "31",
-        "agp": "8.1.0",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
       "name": "google_mlkit_pose_detection",
       "version": "0.16.1",
       "published": "2026-08-17T20:46:12.911818Z",
-      "downloadCount30Days": 32361,
+      "downloadCount30Days": 33226,
       "likeCount": 82,
       "swiftpm": {
         "tag": false,
@@ -3023,28 +2953,57 @@
       ]
     },
     {
-      "name": "root_jailbreak_sniffer",
-      "version": "1.1.4",
-      "published": "2025-10-01T07:23:50.408774Z",
-      "downloadCount30Days": 31963,
-      "likeCount": 30,
+      "name": "gallery_saver_plus",
+      "version": "3.2.9",
+      "published": "2025-08-25T13:40:32.609630Z",
+      "downloadCount30Days": 33194,
+      "likeCount": 32,
       "swiftpm": {
         "tag": false,
         "archive": false,
         "agrees": true,
-        "checkedPackage": "root_jailbreak_sniffer",
+        "checkedPackage": "gallery_saver_plus",
         "nativeIos": true,
         "reason": null
       },
       "alignment": {
-        "checkedPackage": "root_jailbreak_sniffer",
+        "checkedPackage": "gallery_saver_plus",
         "soFiles": []
       },
       "android": {
-        "checkedPackage": "root_jailbreak_sniffer",
-        "compileSdk": "34",
-        "agp": "8.7.0",
-        "ndk": "29.0.14033849"
+        "checkedPackage": "gallery_saver_plus",
+        "compileSdk": "31",
+        "agp": "8.1.0",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
+      "name": "push",
+      "version": "3.3.3",
+      "published": "2025-01-14T22:20:14.899935Z",
+      "downloadCount30Days": 32973,
+      "likeCount": 141,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "push",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "push",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "push",
+        "compileSdk": "35",
+        "agp": "8.7.3",
+        "ndk": null
       },
       "errors": [],
       "search": [
@@ -3055,7 +3014,7 @@
       "name": "terminate_restart",
       "version": "1.1.0",
       "published": "2026-03-23T00:33:58.398783Z",
-      "downloadCount30Days": 31920,
+      "downloadCount30Days": 32068,
       "likeCount": 70,
       "swiftpm": {
         "tag": false,
@@ -3081,10 +3040,39 @@
       ]
     },
     {
+      "name": "root_jailbreak_sniffer",
+      "version": "1.1.4",
+      "published": "2025-10-01T07:23:50.408774Z",
+      "downloadCount30Days": 31711,
+      "likeCount": 30,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "root_jailbreak_sniffer",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "root_jailbreak_sniffer",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "root_jailbreak_sniffer",
+        "compileSdk": "34",
+        "agp": "8.7.0",
+        "ndk": "29.0.14033849"
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
       "name": "otp_autofill",
       "version": "4.1.0",
       "published": "2024-10-21T14:11:02.186265Z",
-      "downloadCount30Days": 31238,
+      "downloadCount30Days": 30828,
       "likeCount": 293,
       "swiftpm": {
         "tag": false,
@@ -3110,27 +3098,27 @@
       ]
     },
     {
-      "name": "flutter_jailbreak_detection",
-      "version": "1.10.0",
-      "published": "2023-01-11T10:25:26.057274Z",
-      "downloadCount30Days": 29238,
-      "likeCount": 390,
+      "name": "ft_mobile_agent_flutter",
+      "version": "0.5.7",
+      "published": "2026-07-09T12:41:14.408855Z",
+      "downloadCount30Days": 29627,
+      "likeCount": 0,
       "swiftpm": {
         "tag": false,
         "archive": false,
         "agrees": true,
-        "checkedPackage": "flutter_jailbreak_detection",
+        "checkedPackage": "ft_mobile_agent_flutter",
         "nativeIos": true,
         "reason": null
       },
       "alignment": {
-        "checkedPackage": "flutter_jailbreak_detection",
+        "checkedPackage": "ft_mobile_agent_flutter",
         "soFiles": []
       },
       "android": {
-        "checkedPackage": "flutter_jailbreak_detection",
-        "compileSdk": "33",
-        "agp": "7.3.1",
+        "checkedPackage": "ft_mobile_agent_flutter",
+        "compileSdk": "34",
+        "agp": null,
         "ndk": null
       },
       "errors": [],
@@ -3142,7 +3130,7 @@
       "name": "flutter_vodozemac",
       "version": "0.9.0",
       "published": "2026-10-19T07:37:20.303183Z",
-      "downloadCount30Days": 28913,
+      "downloadCount30Days": 29245,
       "likeCount": 1,
       "swiftpm": {
         "tag": false,
@@ -3171,7 +3159,7 @@
       "name": "country_codes",
       "version": "3.3.0",
       "published": "2025-02-13T16:27:34.149692Z",
-      "downloadCount30Days": 28868,
+      "downloadCount30Days": 29196,
       "likeCount": 134,
       "swiftpm": {
         "tag": false,
@@ -3197,10 +3185,39 @@
       ]
     },
     {
+      "name": "flutter_jailbreak_detection",
+      "version": "1.10.0",
+      "published": "2023-01-11T10:25:26.057274Z",
+      "downloadCount30Days": 28602,
+      "likeCount": 390,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "flutter_jailbreak_detection",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "flutter_jailbreak_detection",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "flutter_jailbreak_detection",
+        "compileSdk": "33",
+        "agp": "7.3.1",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
       "name": "flutter_idensic_mobile_sdk_plugin",
       "version": "1.46.1",
       "published": "2026-09-01T15:33:18.102905Z",
-      "downloadCount30Days": 28663,
+      "downloadCount30Days": 28433,
       "likeCount": 16,
       "swiftpm": {
         "tag": false,
@@ -3226,39 +3243,10 @@
       ]
     },
     {
-      "name": "ft_mobile_agent_flutter",
-      "version": "0.5.7",
-      "published": "2026-07-09T12:41:14.408855Z",
-      "downloadCount30Days": 28328,
-      "likeCount": 0,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "ft_mobile_agent_flutter",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "ft_mobile_agent_flutter",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "ft_mobile_agent_flutter",
-        "compileSdk": "34",
-        "agp": null,
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
       "name": "libphonenumber_plugin",
       "version": "0.3.3",
       "published": "2023-12-08T17:39:44.476187Z",
-      "downloadCount30Days": 27917,
+      "downloadCount30Days": 28206,
       "likeCount": 15,
       "swiftpm": {
         "tag": false,
@@ -3284,10 +3272,39 @@
       ]
     },
     {
+      "name": "google_mlkit_selfie_segmentation",
+      "version": "0.12.1",
+      "published": "2026-08-17T20:46:17.044436Z",
+      "downloadCount30Days": 27277,
+      "likeCount": 36,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "google_mlkit_selfie_segmentation",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "google_mlkit_selfie_segmentation",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "google_mlkit_selfie_segmentation",
+        "compileSdk": "36",
+        "agp": "8.13.0",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
       "name": "http_proxy",
       "version": "1.2.3",
       "published": "2025-04-24T10:26:57.501056Z",
-      "downloadCount30Days": 27123,
+      "downloadCount30Days": 27006,
       "likeCount": 38,
       "swiftpm": {
         "tag": false,
@@ -3316,7 +3333,7 @@
       "name": "flutter_aepassurance",
       "version": "5.0.0",
       "published": "2025-03-05T01:22:44.519057Z",
-      "downloadCount30Days": 26700,
+      "downloadCount30Days": 26254,
       "likeCount": 0,
       "swiftpm": {
         "tag": false,
@@ -3345,7 +3362,7 @@
       "name": "fk_user_agent",
       "version": "2.1.0",
       "published": "2022-01-19T15:08:28.249114Z",
-      "downloadCount30Days": 26181,
+      "downloadCount30Days": 26201,
       "likeCount": 44,
       "swiftpm": {
         "tag": false,
@@ -3371,39 +3388,10 @@
       ]
     },
     {
-      "name": "google_mlkit_selfie_segmentation",
-      "version": "0.12.1",
-      "published": "2026-08-17T20:46:17.044436Z",
-      "downloadCount30Days": 26050,
-      "likeCount": 36,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "google_mlkit_selfie_segmentation",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "google_mlkit_selfie_segmentation",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "google_mlkit_selfie_segmentation",
-        "compileSdk": "36",
-        "agp": "8.13.0",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
       "name": "fullscreen_window",
       "version": "1.2.1",
       "published": "2025-11-24T10:18:26.337308Z",
-      "downloadCount30Days": 25471,
+      "downloadCount30Days": 26050,
       "likeCount": 30,
       "swiftpm": {
         "tag": false,
@@ -3432,7 +3420,7 @@
       "name": "flutter_google_places_sdk",
       "version": "0.4.3",
       "published": "2025-12-30T10:54:40.606216Z",
-      "downloadCount30Days": 24982,
+      "downloadCount30Days": 25291,
       "likeCount": 110,
       "swiftpm": {
         "tag": false,
@@ -3461,7 +3449,7 @@
       "name": "ably_flutter",
       "version": "1.2.44",
       "published": "2026-04-09T12:36:30.013678Z",
-      "downloadCount30Days": 24482,
+      "downloadCount30Days": 24510,
       "likeCount": 48,
       "swiftpm": {
         "tag": false,
@@ -3490,7 +3478,7 @@
       "name": "store_checker",
       "version": "1.8.0",
       "published": "2025-02-28T15:47:00.293823Z",
-      "downloadCount30Days": 24125,
+      "downloadCount30Days": 23860,
       "likeCount": 96,
       "swiftpm": {
         "tag": false,
@@ -3519,7 +3507,7 @@
       "name": "google_mlkit_document_scanner",
       "version": "0.6.1",
       "published": "2026-08-17T20:45:38.089595Z",
-      "downloadCount30Days": 22958,
+      "downloadCount30Days": 23273,
       "likeCount": 72,
       "swiftpm": {
         "tag": false,
@@ -3548,7 +3536,7 @@
       "name": "open_mail_app_plus",
       "version": "0.0.2",
       "published": "2025-04-16T20:26:38.335560Z",
-      "downloadCount30Days": 22887,
+      "downloadCount30Days": 23268,
       "likeCount": 15,
       "swiftpm": {
         "tag": false,
@@ -3577,7 +3565,7 @@
       "name": "audiofileplayer",
       "version": "2.1.1",
       "published": "2022-10-21T15:38:23.622182Z",
-      "downloadCount30Days": 22864,
+      "downloadCount30Days": 23042,
       "likeCount": 67,
       "swiftpm": {
         "tag": false,
@@ -3603,97 +3591,10 @@
       ]
     },
     {
-      "name": "flutter_aepedgeconsent",
-      "version": "5.0.0",
-      "published": "2025-03-05T01:26:21.509206Z",
-      "downloadCount30Days": 22534,
-      "likeCount": 0,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "flutter_aepedgeconsent",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "flutter_aepedgeconsent",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "flutter_aepedgeconsent",
-        "compileSdk": "34",
-        "agp": "8.1.2",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
-      "name": "vpn_permission",
-      "version": "0.0.2",
-      "published": "2025-02-27T09:24:38.325922Z",
-      "downloadCount30Days": 22522,
-      "likeCount": 4,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "vpn_permission",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "vpn_permission",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "vpn_permission",
-        "compileSdk": "34",
-        "agp": "7.3.0",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
-      "name": "flutter_aepedgebridge",
-      "version": "5.0.0",
-      "published": "2025-03-05T01:29:07.786098Z",
-      "downloadCount30Days": 22456,
-      "likeCount": 0,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "flutter_aepedgebridge",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "flutter_aepedgebridge",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "flutter_aepedgebridge",
-        "compileSdk": "34",
-        "agp": "8.1.2",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
       "name": "ios_teamid",
       "version": "1.0.0",
       "published": "2025-05-19T14:34:54.336809Z",
-      "downloadCount30Days": 22227,
+      "downloadCount30Days": 22773,
       "likeCount": 1,
       "swiftpm": {
         "tag": false,
@@ -3719,10 +3620,97 @@
       ]
     },
     {
+      "name": "vpn_permission",
+      "version": "0.0.2",
+      "published": "2025-02-27T09:24:38.325922Z",
+      "downloadCount30Days": 22435,
+      "likeCount": 4,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "vpn_permission",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "vpn_permission",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "vpn_permission",
+        "compileSdk": "34",
+        "agp": "7.3.0",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
+      "name": "flutter_aepedgeconsent",
+      "version": "5.0.0",
+      "published": "2025-03-05T01:26:21.509206Z",
+      "downloadCount30Days": 22198,
+      "likeCount": 0,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "flutter_aepedgeconsent",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "flutter_aepedgeconsent",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "flutter_aepedgeconsent",
+        "compileSdk": "34",
+        "agp": "8.1.2",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
+      "name": "flutter_aepedgebridge",
+      "version": "5.0.0",
+      "published": "2025-03-05T01:29:07.786098Z",
+      "downloadCount30Days": 22173,
+      "likeCount": 0,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "flutter_aepedgebridge",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "flutter_aepedgebridge",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "flutter_aepedgebridge",
+        "compileSdk": "34",
+        "agp": "8.1.2",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
       "name": "google_mlkit_image_labeling",
       "version": "0.16.1",
       "published": "2026-08-17T20:45:58.393593Z",
-      "downloadCount30Days": 21927,
+      "downloadCount30Days": 22089,
       "likeCount": 66,
       "swiftpm": {
         "tag": false,
@@ -3751,7 +3739,7 @@
       "name": "secure_application",
       "version": "4.1.0",
       "published": "2025-03-17T16:17:04.523445Z",
-      "downloadCount30Days": 21650,
+      "downloadCount30Days": 21725,
       "likeCount": 551,
       "swiftpm": {
         "tag": false,
@@ -3780,7 +3768,7 @@
       "name": "lib_llama_cpp",
       "version": "0.7.5",
       "published": "2026-10-27T00:21:28.176342Z",
-      "downloadCount30Days": 21543,
+      "downloadCount30Days": 21353,
       "likeCount": 1,
       "swiftpm": {
         "tag": false,
@@ -3812,39 +3800,10 @@
       ]
     },
     {
-      "name": "open_mail",
-      "version": "1.2.1",
-      "published": "2025-11-03T14:26:52.971117Z",
-      "downloadCount30Days": 21058,
-      "likeCount": 22,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "open_mail",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "open_mail",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "open_mail",
-        "compileSdk": "flutter.compileSdkVersion",
-        "agp": "8.11.1",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
       "name": "flutter_document_picker",
       "version": "5.2.3",
       "published": "2023-06-07T20:56:13.917338Z",
-      "downloadCount30Days": 20885,
+      "downloadCount30Days": 20972,
       "likeCount": 52,
       "swiftpm": {
         "tag": false,
@@ -3870,10 +3829,39 @@
       ]
     },
     {
+      "name": "open_mail",
+      "version": "1.2.1",
+      "published": "2025-11-03T14:26:52.971117Z",
+      "downloadCount30Days": 20860,
+      "likeCount": 22,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "open_mail",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "open_mail",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "open_mail",
+        "compileSdk": "flutter.compileSdkVersion",
+        "agp": "8.11.1",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
       "name": "flutter_native_video_trimmer",
       "version": "1.1.9",
       "published": "2025-03-20T07:26:06.009551Z",
-      "downloadCount30Days": 20466,
+      "downloadCount30Days": 20625,
       "likeCount": 13,
       "swiftpm": {
         "tag": false,
@@ -3902,7 +3890,7 @@
       "name": "unico_check",
       "version": "4.65.0",
       "published": "2026-10-27T19:24:09.372605Z",
-      "downloadCount30Days": 19985,
+      "downloadCount30Days": 19892,
       "likeCount": 15,
       "swiftpm": {
         "tag": false,
@@ -3931,7 +3919,7 @@
       "name": "reshub_flutter",
       "version": "0.0.27",
       "published": "2026-06-26T09:02:04.660867Z",
-      "downloadCount30Days": 19595,
+      "downloadCount30Days": 19791,
       "likeCount": 1,
       "swiftpm": {
         "tag": false,
@@ -3960,7 +3948,7 @@
       "name": "flutter_app_badge",
       "version": "2.0.2",
       "published": "2023-07-21T10:34:17.519284Z",
-      "downloadCount30Days": 19484,
+      "downloadCount30Days": 19469,
       "likeCount": 40,
       "swiftpm": {
         "tag": false,
@@ -3986,10 +3974,39 @@
       ]
     },
     {
+      "name": "flutter_vibrate",
+      "version": "1.4.0",
+      "published": "2026-01-14T07:09:30.641068Z",
+      "downloadCount30Days": 18906,
+      "likeCount": 202,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "flutter_vibrate",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "flutter_vibrate",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "flutter_vibrate",
+        "compileSdk": "30",
+        "agp": "7.0.2",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
       "name": "opus_flutter",
       "version": "3.0.3",
       "published": "2024-07-22T09:35:19.416349Z",
-      "downloadCount30Days": 19028,
+      "downloadCount30Days": 18809,
       "likeCount": 8,
       "swiftpm": {
         "tag": false,
@@ -4018,7 +4035,7 @@
       "name": "image_gallery_saver",
       "version": "2.0.3",
       "published": "2023-07-03T11:54:49.291059Z",
-      "downloadCount30Days": 18789,
+      "downloadCount30Days": 18792,
       "likeCount": 885,
       "swiftpm": {
         "tag": false,
@@ -4047,7 +4064,7 @@
       "name": "flutter_aepuserprofile",
       "version": "5.0.0",
       "published": "2025-03-05T01:24:03.209032Z",
-      "downloadCount30Days": 18785,
+      "downloadCount30Days": 18467,
       "likeCount": 0,
       "swiftpm": {
         "tag": false,
@@ -4073,97 +4090,10 @@
       ]
     },
     {
-      "name": "flutter_vibrate",
-      "version": "1.4.0",
-      "published": "2026-01-14T07:09:30.641068Z",
-      "downloadCount30Days": 18450,
-      "likeCount": 202,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "flutter_vibrate",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "flutter_vibrate",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "flutter_vibrate",
-        "compileSdk": "30",
-        "agp": "7.0.2",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
-      "name": "flutter_credit_card",
-      "version": "4.1.0",
-      "published": "2025-02-25T09:40:49.398749Z",
-      "downloadCount30Days": 18313,
-      "likeCount": 1101,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "flutter_credit_card",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "flutter_credit_card",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "flutter_credit_card",
-        "compileSdk": "31",
-        "agp": null,
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
-      "name": "flutter_isolate",
-      "version": "2.1.0",
-      "published": "2024-09-18T00:09:48.519506Z",
-      "downloadCount30Days": 17862,
-      "likeCount": 482,
-      "swiftpm": {
-        "tag": false,
-        "archive": false,
-        "agrees": true,
-        "checkedPackage": "flutter_isolate",
-        "nativeIos": true,
-        "reason": null
-      },
-      "alignment": {
-        "checkedPackage": "flutter_isolate",
-        "soFiles": []
-      },
-      "android": {
-        "checkedPackage": "flutter_isolate",
-        "compileSdk": "34",
-        "agp": "7.4.2",
-        "ndk": null
-      },
-      "errors": [],
-      "search": [
-        "no-swiftpm"
-      ]
-    },
-    {
       "name": "flutter_video_info",
       "version": "1.3.3",
       "published": "2025-04-02T03:01:24.511386Z",
-      "downloadCount30Days": 17848,
+      "downloadCount30Days": 17981,
       "likeCount": 73,
       "swiftpm": {
         "tag": false,
@@ -4189,10 +4119,39 @@
       ]
     },
     {
+      "name": "flutter_credit_card",
+      "version": "4.1.0",
+      "published": "2025-02-25T09:40:49.398749Z",
+      "downloadCount30Days": 17921,
+      "likeCount": 1101,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "flutter_credit_card",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "flutter_credit_card",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "flutter_credit_card",
+        "compileSdk": "31",
+        "agp": null,
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
       "name": "realm",
       "version": "20.2.0",
       "published": "2025-09-24T14:54:07.342888Z",
-      "downloadCount30Days": 17789,
+      "downloadCount30Days": 17548,
       "likeCount": 719,
       "swiftpm": {
         "tag": false,
@@ -4218,10 +4177,39 @@
       ]
     },
     {
+      "name": "flutter_isolate",
+      "version": "2.1.0",
+      "published": "2024-09-18T00:09:48.519506Z",
+      "downloadCount30Days": 17463,
+      "likeCount": 482,
+      "swiftpm": {
+        "tag": false,
+        "archive": false,
+        "agrees": true,
+        "checkedPackage": "flutter_isolate",
+        "nativeIos": true,
+        "reason": null
+      },
+      "alignment": {
+        "checkedPackage": "flutter_isolate",
+        "soFiles": []
+      },
+      "android": {
+        "checkedPackage": "flutter_isolate",
+        "compileSdk": "34",
+        "agp": "7.4.2",
+        "ndk": null
+      },
+      "errors": [],
+      "search": [
+        "no-swiftpm"
+      ]
+    },
+    {
       "name": "sfmc",
       "version": "9.0.1",
       "published": "2025-11-14T12:44:37.424751Z",
-      "downloadCount30Days": 17172,
+      "downloadCount30Days": 17259,
       "likeCount": 11,
       "swiftpm": {
         "tag": false,
